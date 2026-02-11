@@ -184,7 +184,7 @@ app.get('/', (c) => {
           <div class="pricing-event-layout">
             <div class="pricing-event-left">
               <h3>Pass \u00c9v\u00e9nement</h3>
-              <p class="pricing-event-tagline">Id\u00e9al pour un concours, une comp\u00e9tition ou un \u00e9v\u00e9nement unique.</p>
+              <p class="pricing-event-tagline">Id\u00e9al pour les comit\u00e9s de quartier, campings, entreprises, qui souhaitent cr\u00e9er un \u00e9v\u00e8nement unique.</p>
             </div>
             <div class="pricing-event-center">
               <ul class="pricing-features">
