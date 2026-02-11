@@ -159,7 +159,7 @@ app.get('/', (c) => {
             <img src="/static/images/screenshot-poules.png" alt="Tournois en poules" class="screenshot-img">
           </div>
           <h3>Tournois en poules</h3>
-          <p>Organisez vos tournois en poules avec une vue compl\u00e8te&nbsp;: phases de groupes, qualifications automatiques et tableau final. Id\u00e9al pour les grands tournois.</p>
+          <p>Organisez vos tournois en poules : \u00e0 chaque tour, P\u00e9tanque Manager effectue automatiquement le tirage al\u00e9atoire des matchs et affiche les rencontres. Moins d\u2019attente, moins d\u2019erreurs, plus de fluidit\u00e9 pour les joueurs et l\u2019organisation.</p>
         </div>
       </div>
     </div>
