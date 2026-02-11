@@ -78,7 +78,7 @@ app.get('/', (c) => {
       </div>
       <div class="hero-visual">
         <div class="hero-mockup">
-          <img src="/static/images/screenshot-equipes.png" alt="Capture P\u00e9tanque Manager - Gestion des \u00e9quipes" class="hero-screenshot">
+          <img src="/static/images/screenshot-nouveau.png" alt="Capture P\u00e9tanque Manager - Cr\u00e9ation de tournoi" class="hero-screenshot">
         </div>
       </div>
     </div>
@@ -150,6 +150,13 @@ app.get('/', (c) => {
           </div>
           <h3>Classement</h3>
           <p>Classement en direct apr\u00e8s chaque partie&nbsp;: victoires, points, diff\u00e9rentiel et d\u00e9partage clair. Visualisez instantan\u00e9ment qui est devant.</p>
+        </div>
+        <div class="screenshot-card">
+          <div class="screenshot-img-wrap">
+            <img src="/static/images/screenshot-poules.png" alt="Tournois en poules" class="screenshot-img">
+          </div>
+          <h3>Tournois en poules</h3>
+          <p>Organisez vos tournois en poules avec une vue compl\u00e8te&nbsp;: phases de groupes, qualifications automatiques et tableau final. Id\u00e9al pour les grands tournois.</p>
         </div>
       </div>
     </div>
