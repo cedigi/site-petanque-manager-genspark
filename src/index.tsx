@@ -168,15 +168,6 @@ app.get('/', (c) => {
       <h2 class="section-title">Tarifs</h2>
       <p class="section-subtitle">Choisissez l\u2019offre adapt\u00e9e \u00e0 votre club ou \u00e0 votre usage.</p>
       
-      <div class="pricing-toggle-wrap">
-        <span class="pricing-toggle-label" id="labelMensuel">Mensuel</span>
-        <button class="pricing-toggle" id="pricingToggle" aria-label="Basculer mensuel/annuel">
-          <span class="pricing-toggle-knob"></span>
-        </button>
-        <span class="pricing-toggle-label" id="labelAnnuel">Annuel</span>
-        <span class="pricing-badge">\u00c9conomisez jusqu\u2019\u00e0 23%</span>
-      </div>
-
       <!-- Pass Evenement -->
       <div class="pricing-event-wrap">
         <div class="pricing-card pricing-card-event">
@@ -200,6 +191,15 @@ app.get('/', (c) => {
             </div>
           </div>
         </div>
+      </div>
+
+      <div class="pricing-toggle-wrap">
+        <span class="pricing-toggle-label" id="labelMensuel">Mensuel</span>
+        <button class="pricing-toggle" id="pricingToggle" aria-label="Basculer mensuel/annuel">
+          <span class="pricing-toggle-knob"></span>
+        </button>
+        <span class="pricing-toggle-label" id="labelAnnuel">Annuel</span>
+        <span class="pricing-badge">\u00c9conomisez jusqu\u2019\u00e0 23%</span>
       </div>
 
       <div class="pricing-grid">
