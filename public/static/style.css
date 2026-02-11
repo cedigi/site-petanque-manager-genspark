@@ -595,6 +595,88 @@ img {
   border-radius: 20px;
 }
 
+/* Pass Evenement — special one-time card */
+.pricing-event-wrap {
+  margin-bottom: 32px;
+}
+
+.pricing-card-event {
+  background: var(--bg-card);
+  border: 1px solid var(--gold);
+  border-radius: var(--radius-lg);
+  padding: 32px 36px;
+  position: relative;
+  box-shadow: var(--shadow-glow-gold), var(--shadow-card);
+  transition: var(--transition);
+}
+
+.pricing-card-event:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 50px rgba(212, 168, 67, 0.25), var(--shadow-card-hover);
+}
+
+.pricing-event-badge {
+  position: absolute;
+  top: -13px;
+  left: 32px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: #1a1a1a;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 4px 18px;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pricing-event-layout {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr auto;
+  gap: 32px;
+  align-items: center;
+}
+
+.pricing-event-left h3 {
+  color: var(--text-white);
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.pricing-event-tagline {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.pricing-event-center .pricing-features {
+  margin-bottom: 0;
+}
+
+.pricing-event-right {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.pricing-event-price {
+  font-size: 2.6rem;
+  font-weight: 800;
+  color: var(--text-white);
+  line-height: 1;
+}
+
+.pricing-event-price small {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  display: block;
+  margin-top: 4px;
+}
+
 .pricing-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -1318,6 +1400,11 @@ img {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .pricing-event-layout {
+    grid-template-columns: 1fr 1.4fr auto;
+    gap: 24px;
+  }
+
   .pricing-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1413,6 +1500,26 @@ img {
 
   .screenshots-grid {
     grid-template-columns: 1fr;
+  }
+
+  .pricing-event-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .pricing-event-left {
+    text-align: center;
+  }
+
+  .pricing-event-center .pricing-features {
+    text-align: left;
+    display: inline-flex;
+    flex-direction: column;
+  }
+
+  .pricing-card-event {
+    padding: 28px 24px;
   }
 
   .pricing-grid {

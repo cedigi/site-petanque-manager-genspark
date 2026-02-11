@@ -177,6 +177,31 @@ app.get('/', (c) => {
         <span class="pricing-badge">\u00c9conomisez jusqu\u2019\u00e0 23%</span>
       </div>
 
+      <!-- Pass Evenement -->
+      <div class="pricing-event-wrap">
+        <div class="pricing-card pricing-card-event">
+          <div class="pricing-event-badge"><i class="fas fa-bolt"></i> Offre ponctuelle</div>
+          <div class="pricing-event-layout">
+            <div class="pricing-event-left">
+              <h3>Pass \u00c9v\u00e9nement</h3>
+              <p class="pricing-event-tagline">Id\u00e9al pour un concours, une comp\u00e9tition ou un \u00e9v\u00e9nement unique.</p>
+            </div>
+            <div class="pricing-event-center">
+              <ul class="pricing-features">
+                <li><i class="fas fa-check"></i> Dur\u00e9e : 7 jours</li>
+                <li><i class="fas fa-check"></i> 2 PC inclus</li>
+                <li><i class="fas fa-check"></i> Acc\u00e8s complet : tournois, terrains, scores, classement, impressions</li>
+                <li><i class="fas fa-check"></i> Activation en ligne, utilisation possible hors ligne ensuite</li>
+              </ul>
+            </div>
+            <div class="pricing-event-right">
+              <div class="pricing-event-price">29\u20ac<small> unique</small></div>
+              <a href="#telecharger" class="btn btn-gold">Choisir ce pass</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="pricing-grid">
         <div class="pricing-card">
           <div class="pricing-card-header">
