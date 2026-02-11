@@ -116,7 +116,7 @@ app.get('/', (c) => {
         <div class="feature-card">
           <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
           <h3>Classement live</h3>
-          <p>Victoires, points marquis/encaiss\u00e9s, diff\u00e9rentiel : mise \u00e0 jour instantan\u00e9e apr\u00e8s chaque match.</p>
+          <p>Victoires, points marqu\u00e9s/encaiss\u00e9s, diff\u00e9rentiel : mise \u00e0 jour instantan\u00e9e apr\u00e8s chaque match.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon"><i class="fas fa-users"></i></div>
