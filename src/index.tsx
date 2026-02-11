@@ -293,12 +293,12 @@ app.get('/', (c) => {
         <div class="addon-card">
           <div class="addon-icon"><i class="fas fa-laptop"></i></div>
           <div class="addon-info">
-            <h4>PC suppl\u00e9mentaire</h4>
-            <p>Ajoutez un PC \u00e0 votre licence existante.</p>
+            <h4>PC suppl\u00e9mentaires (apr\u00e8s 5 PC)</h4>
+            <p>Besoin de plus de 5 PC ? Ajoutez des activations suppl\u00e9mentaires, uniquement avec l\u2019offre Club (5 PC).</p>
           </div>
           <div class="addon-price">
-            <span class="price-monthly">5\u20ac<small>/mois</small></span>
-            <span class="price-annual hidden">49\u20ac<small>/an</small></span>
+            <span class="price-monthly">9\u20ac<small>/mois par PC</small></span>
+            <span class="price-annual hidden">90\u20ac<small>/an par PC</small></span>
           </div>
         </div>
       </div>
