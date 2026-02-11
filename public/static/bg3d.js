@@ -78,7 +78,7 @@
     this.phase = Math.random() * Math.PI * 2;
     // Color type: 0 = teal metallic, 1 = steel/silver, 2 = gold accent
     this.type = Math.random() < 0.15 ? 2 : (Math.random() < 0.5 ? 0 : 1);
-    this.opacity = 0.12 + Math.random() * 0.12;
+    this.opacity = 0.18 + Math.random() * 0.16;
   };
 
   Ball.prototype.update = function (dt) {
@@ -322,7 +322,34 @@
     lastTime = now;
     time = now;
 
-    ctx.clearRect(0, 0, W, H);
+    // Draw base background gradient (replaces CSS body::before)
+    var bgGrad = ctx.createLinearGradient(0, 0, 0, H);
+    bgGrad.addColorStop(0, '#0b2027');
+    bgGrad.addColorStop(0.3, '#0d2c35');
+    bgGrad.addColorStop(0.6, '#0f3640');
+    bgGrad.addColorStop(1, '#0b2027');
+    ctx.fillStyle = bgGrad;
+    ctx.fillRect(0, 0, W, H);
+
+    // Subtle radial color zones
+    ctx.globalAlpha = 1;
+    var z1 = ctx.createRadialGradient(W * 0.15, H * 0.2, 0, W * 0.15, H * 0.2, 500);
+    z1.addColorStop(0, 'rgba(20, 80, 100, 0.5)');
+    z1.addColorStop(1, 'transparent');
+    ctx.fillStyle = z1;
+    ctx.fillRect(0, 0, W, H);
+
+    var z2 = ctx.createRadialGradient(W * 0.85, H * 0.3, 0, W * 0.85, H * 0.3, 400);
+    z2.addColorStop(0, 'rgba(15, 70, 90, 0.4)');
+    z2.addColorStop(1, 'transparent');
+    ctx.fillStyle = z2;
+    ctx.fillRect(0, 0, W, H);
+
+    var z3 = ctx.createRadialGradient(W * 0.5, H * 0.7, 0, W * 0.5, H * 0.7, 350);
+    z3.addColorStop(0, 'rgba(25, 90, 110, 0.3)');
+    z3.addColorStop(1, 'transparent');
+    ctx.fillStyle = z3;
+    ctx.fillRect(0, 0, W, H);
 
     // Update all
     bokehs.forEach(function (b) { b.update(); });
