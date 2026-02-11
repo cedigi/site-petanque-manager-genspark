@@ -398,7 +398,7 @@ app.get('/', (c) => {
             <i class="fas fa-envelope"></i>
             <div>
               <h4>Email support</h4>
-              <a href="mailto:support@petanque-manager.fr">support@petanque-manager.fr</a>
+              <a href="mailto:contact@petanque-manager.eu">contact@petanque-manager.eu</a>
             </div>
           </div>
           <div class="contact-info-item">
