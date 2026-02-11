@@ -37,6 +37,9 @@ app.get('/', (c) => {
 </head>
 <body>
 
+  <!-- ========== 3D BACKGROUND CANVAS ========== -->
+  <canvas id="bgCanvas"></canvas>
+
   <!-- ========== NAVBAR ========== -->
   <nav class="navbar" id="navbar">
     <div class="nav-container">
@@ -492,6 +495,7 @@ app.get('/', (c) => {
     </div>
   </div>
 
+  <script src="/static/bg3d.js"></script>
   <script src="/static/app.js"></script>
 </body>
 </html>`)
