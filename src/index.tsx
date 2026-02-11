@@ -280,17 +280,6 @@ app.get('/', (c) => {
       <!-- Add-ons -->
       <div class="addons-grid">
         <div class="addon-card">
-          <div class="addon-icon"><i class="fas fa-palette"></i></div>
-          <div class="addon-info">
-            <h4>Module Logo Club</h4>
-            <p>Personnalisez vos impressions avec votre logo.</p>
-          </div>
-          <div class="addon-price">
-            <span class="price-monthly">5\u20ac<small>/mois</small></span>
-            <span class="price-annual hidden">49\u20ac<small>/an</small></span>
-          </div>
-        </div>
-        <div class="addon-card">
           <div class="addon-icon"><i class="fas fa-laptop"></i></div>
           <div class="addon-info">
             <h4>PC suppl\u00e9mentaires (apr\u00e8s 5 PC)</h4>
@@ -381,18 +370,10 @@ app.get('/', (c) => {
             <i class="fas fa-chevron-down faq-chevron"></i>
           </button>
           <div class="faq-answer">
-            <p>Utilisez l\u2019add-on \u00ab PC suppl\u00e9mentaire \u00bb \u00e0 5\u20ac/mois (ou 49\u20ac/an). Vous pouvez en ajouter autant que n\u00e9cessaire depuis votre espace client.</p>
+            <p>Avec l\u2019offre Club Pack (5 PC), vous pouvez ajouter des PC suppl\u00e9mentaires \u00e0 9\u20ac/mois par PC (ou 90\u20ac/an par PC) depuis votre espace client.</p>
           </div>
         </div>
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false">
-            <span>\u00c0 quoi sert le module \u00ab Logo Club \u00bb ?</span>
-            <i class="fas fa-chevron-down faq-chevron"></i>
-          </button>
-          <div class="faq-answer">
-            <p>Ce module vous permet d\u2019int\u00e9grer le logo de votre club sur tous les documents imprim\u00e9s (feuilles de match, classements, tableaux). Parfait pour un rendu professionnel.</p>
-          </div>
-        </div>
+
         <div class="faq-item">
           <button class="faq-question" aria-expanded="false">
             <span>Comment fonctionne le BYE automatique ?</span>
