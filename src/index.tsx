@@ -77,7 +77,7 @@ app.get('/', (c) => {
         <p class="hero-micro">Windows 10/11 &bull; Essai gratuit 14 jours &bull; Fonctionne hors ligne</p>
       </div>
       <div class="hero-visual">
-        <div class="hero-mockup">
+        <div class="hero-mockup zoomable" data-lightbox-src="/static/images/screenshot-nouveau.png" data-lightbox-alt="Cr\u00e9ation de tournoi">
           <img src="/static/images/screenshot-nouveau.png" alt="Capture P\u00e9tanque Manager - Cr\u00e9ation de tournoi" class="hero-screenshot">
         </div>
       </div>
@@ -131,28 +131,28 @@ app.get('/', (c) => {
       <p class="section-subtitle">D\u00e9couvrez l\u2019interface pens\u00e9e pour la simplicit\u00e9 et l\u2019efficacit\u00e9.</p>
       <div class="screenshots-grid">
         <div class="screenshot-card">
-          <div class="screenshot-img-wrap">
+          <div class="screenshot-img-wrap zoomable" data-lightbox-src="/static/images/screenshot-equipes.png" data-lightbox-alt="\u00c9quipes &amp; joueurs">
             <img src="/static/images/screenshot-equipes.png" alt="Gestion des \u00e9quipes" class="screenshot-img">
           </div>
           <h3>\u00c9quipes &amp; joueurs</h3>
           <p>Cr\u00e9ez vos \u00e9quipes en quelques secondes (t\u00eate-\u00e0-t\u00eate, doublette, triplette\u2026). Ajoutez/\u00e9ditez les joueurs facilement, tout est pr\u00eat avant le lancement.</p>
         </div>
         <div class="screenshot-card">
-          <div class="screenshot-img-wrap">
+          <div class="screenshot-img-wrap zoomable" data-lightbox-src="/static/images/screenshot-matchs.png" data-lightbox-alt="Matchs">
             <img src="/static/images/screenshot-matchs.png" alt="Gestion des matchs" class="screenshot-img">
           </div>
           <h3>Matchs</h3>
           <p>G\u00e9n\u00e9rez automatiquement les tours et les terrains, puis saisissez les scores en un clic. Moins d\u2019erreurs, et les r\u00e9sultats se mettent \u00e0 jour au fur et \u00e0 mesure.</p>
         </div>
         <div class="screenshot-card">
-          <div class="screenshot-img-wrap">
+          <div class="screenshot-img-wrap zoomable" data-lightbox-src="/static/images/screenshot-classement.png" data-lightbox-alt="Classement">
             <img src="/static/images/screenshot-classement.png" alt="Classement en direct" class="screenshot-img">
           </div>
           <h3>Classement</h3>
           <p>Classement en direct apr\u00e8s chaque partie&nbsp;: victoires, points, diff\u00e9rentiel et d\u00e9partage clair. Visualisez instantan\u00e9ment qui est devant.</p>
         </div>
         <div class="screenshot-card">
-          <div class="screenshot-img-wrap">
+          <div class="screenshot-img-wrap zoomable" data-lightbox-src="/static/images/screenshot-poules.png" data-lightbox-alt="Tournois en poules">
             <img src="/static/images/screenshot-poules.png" alt="Tournois en poules" class="screenshot-img">
           </div>
           <h3>Tournois en poules</h3>
@@ -455,6 +455,17 @@ app.get('/', (c) => {
       </div>
     </div>
   </footer>
+
+  <!-- ========== LIGHTBOX ========== -->
+  <div class="lightbox-overlay" id="lightbox">
+    <div class="lightbox-content">
+      <button class="lightbox-close" id="lightboxClose" aria-label="Fermer"><i class="fas fa-times"></i></button>
+      <button class="lightbox-nav prev" id="lightboxPrev" aria-label="Pr\u00e9c\u00e9dent"><i class="fas fa-chevron-left"></i></button>
+      <button class="lightbox-nav next" id="lightboxNext" aria-label="Suivant"><i class="fas fa-chevron-right"></i></button>
+      <img src="" alt="" class="lightbox-img" id="lightboxImg">
+      <p class="lightbox-caption" id="lightboxCaption"></p>
+    </div>
+  </div>
 
   <script src="/static/app.js"></script>
 </body>
