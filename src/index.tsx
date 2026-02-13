@@ -170,32 +170,6 @@ app.get('/', (c) => {
     <div class="container">
       <h2 class="section-title">Tarifs</h2>
       <p class="section-subtitle">Choisissez l\u2019offre adapt\u00e9e \u00e0 votre club ou \u00e0 votre usage.</p>
-      
-      <!-- Pass Evenement -->
-      <div class="pricing-event-wrap">
-        <div class="pricing-card pricing-card-event">
-          <div class="pricing-event-badge"><i class="fas fa-bolt"></i> Offre ponctuelle</div>
-          <div class="pricing-event-layout">
-            <div class="pricing-event-left">
-              <h3>Pass \u00c9v\u00e9nement</h3>
-              <p class="pricing-event-tagline">Id\u00e9al pour les comit\u00e9s de quartier, campings, entreprises, qui souhaitent cr\u00e9er un \u00e9v\u00e8nement unique.</p>
-            </div>
-            <div class="pricing-event-center">
-              <ul class="pricing-features">
-                <li><i class="fas fa-check"></i> Dur\u00e9e : 7 jours</li>
-                <li><i class="fas fa-check"></i> 2 PC inclus</li>
-                <li><i class="fas fa-check"></i> Acc\u00e8s complet : tournois, terrains, scores, classement, impressions</li>
-                <li><i class="fas fa-check"></i> Activation en ligne, utilisation possible hors ligne ensuite</li>
-              </ul>
-            </div>
-            <div class="pricing-event-right">
-              <div class="pricing-event-price">29\u20ac<small> unique</small></div>
-              <a href="#telecharger" class="btn btn-gold">Choisir ce pass</a>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <div class="pricing-toggle-wrap">
         <span class="pricing-toggle-label" id="labelMensuel">Mensuel</span>
         <button class="pricing-toggle" id="pricingToggle" aria-label="Basculer mensuel/annuel">
@@ -277,19 +251,8 @@ app.get('/', (c) => {
         </div>
       </div>
 
-      <!-- Add-ons -->
-      <div class="addons-grid">
-        <div class="addon-card">
-          <div class="addon-icon"><i class="fas fa-laptop"></i></div>
-          <div class="addon-info">
-            <h4>PC suppl\u00e9mentaires (apr\u00e8s 5 PC)</h4>
-            <p>Besoin de plus de 5 PC ? Ajoutez des activations suppl\u00e9mentaires, uniquement avec l\u2019offre Club (5 PC).</p>
-          </div>
-          <div class="addon-price">
-            <span class="price-monthly">9\u20ac<small>/mois par PC</small></span>
-            <span class="price-annual hidden">90\u20ac<small>/an par PC</small></span>
-          </div>
-        </div>
+      <div class="pricing-license-info">
+        <p><i class="fas fa-key"></i> Apr\u00e8s paiement : vous recevez une cl\u00e9 de licence \u00e0 coller dans l\u2019application (<strong>Param\u00e8tres \u2192 Licence</strong>).</p>
       </div>
 
       <p class="pricing-note">Essai gratuit 14 jours. Licence activable sur X PC selon l\u2019offre.</p>

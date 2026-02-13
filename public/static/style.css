@@ -818,6 +818,32 @@ img {
   color: var(--text-muted);
 }
 
+.pricing-license-info {
+  text-align: center;
+  margin: 32px auto 24px;
+  padding: 16px 28px;
+  background: rgba(45, 212, 191, 0.08);
+  border: 1px solid rgba(45, 212, 191, 0.2);
+  border-radius: var(--radius-md);
+  max-width: 680px;
+}
+
+.pricing-license-info p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.pricing-license-info i {
+  color: var(--gold);
+  margin-right: 8px;
+}
+
+.pricing-license-info strong {
+  color: #fff;
+}
+
 .pricing-note {
   text-align: center;
   color: var(--text-dim);
