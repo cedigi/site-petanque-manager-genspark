@@ -329,21 +329,29 @@ app.get('/', (c) => {
         </div>
         <div class="faq-item">
           <button class="faq-question" aria-expanded="false">
-            <span>Comment ajouter un PC suppl\u00e9mentaire ?</span>
+            <span>Comment activer la licence sur plusieurs PC ?</span>
             <i class="fas fa-chevron-down faq-chevron"></i>
           </button>
           <div class="faq-answer">
-            <p>Avec l\u2019offre Club Pack (5 PC), vous pouvez ajouter des PC suppl\u00e9mentaires \u00e0 9\u20ac/mois par PC (ou 90\u20ac/an par PC) depuis votre espace client.</p>
+            <p>Vous pouvez activer sur X PC selon votre formule. Vous g\u00e9rez vos appareils dans l\u2019app (bient\u00f4t portail web).</p>
           </div>
         </div>
-
         <div class="faq-item">
           <button class="faq-question" aria-expanded="false">
-            <span>Comment fonctionne le BYE automatique ?</span>
+            <span>Que se passe-t-il si internet coupe le jour du tournoi ?</span>
             <i class="fas fa-chevron-down faq-chevron"></i>
           </button>
           <div class="faq-answer">
-            <p>Lorsqu\u2019il y a un nombre impair d\u2019\u00e9quipes, le logiciel attribue automatiquement un BYE (repos) \u00e0 une \u00e9quipe \u00e0 chaque tour, en veillant \u00e0 ce que chaque \u00e9quipe ne b\u00e9n\u00e9ficie qu\u2019une seule fois du BYE si possible. L\u2019\u00e9quipe exempt\u00e9e re\u00e7oit une victoire 13\u20130.</p>
+            <p>\u00c7a continue. L\u2019app fonctionne hors ligne. La licence se v\u00e9rifie p\u00e9riodiquement.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Puis-je annuler ?</span>
+            <i class="fas fa-chevron-down faq-chevron"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Oui, \u00e0 tout moment. La licence reste valable jusqu\u2019\u00e0 la fin de la p\u00e9riode pay\u00e9e.</p>
           </div>
         </div>
       </div>
@@ -355,40 +363,25 @@ app.get('/', (c) => {
     <div class="container">
       <h2 class="section-title">Contact</h2>
       <p class="section-subtitle">Une question ? N\u2019h\u00e9sitez pas \u00e0 nous \u00e9crire.</p>
-      <div class="contact-wrap">
-        <div class="contact-info">
-          <div class="contact-info-item">
-            <i class="fas fa-envelope"></i>
-            <div>
-              <h4>Email support</h4>
-              <a href="mailto:contact@petanque-manager.eu">contact@petanque-manager.eu</a>
-            </div>
-          </div>
-          <div class="contact-info-item">
-            <i class="fas fa-clock"></i>
-            <div>
-              <h4>D\u00e9lai de r\u00e9ponse</h4>
-              <p>R\u00e9ponse sous 24\u201348h</p>
-            </div>
-          </div>
-          <div class="contact-logo">
-            <img src="/static/images/logo.png" alt="P\u00e9tanque Manager" class="contact-logo-img">
-          </div>
-        </div>
+      <div class="contact-wrap contact-wrap-centered">
         <form class="contact-form" id="contactForm">
-          <div class="form-group">
-            <label for="contactName">Nom</label>
-            <input type="text" id="contactName" name="name" placeholder="Votre nom" required>
-          </div>
-          <div class="form-group">
-            <label for="contactEmail">Email</label>
-            <input type="email" id="contactEmail" name="email" placeholder="votre@email.com" required>
+          <p class="contact-email-line"><i class="fas fa-envelope"></i> <a href="mailto:contact@petanque-manager.eu">contact@petanque-manager.eu</a></p>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="contactName">Nom</label>
+              <input type="text" id="contactName" name="name" placeholder="Votre nom" required>
+            </div>
+            <div class="form-group">
+              <label for="contactEmail">Email</label>
+              <input type="email" id="contactEmail" name="email" placeholder="votre@email.com" required>
+            </div>
           </div>
           <div class="form-group">
             <label for="contactMessage">Message</label>
-            <textarea id="contactMessage" name="message" rows="5" placeholder="Votre message\u2026" required></textarea>
+            <textarea id="contactMessage" name="message" rows="3" placeholder="Votre message\u2026" required></textarea>
           </div>
           <button type="submit" class="btn btn-gold btn-block"><i class="fas fa-paper-plane"></i> Envoyer</button>
+          <p class="contact-response-time"><i class="fas fa-clock"></i> R\u00e9ponse sous 24\u201348h</p>
           <div id="contactStatus" class="contact-status"></div>
         </form>
       </div>
@@ -409,6 +402,7 @@ app.get('/', (c) => {
           <li><a href="#fonctionnalites">Fonctionnalit\u00e9s</a></li>
           <li><a href="#tarifs">Tarifs</a></li>
           <li><a href="#telecharger">T\u00e9l\u00e9charger</a></li>
+          <li><a href="#telecharger"><i class="fas fa-download"></i> T\u00e9l\u00e9chargement .exe</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>

@@ -1009,58 +1009,56 @@ img {
    CONTACT
    ========================================================================== */
 .contact-wrap {
-  display: grid;
-  grid-template-columns: 1fr 1.3fr;
-  gap: 48px;
   position: relative;
   z-index: 1;
 }
 
-.contact-info {
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
+.contact-wrap-centered {
+  max-width: 640px;
+  margin: 0 auto;
 }
 
-.contact-info-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-}
-
-.contact-info-item > i {
-  font-size: 1.4rem;
-  color: var(--teal);
-  margin-top: 4px;
-}
-
-.contact-info-item h4 {
-  color: var(--text-white);
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 2px;
-}
-
-.contact-info-item p,
-.contact-info-item a {
+.contact-email-line {
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: 0.95rem;
   color: var(--text-muted);
-  font-size: 0.92rem;
 }
 
-.contact-logo {
-  margin-top: auto;
+.contact-email-line i {
+  color: var(--teal);
+  margin-right: 6px;
 }
 
-.contact-logo-img {
-  width: 120px;
-  opacity: 0.5;
+.contact-email-line a {
+  color: var(--teal-light);
+  font-weight: 500;
+}
+
+.contact-response-time {
+  text-align: center;
+  margin-top: 16px;
+  margin-bottom: 0;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+
+.contact-response-time i {
+  color: var(--gold);
+  margin-right: 6px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
 }
 
 .contact-form {
   background: var(--bg-card);
   border: 1px solid var(--border-card);
   border-radius: var(--radius-lg);
-  padding: 36px 32px;
+  padding: 32px 28px;
 }
 
 .form-group {
@@ -1417,9 +1415,8 @@ img {
     gap: 20px;
   }
 
-  .contact-wrap {
-    grid-template-columns: 1fr;
-    gap: 32px;
+  .contact-wrap-centered {
+    max-width: 580px;
   }
 
   .footer-grid {
@@ -1539,6 +1536,11 @@ img {
 
   .addons-grid {
     grid-template-columns: 1fr;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
   }
 
   .download-steps {
