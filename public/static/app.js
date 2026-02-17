@@ -88,14 +88,14 @@ document.addEventListener('DOMContentLoaded', () => {
         el.classList.toggle('hidden', !isAnnual);
       });
 
-      // Update plan codes on buttons (month <-> year)
+      // Update plan codes on buttons (m <-> y)
       document.querySelectorAll('[data-plan-code]').forEach(btn => {
         const code = btn.getAttribute('data-plan-code');
-        if (!code || code === 'pass_event') return; // Pass doesn't change
+        if (!code || code === 'event_7d') return; // Pass doesn't change
         if (isAnnual) {
-          btn.setAttribute('data-plan-code', code.replace('_month', '_year'));
+          btn.setAttribute('data-plan-code', code.replace('_m', '_y'));
         } else {
-          btn.setAttribute('data-plan-code', code.replace('_year', '_month'));
+          btn.setAttribute('data-plan-code', code.replace('_y', '_m'));
         }
       });
     });

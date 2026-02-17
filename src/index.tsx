@@ -213,7 +213,7 @@ app.get('/', (c) => {
             </div>
             <div class="pricing-pass-right">
               <div class="pricing-pass-price">14\u20ac<small> unique</small></div>
-              <a href="#" class="btn btn-gold" data-plan-code="pass_event">Choisir ce pass</a>
+              <a href="#" class="btn btn-gold" data-plan-code="event_7d">Choisir ce pass</a>
             </div>
           </div>
         </div>
@@ -245,7 +245,7 @@ app.get('/', (c) => {
             <li><i class="fas fa-check"></i> Mises \u00e0 jour incluses</li>
             <li><i class="fas fa-check"></i> Support par email</li>
           </ul>
-          <a href="#" class="btn btn-outline btn-block" data-plan-code="solo_month">Choisir Solo</a>
+          <a href="#" class="btn btn-outline btn-block" data-plan-code="solo_m">Choisir Solo</a>
         </div>
         <div class="pricing-card pricing-card-popular">
           <div class="pricing-popular-badge">Populaire</div>
@@ -264,7 +264,7 @@ app.get('/', (c) => {
             <li><i class="fas fa-check"></i> Mises \u00e0 jour incluses</li>
             <li><i class="fas fa-check"></i> Support prioritaire</li>
           </ul>
-          <a href="#" class="btn btn-gold btn-block" data-plan-code="duo_month">Choisir Duo</a>
+          <a href="#" class="btn btn-gold btn-block" data-plan-code="duo_m">Choisir Duo</a>
         </div>
         <div class="pricing-card">
           <div class="pricing-card-header">
@@ -282,7 +282,7 @@ app.get('/', (c) => {
             <li><i class="fas fa-check"></i> Mises \u00e0 jour incluses</li>
             <li><i class="fas fa-check"></i> Support prioritaire</li>
           </ul>
-          <a href="#" class="btn btn-outline btn-block" data-plan-code="trio_month">Choisir Trio</a>
+          <a href="#" class="btn btn-outline btn-block" data-plan-code="trio_m">Choisir Trio</a>
         </div>
         <div class="pricing-card">
           <div class="pricing-card-header">
@@ -300,7 +300,7 @@ app.get('/', (c) => {
             <li><i class="fas fa-check"></i> Mises \u00e0 jour incluses</li>
             <li><i class="fas fa-check"></i> Support prioritaire d\u00e9di\u00e9</li>
           </ul>
-          <a href="#" class="btn btn-outline btn-block" data-plan-code="club_month">Choisir Club Pack</a>
+          <a href="#" class="btn btn-outline btn-block" data-plan-code="club_m">Choisir Club Pack</a>
         </div>
       </div>
 
