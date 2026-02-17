@@ -84,6 +84,9 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('.price-annual').forEach(el => {
         el.classList.toggle('hidden', !isAnnual);
       });
+      document.querySelectorAll('.price-annual-bonus').forEach(el => {
+        el.classList.toggle('hidden', !isAnnual);
+      });
     });
   }
 

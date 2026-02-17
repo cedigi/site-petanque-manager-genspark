@@ -202,7 +202,7 @@ app.get('/', (c) => {
           <span class="pricing-toggle-knob"></span>
         </button>
         <span class="pricing-toggle-label" id="labelAnnuel">Annuel</span>
-        <span class="pricing-badge">\u00c9conomisez jusqu\u2019\u00e0 23%</span>
+        <span class="pricing-badge">\u00c9conomisez jusqu\u2019\u00e0 2 mois</span>
       </div>
 
       <div class="pricing-grid">
@@ -213,7 +213,8 @@ app.get('/', (c) => {
           </div>
           <div class="pricing-price">
             <span class="price-monthly">19\u20ac<small>/mois</small></span>
-            <span class="price-annual hidden">180\u20ac<small>/an</small></span>
+            <span class="price-annual hidden">209\u20ac<small>/an</small></span>
+            <span class="price-annual-bonus hidden">1 mois offert</span>
           </div>
           <ul class="pricing-features">
             <li><i class="fas fa-check"></i> 1 licence PC</li>
@@ -230,8 +231,9 @@ app.get('/', (c) => {
             <p class="pricing-desc">2 PC</p>
           </div>
           <div class="pricing-price">
-            <span class="price-monthly">25\u20ac<small>/mois</small></span>
-            <span class="price-annual hidden">240\u20ac<small>/an</small></span>
+            <span class="price-monthly">27\u20ac<small>/mois</small></span>
+            <span class="price-annual hidden">297\u20ac<small>/an</small></span>
+            <span class="price-annual-bonus hidden">1 mois offert</span>
           </div>
           <ul class="pricing-features">
             <li><i class="fas fa-check"></i> 2 licences PC</li>
@@ -247,8 +249,9 @@ app.get('/', (c) => {
             <p class="pricing-desc">3 PC</p>
           </div>
           <div class="pricing-price">
-            <span class="price-monthly">30\u20ac<small>/mois</small></span>
-            <span class="price-annual hidden">288\u20ac<small>/an</small></span>
+            <span class="price-monthly">34\u20ac<small>/mois</small></span>
+            <span class="price-annual hidden">340\u20ac<small>/an</small></span>
+            <span class="price-annual-bonus hidden">2 mois offerts</span>
           </div>
           <ul class="pricing-features">
             <li><i class="fas fa-check"></i> 3 licences PC</li>
@@ -264,8 +267,9 @@ app.get('/', (c) => {
             <p class="pricing-desc">5 PC</p>
           </div>
           <div class="pricing-price">
-            <span class="price-monthly">39\u20ac<small>/mois</small></span>
-            <span class="price-annual hidden">360\u20ac<small>/an</small></span>
+            <span class="price-monthly">41\u20ac<small>/mois</small></span>
+            <span class="price-annual hidden">410\u20ac<small>/an</small></span>
+            <span class="price-annual-bonus hidden">2 mois offerts</span>
           </div>
           <ul class="pricing-features">
             <li><i class="fas fa-check"></i> 5 licences PC</li>
