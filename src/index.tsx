@@ -1,9 +1,32 @@
 import { Hono } from 'hono'
 import { cors } from 'hono/cors'
+import checkout from './routes/checkout'
+import webhook from './routes/webhook'
 
-const app = new Hono()
+type Bindings = {
+  STRIPE_SECRET_KEY: string
+  STRIPE_PUBLISHABLE_KEY: string
+  STRIPE_WEBHOOK_SECRET: string
+  SUPABASE_URL: string
+  SUPABASE_SERVICE_ROLE_KEY: string
+  SUPABASE_ANON_KEY: string
+}
+
+const app = new Hono<{ Bindings: Bindings }>()
 
 app.use('/api/*', cors())
+
+// Mount Stripe routes
+app.route('/', checkout)
+app.route('/', webhook)
+
+// API: return Supabase config for frontend auth
+app.get('/api/config', (c) => {
+  return c.json({
+    supabase_url: c.env.SUPABASE_URL,
+    supabase_anon_key: c.env.SUPABASE_ANON_KEY,
+  })
+})
 
 // API contact form endpoint
 app.post('/api/contact', async (c) => {
@@ -190,7 +213,7 @@ app.get('/', (c) => {
             </div>
             <div class="pricing-pass-right">
               <div class="pricing-pass-price">14\u20ac<small> unique</small></div>
-              <a href="#telecharger" class="btn btn-gold">Choisir ce pass</a>
+              <a href="#" class="btn btn-gold" data-plan-code="pass_event">Choisir ce pass</a>
             </div>
           </div>
         </div>
@@ -222,7 +245,7 @@ app.get('/', (c) => {
             <li><i class="fas fa-check"></i> Mises \u00e0 jour incluses</li>
             <li><i class="fas fa-check"></i> Support par email</li>
           </ul>
-          <a href="#telecharger" class="btn btn-outline btn-block">Choisir Solo</a>
+          <a href="#" class="btn btn-outline btn-block" data-plan-code="solo_month">Choisir Solo</a>
         </div>
         <div class="pricing-card pricing-card-popular">
           <div class="pricing-popular-badge">Populaire</div>
@@ -241,7 +264,7 @@ app.get('/', (c) => {
             <li><i class="fas fa-check"></i> Mises \u00e0 jour incluses</li>
             <li><i class="fas fa-check"></i> Support prioritaire</li>
           </ul>
-          <a href="#telecharger" class="btn btn-gold btn-block">Choisir Duo</a>
+          <a href="#" class="btn btn-gold btn-block" data-plan-code="duo_month">Choisir Duo</a>
         </div>
         <div class="pricing-card">
           <div class="pricing-card-header">
@@ -259,7 +282,7 @@ app.get('/', (c) => {
             <li><i class="fas fa-check"></i> Mises \u00e0 jour incluses</li>
             <li><i class="fas fa-check"></i> Support prioritaire</li>
           </ul>
-          <a href="#telecharger" class="btn btn-outline btn-block">Choisir Trio</a>
+          <a href="#" class="btn btn-outline btn-block" data-plan-code="trio_month">Choisir Trio</a>
         </div>
         <div class="pricing-card">
           <div class="pricing-card-header">
@@ -277,7 +300,7 @@ app.get('/', (c) => {
             <li><i class="fas fa-check"></i> Mises \u00e0 jour incluses</li>
             <li><i class="fas fa-check"></i> Support prioritaire d\u00e9di\u00e9</li>
           </ul>
-          <a href="#telecharger" class="btn btn-outline btn-block">Choisir Club Pack</a>
+          <a href="#" class="btn btn-outline btn-block" data-plan-code="club_month">Choisir Club Pack</a>
         </div>
       </div>
 
@@ -467,6 +490,185 @@ app.get('/', (c) => {
   <script src="/static/app.js"></script>
 </body>
 </html>`)
+})
+
+// ========== SUCCESS PAGE ==========
+app.get('/success', (c) => {
+  return c.html(`<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paiement r\u00e9ussi — P\u00e9tanque Manager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+  <link rel="icon" href="/static/images/logo.png">
+  <link rel="stylesheet" href="/static/style.css">
+  <style>
+    .success-page { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 40px 20px; }
+    .success-card { background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-lg); padding: 48px 40px; max-width: 560px; text-align: center; }
+    .success-icon { font-size: 3.5rem; color: #2dd4bf; margin-bottom: 20px; }
+    .success-title { color: #fff; font-size: 1.8rem; font-weight: 800; margin-bottom: 12px; }
+    .success-text { color: rgba(255,255,255,0.7); font-size: 1rem; line-height: 1.7; margin-bottom: 24px; }
+    .license-box { background: rgba(45,212,191,0.08); border: 1px solid rgba(45,212,191,0.25); border-radius: 12px; padding: 20px; margin: 24px 0; }
+    .license-label { color: rgba(255,255,255,0.6); font-size: 0.85rem; margin-bottom: 8px; }
+    .license-key { color: #d4a843; font-size: 1.3rem; font-weight: 700; font-family: 'Courier New', monospace; letter-spacing: 1px; word-break: break-all; }
+    .license-loading { color: rgba(255,255,255,0.5); font-style: italic; }
+    .success-steps { text-align: left; margin: 24px 0; padding: 0 20px; }
+    .success-steps li { color: rgba(255,255,255,0.7); margin-bottom: 10px; font-size: 0.92rem; }
+    .success-steps li strong { color: #fff; }
+  </style>
+</head>
+<body>
+  <div class="success-page">
+    <div class="success-card">
+      <div class="success-icon"><i class="fas fa-check-circle"></i></div>
+      <h1 class="success-title">Paiement r\u00e9ussi !</h1>
+      <p class="success-text">Merci pour votre achat. Votre licence P\u00e9tanque Manager est activ\u00e9e.</p>
+      
+      <div class="license-box">
+        <div class="license-label"><i class="fas fa-key"></i> Votre cl\u00e9 de licence</div>
+        <div class="license-key" id="licenseKey"><span class="license-loading">Chargement...</span></div>
+      </div>
+
+      <ol class="success-steps">
+        <li>Ouvrez <strong>P\u00e9tanque Manager</strong> sur votre PC</li>
+        <li>Allez dans <strong>Param\u00e8tres \u2192 Licence</strong></li>
+        <li>Collez votre cl\u00e9 et cliquez <strong>Activer</strong></li>
+      </ol>
+
+      <p class="success-text">Votre cl\u00e9 a aussi \u00e9t\u00e9 envoy\u00e9e par email. Conservez-la pr\u00e9cieusement.</p>
+      
+      <a href="/" class="btn btn-gold"><i class="fas fa-home"></i> Retour \u00e0 l\u2019accueil</a>
+    </div>
+  </div>
+
+  <script>
+    (async () => {
+      const params = new URLSearchParams(window.location.search);
+      const sessionId = params.get('session_id');
+      if (!sessionId) return;
+
+      try {
+        const res = await fetch('/api/stripe/session/' + sessionId);
+        if (res.ok) {
+          const data = await res.json();
+          if (data.license_key) {
+            document.getElementById('licenseKey').textContent = data.license_key;
+          } else {
+            document.getElementById('licenseKey').innerHTML = '<span class="license-loading">Votre cl\\u00e9 sera envoy\\u00e9e par email sous quelques minutes.</span>';
+          }
+        }
+      } catch (e) {
+        document.getElementById('licenseKey').innerHTML = '<span class="license-loading">Cl\\u00e9 en cours de g\\u00e9n\\u00e9ration. V\\u00e9rifiez vos emails.</span>';
+      }
+    })();
+  </script>
+  <canvas id="bgCanvas"></canvas>
+  <script src="/static/bg3d.js"></script>
+</body>
+</html>`)
+})
+
+// ========== CANCEL PAGE ==========
+app.get('/cancel', (c) => {
+  return c.html(`<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paiement annul\u00e9 — P\u00e9tanque Manager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet">
+  <link rel="icon" href="/static/images/logo.png">
+  <link rel="stylesheet" href="/static/style.css">
+  <style>
+    .cancel-page { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 40px 20px; }
+    .cancel-card { background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-lg); padding: 48px 40px; max-width: 480px; text-align: center; }
+    .cancel-icon { font-size: 3.5rem; color: #f59e0b; margin-bottom: 20px; }
+    .cancel-title { color: #fff; font-size: 1.8rem; font-weight: 800; margin-bottom: 12px; }
+    .cancel-text { color: rgba(255,255,255,0.7); font-size: 1rem; line-height: 1.7; margin-bottom: 28px; }
+    .cancel-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+  <div class="cancel-page">
+    <div class="cancel-card">
+      <div class="cancel-icon"><i class="fas fa-times-circle"></i></div>
+      <h1 class="cancel-title">Paiement annul\u00e9</h1>
+      <p class="cancel-text">Votre paiement n\u2019a pas \u00e9t\u00e9 finalis\u00e9. Aucun montant n\u2019a \u00e9t\u00e9 d\u00e9bit\u00e9.</p>
+      <p class="cancel-text">Vous pouvez r\u00e9essayer \u00e0 tout moment ou profiter de l\u2019essai gratuit de 14 jours.</p>
+      <div class="cancel-buttons">
+        <a href="/#tarifs" class="btn btn-gold"><i class="fas fa-redo"></i> Voir les tarifs</a>
+        <a href="/" class="btn btn-outline"><i class="fas fa-home"></i> Accueil</a>
+      </div>
+    </div>
+  </div>
+  <canvas id="bgCanvas"></canvas>
+  <script src="/static/bg3d.js"></script>
+</body>
+</html>`)
+})
+
+// ========== API: Get session info (for success page) ==========
+app.get('/api/stripe/session/:id', async (c) => {
+  try {
+    const sessionId = c.req.param('id')
+    const supabaseUrl = c.env.SUPABASE_URL
+    const serviceKey = c.env.SUPABASE_SERVICE_ROLE_KEY
+
+    // Look up subscription by Stripe session — search recent subscriptions
+    const res = await fetch(
+      `https://api.stripe.com/v1/checkout/sessions/${sessionId}`,
+      {
+        headers: {
+          'Authorization': `Bearer ${c.env.STRIPE_SECRET_KEY}`,
+        },
+      }
+    )
+
+    if (!res.ok) return c.json({ error: 'Session not found' }, 404)
+
+    const session = await res.json() as any
+    const email = session.customer_email || session.customer_details?.email
+    const metadata = session.metadata || {}
+
+    // Try to find the license key in Supabase
+    if (metadata.user_id || email) {
+      const query = metadata.user_id
+        ? `user_id=eq.${metadata.user_id}&status=eq.active&order=created_at.desc&limit=1`
+        : `status=eq.active&order=created_at.desc&limit=1`
+
+      const licRes = await fetch(`${supabaseUrl}/rest/v1/pm_license_keys?${query}`, {
+        headers: {
+          'apikey': serviceKey,
+          'Authorization': `Bearer ${serviceKey}`,
+        },
+      })
+
+      if (licRes.ok) {
+        const licenses = await licRes.json() as any[]
+        if (licenses.length) {
+          return c.json({
+            license_key: licenses[0].license_key,
+            plan_code: metadata.plan_code,
+            email,
+          })
+        }
+      }
+    }
+
+    return c.json({
+      license_key: null,
+      plan_code: metadata.plan_code,
+      email,
+      message: 'License is being generated. Check your email.',
+    })
+  } catch (err: any) {
+    return c.json({ error: err.message }, 500)
+  }
 })
 
 export default app

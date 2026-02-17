@@ -87,6 +87,17 @@ document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('.price-annual-bonus').forEach(el => {
         el.classList.toggle('hidden', !isAnnual);
       });
+
+      // Update plan codes on buttons (month <-> year)
+      document.querySelectorAll('[data-plan-code]').forEach(btn => {
+        const code = btn.getAttribute('data-plan-code');
+        if (!code || code === 'pass_event') return; // Pass doesn't change
+        if (isAnnual) {
+          btn.setAttribute('data-plan-code', code.replace('_month', '_year'));
+        } else {
+          btn.setAttribute('data-plan-code', code.replace('_year', '_month'));
+        }
+      });
     });
   }
 
@@ -279,6 +290,44 @@ document.addEventListener('DOMContentLoaded', () => {
       if (targetElement) {
         e.preventDefault();
         targetElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+
+  // ---- STRIPE CHECKOUT — Plan purchase buttons ----
+  document.querySelectorAll('[data-plan-code]').forEach(btn => {
+    btn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const planCode = btn.getAttribute('data-plan-code');
+      if (!planCode) return;
+
+      // Disable button while loading
+      const originalText = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Redirection...';
+
+      try {
+        const payload = { plan_code: planCode };
+
+        const res = await fetch('/api/stripe/checkout', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+
+        const data = await res.json();
+
+        if (data.url) {
+          window.location.href = data.url;
+        } else {
+          alert(data.error || 'Erreur lors de la cr\u00e9ation de la session de paiement.');
+          btn.disabled = false;
+          btn.innerHTML = originalText;
+        }
+      } catch (err) {
+        alert('Erreur r\u00e9seau. Veuillez r\u00e9essayer.');
+        btn.disabled = false;
+        btn.innerHTML = originalText;
       }
     });
   });
