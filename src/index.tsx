@@ -249,6 +249,24 @@ app.get('/', (c) => {
           </ul>
           <a href="#telecharger" class="btn btn-outline btn-block">Choisir Club Pack</a>
         </div>
+        <div class="pricing-card pricing-card-event-inline">
+          <div class="pricing-event-inline-badge"><i class="fas fa-bolt"></i> Ponctuel</div>
+          <div class="pricing-card-header">
+            <h3>Pass \u00c9v\u00e9nement</h3>
+            <p class="pricing-desc">2 PC \u2022 7 jours</p>
+          </div>
+          <div class="pricing-price">
+            <span class="price-monthly">14\u20ac<small> unique</small></span>
+            <span class="price-annual">14\u20ac<small> unique</small></span>
+          </div>
+          <ul class="pricing-features">
+            <li><i class="fas fa-check"></i> 2 licences PC</li>
+            <li><i class="fas fa-check"></i> Acc\u00e8s complet 7 jours</li>
+            <li><i class="fas fa-check"></i> Fonctionne hors ligne</li>
+            <li><i class="fas fa-check"></i> Id\u00e9al concours & \u00e9v\u00e9nements</li>
+          </ul>
+          <a href="#telecharger" class="btn btn-outline btn-block">Choisir ce pass</a>
+        </div>
       </div>
 
       <div class="pricing-license-info">
