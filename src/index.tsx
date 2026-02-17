@@ -170,6 +170,32 @@ app.get('/', (c) => {
     <div class="container">
       <h2 class="section-title">Tarifs</h2>
       <p class="section-subtitle">Choisissez l\u2019offre adapt\u00e9e \u00e0 votre club ou \u00e0 votre usage.</p>
+
+      <!-- Pass Evenement horizontal -->
+      <div class="pricing-pass-wrap">
+        <div class="pricing-pass-card">
+          <div class="pricing-pass-badge"><i class="fas fa-bolt"></i> Offre ponctuelle</div>
+          <div class="pricing-pass-layout">
+            <div class="pricing-pass-left">
+              <h3>Pass \u00c9v\u00e9nement</h3>
+              <p class="pricing-pass-tagline">Id\u00e9al pour les concours, comp\u00e9titions ou \u00e9v\u00e9nements ponctuels.</p>
+            </div>
+            <div class="pricing-pass-center">
+              <ul class="pricing-features">
+                <li><i class="fas fa-check"></i> 2 licences PC</li>
+                <li><i class="fas fa-check"></i> Acc\u00e8s complet 7 jours</li>
+                <li><i class="fas fa-check"></i> Fonctionne hors ligne</li>
+                <li><i class="fas fa-check"></i> Tournois, terrains, scores, classement</li>
+              </ul>
+            </div>
+            <div class="pricing-pass-right">
+              <div class="pricing-pass-price">14\u20ac<small> unique</small></div>
+              <a href="#telecharger" class="btn btn-gold">Choisir ce pass</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="pricing-toggle-wrap">
         <span class="pricing-toggle-label" id="labelMensuel">Mensuel</span>
         <button class="pricing-toggle" id="pricingToggle" aria-label="Basculer mensuel/annuel">
@@ -248,24 +274,6 @@ app.get('/', (c) => {
             <li><i class="fas fa-check"></i> Support prioritaire d\u00e9di\u00e9</li>
           </ul>
           <a href="#telecharger" class="btn btn-outline btn-block">Choisir Club Pack</a>
-        </div>
-        <div class="pricing-card pricing-card-event-inline">
-          <div class="pricing-event-inline-badge"><i class="fas fa-bolt"></i> Ponctuel</div>
-          <div class="pricing-card-header">
-            <h3>Pass \u00c9v\u00e9nement</h3>
-            <p class="pricing-desc">2 PC \u2022 7 jours</p>
-          </div>
-          <div class="pricing-price">
-            <span class="price-monthly">14\u20ac<small> unique</small></span>
-            <span class="price-annual">14\u20ac<small> unique</small></span>
-          </div>
-          <ul class="pricing-features">
-            <li><i class="fas fa-check"></i> 2 licences PC</li>
-            <li><i class="fas fa-check"></i> Acc\u00e8s complet 7 jours</li>
-            <li><i class="fas fa-check"></i> Fonctionne hors ligne</li>
-            <li><i class="fas fa-check"></i> Id\u00e9al concours & \u00e9v\u00e9nements</li>
-          </ul>
-          <a href="#telecharger" class="btn btn-outline btn-block">Choisir ce pass</a>
         </div>
       </div>
 

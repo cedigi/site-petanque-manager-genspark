@@ -717,6 +717,75 @@ img {
   white-space: nowrap;
 }
 
+/* ---------- Pass Evenement horizontal ---------- */
+.pricing-pass-wrap {
+  margin-bottom: 32px;
+}
+
+.pricing-pass-card {
+  background: var(--bg-card);
+  border: 1px solid var(--gold);
+  border-radius: var(--radius-lg);
+  padding: 32px 36px;
+  position: relative;
+  box-shadow: 0 0 20px rgba(212, 168, 67, 0.1);
+}
+
+.pricing-pass-badge {
+  position: absolute;
+  top: -13px;
+  left: 32px;
+  background: linear-gradient(135deg, var(--gold), #e8c060);
+  color: var(--bg-deep);
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 4px 18px;
+  border-radius: 20px;
+}
+
+.pricing-pass-layout {
+  display: grid;
+  grid-template-columns: 1.2fr 1.6fr auto;
+  gap: 32px;
+  align-items: center;
+}
+
+.pricing-pass-left h3 {
+  color: var(--text-white);
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+
+.pricing-pass-tagline {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.pricing-pass-center .pricing-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 24px;
+}
+
+.pricing-pass-right {
+  text-align: center;
+}
+
+.pricing-pass-price {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+
+.pricing-pass-price small {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
 .pricing-card-header h3 {
   color: var(--text-white);
   font-size: 1.3rem;
@@ -1425,6 +1494,11 @@ img {
     gap: 24px;
   }
 
+  .pricing-pass-layout {
+    grid-template-columns: 1fr 1.4fr auto;
+    gap: 24px;
+  }
+
   .pricing-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1538,6 +1612,27 @@ img {
   }
 
   .pricing-card-event {
+    padding: 28px 24px;
+  }
+
+  .pricing-pass-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .pricing-pass-left {
+    text-align: center;
+  }
+
+  .pricing-pass-center .pricing-features {
+    grid-template-columns: 1fr;
+    text-align: left;
+    display: inline-flex;
+    flex-direction: column;
+  }
+
+  .pricing-pass-card {
     padding: 28px 24px;
   }
 
