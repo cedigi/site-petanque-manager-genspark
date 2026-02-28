@@ -641,6 +641,28 @@ img {
   padding: 0 24px 24px;
 }
 
+/* Featured screenshot cards (new features) */
+.screenshot-card-featured {
+  border-color: var(--teal-glow);
+  box-shadow: 0 0 20px rgba(45, 212, 191, 0.06);
+}
+
+.screenshot-card-featured:hover {
+  border-color: var(--teal);
+  box-shadow: 0 0 30px rgba(45, 212, 191, 0.12);
+}
+
+/* Wide card spanning 2 columns */
+.screenshot-card-wide {
+  grid-column: 1 / -1;
+}
+
+.screenshot-card-wide .screenshot-img {
+  height: 280px;
+  object-fit: cover;
+  object-position: top left;
+}
+
 /* ==========================================================================
    PRICING
    ========================================================================== */
@@ -1766,6 +1788,14 @@ img {
 
   .screenshots-grid {
     grid-template-columns: 1fr;
+  }
+
+  .screenshot-card-wide {
+    grid-column: auto;
+  }
+
+  .screenshot-card-wide .screenshot-img {
+    height: 220px;
   }
 
   .pricing-event-layout {

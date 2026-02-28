@@ -210,32 +210,53 @@ app.get('/', (c) => {
       <p class="section-subtitle">D\u00e9couvrez l\u2019interface pens\u00e9e pour la simplicit\u00e9, l\u2019efficacit\u00e9 et un rendu professionnel.</p>
       <div class="screenshots-grid">
         <div class="screenshot-card">
+          <div class="screenshot-img-wrap zoomable" data-lightbox-src="/static/images/screenshot-nouveau.png" data-lightbox-alt="Cr\u00e9ation de tournoi">
+            <img src="/static/images/screenshot-nouveau.png" alt="Cr\u00e9ation de tournoi" class="screenshot-img">
+          </div>
+          <h3>Cr\u00e9ation de tournoi</h3>
+          <p>Choisissez votre format (t\u00eate-\u00e0-t\u00eate, doublette, triplette, poules\u2026), le nombre de terrains, et c\u2019est parti.</p>
+        </div>
+        <div class="screenshot-card">
           <div class="screenshot-img-wrap zoomable" data-lightbox-src="/static/images/screenshot-equipes.png" data-lightbox-alt="\u00c9quipes &amp; joueurs">
             <img src="/static/images/screenshot-equipes.png" alt="Gestion des \u00e9quipes" class="screenshot-img">
           </div>
           <h3>\u00c9quipes &amp; joueurs</h3>
-          <p>Cr\u00e9ez vos \u00e9quipes en quelques secondes (t\u00eate-\u00e0-t\u00eate, doublette, triplette\u2026). Ajoutez/\u00e9ditez les joueurs facilement, tout est pr\u00eat avant le lancement.</p>
+          <p>Cr\u00e9ez vos \u00e9quipes en quelques secondes. Ajoutez, \u00e9ditez, supprimez les joueurs facilement.</p>
         </div>
         <div class="screenshot-card">
-          <div class="screenshot-img-wrap zoomable" data-lightbox-src="/static/images/screenshot-matchs.png" data-lightbox-alt="Matchs">
+          <div class="screenshot-img-wrap zoomable" data-lightbox-src="/static/images/screenshot-matchs.png" data-lightbox-alt="Matchs &amp; scores">
             <img src="/static/images/screenshot-matchs.png" alt="Gestion des matchs" class="screenshot-img">
           </div>
           <h3>Matchs &amp; scores</h3>
-          <p>G\u00e9n\u00e9rez automatiquement les tours et les terrains, puis saisissez les scores en un clic. Les r\u00e9sultats se mettent \u00e0 jour en temps r\u00e9el.</p>
+          <p>G\u00e9n\u00e9rez automatiquement les tours et les terrains, puis saisissez les scores en un clic.</p>
         </div>
         <div class="screenshot-card">
-          <div class="screenshot-img-wrap zoomable" data-lightbox-src="/static/images/screenshot-classement.png" data-lightbox-alt="Classement">
+          <div class="screenshot-img-wrap zoomable" data-lightbox-src="/static/images/screenshot-classement.png" data-lightbox-alt="Classement live">
             <img src="/static/images/screenshot-classement.png" alt="Classement en direct" class="screenshot-img">
           </div>
           <h3>Classement live</h3>
-          <p>Classement en direct apr\u00e8s chaque partie : victoires, points, diff\u00e9rentiel et d\u00e9partage clair. \u00c9galement affichable en Mode TV.</p>
+          <p>Victoires, points marqu\u00e9s/encaiss\u00e9s, diff\u00e9rentiel : mise \u00e0 jour instantan\u00e9e apr\u00e8s chaque match.</p>
         </div>
-        <div class="screenshot-card">
-          <div class="screenshot-img-wrap zoomable" data-lightbox-src="/static/images/screenshot-poules.png" data-lightbox-alt="Tournois en poules">
-            <img src="/static/images/screenshot-poules.png" alt="Tournois en poules" class="screenshot-img">
+        <div class="screenshot-card screenshot-card-featured">
+          <div class="screenshot-img-wrap zoomable" data-lightbox-src="/static/images/screenshot-mode-tv.png" data-lightbox-alt="Mode TV">
+            <img src="/static/images/screenshot-mode-tv.png" alt="Mode TV - Affichage grand \u00e9cran" class="screenshot-img">
           </div>
-          <h3>Tournois en poules</h3>
-          <p>Organisez vos tournois en poules : \u00e0 chaque tour, P\u00e9tanque Manager effectue automatiquement le tirage al\u00e9atoire des matchs et affiche les rencontres.</p>
+          <h3><i class="fas fa-tv" style="color:var(--teal);margin-right:8px;"></i>Mode TV</h3>
+          <p>Affichez les matchs, scores et terrains sur grand \u00e9cran. Lisible de loin, avec le logo de votre club.</p>
+        </div>
+        <div class="screenshot-card screenshot-card-featured">
+          <div class="screenshot-img-wrap zoomable" data-lightbox-src="/static/images/screenshot-export-pdf.png" data-lightbox-alt="Export PDF avec logo">
+            <img src="/static/images/screenshot-export-pdf.png" alt="Export PDF avec logo du club" class="screenshot-img">
+          </div>
+          <h3><i class="fas fa-file-pdf" style="color:var(--teal);margin-right:8px;"></i>Export PDF personnalis\u00e9</h3>
+          <p>Rapport complet du tournoi avec le logo de votre club int\u00e9gr\u00e9. Imprimez ou partagez facilement.</p>
+        </div>
+        <div class="screenshot-card screenshot-card-featured screenshot-card-wide">
+          <div class="screenshot-img-wrap zoomable" data-lightbox-src="/static/images/screenshot-parametres.png" data-lightbox-alt="Param\u00e8tres : langue, licence, logo">
+            <img src="/static/images/screenshot-parametres.png" alt="Param\u00e8tres - Langue, Licence, Logo du club" class="screenshot-img">
+          </div>
+          <h3><i class="fas fa-cog" style="color:var(--teal);margin-right:8px;"></i>Param\u00e8tres</h3>
+          <p>Changez la langue (FR / EN / NL), g\u00e9rez votre licence, et importez le logo de votre club en un clic.</p>
         </div>
       </div>
     </div>
