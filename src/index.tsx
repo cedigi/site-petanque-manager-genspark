@@ -89,18 +89,19 @@ app.get('/', (c) => {
     <div class="hero-bg-bokeh"></div>
     <div class="container hero-grid">
       <div class="hero-content">
-        <h1 class="hero-title">Organisez vos tournois de p\u00e9tanque en quelques clics</h1>
-        <p class="hero-subtitle">Cr\u00e9ez les \u00e9quipes, g\u00e9n\u00e9rez les tours, saisissez les scores&nbsp;: le classement s\u2019actualise automatiquement, sans prise de t\u00eate.</p>
+        <h1 class="hero-title">Organisez vos tournois de p\u00e9tanque comme un pro</h1>
+        <p class="hero-subtitle">Gestion rapide, Mode TV pour l\u2019affichage public, PDFs personnalis\u00e9s avec le logo de votre club, et interface multilingue. Tout ce dont votre club a besoin, dans un seul logiciel.</p>
         <ul class="hero-bullets">
-          <li><i class="fas fa-check-circle"></i> Lancez un tournoi en 2 minutes, sans prise de t\u00eate.</li>
-          <li><i class="fas fa-check-circle"></i> Moins d\u2019erreurs&nbsp;: matchs &amp; classement automatis\u00e9s.</li>
-          <li><i class="fas fa-check-circle"></i> Gagnez du temps le jour J (clubs, concours, \u00e9v\u00e9nements).</li>
+          <li><i class="fas fa-check-circle"></i> Lancez un tournoi en 2 minutes, matchs &amp; classement automatis\u00e9s.</li>
+          <li><i class="fas fa-check-circle"></i> <strong>Mode TV</strong>&nbsp;: affichez les matchs et classements sur grand \u00e9cran.</li>
+          <li><i class="fas fa-check-circle"></i> Logo de votre club sur le Mode TV et les exports PDF.</li>
+          <li><i class="fas fa-check-circle"></i> Disponible en fran\u00e7ais, anglais et n\u00e9erlandais.</li>
         </ul>
         <div class="hero-cta">
           <a href="#telecharger" class="btn btn-gold"><i class="fas fa-download"></i> T\u00e9l\u00e9chargez pour PC</a>
           <a href="#fonctionnalites" class="btn btn-outline"><i class="fas fa-eye"></i> Voir les fonctionnalit\u00e9s</a>
         </div>
-        <p class="hero-micro">Windows 10/11 &bull; Essai gratuit 14 jours &bull; Fonctionne hors ligne</p>
+        <p class="hero-micro">Windows 10/11 &bull; Essai gratuit 14 jours &bull; Fonctionne hors ligne &bull; FR / EN / NL</p>
       </div>
       <div class="hero-visual">
         <div class="hero-mockup zoomable" data-lightbox-src="/static/images/screenshot-nouveau.png" data-lightbox-alt="Cr\u00e9ation de tournoi">
@@ -114,7 +115,7 @@ app.get('/', (c) => {
   <section class="section" id="fonctionnalites">
     <div class="container">
       <h2 class="section-title">Fonctionnalit\u00e9s cl\u00e9s</h2>
-      <p class="section-subtitle">Tout ce qu\u2019il faut pour g\u00e9rer un tournoi de A \u00e0 Z.</p>
+      <p class="section-subtitle">Tout ce qu\u2019il faut pour g\u00e9rer un tournoi de A \u00e0 Z, avec une exp\u00e9rience moderne pour les joueurs et le public.</p>
       <div class="features-grid">
         <div class="feature-card">
           <div class="feature-icon"><i class="fas fa-trophy"></i></div>
@@ -122,9 +123,34 @@ app.get('/', (c) => {
           <p>T\u00eate-\u00e0-t\u00eate, doublette, triplette, m\u00eal\u00e9e, poules\u2026 tous les formats classiques de la p\u00e9tanque sont pris en charge.</p>
         </div>
         <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-tv"></i></div>
+          <h3>Mode TV</h3>
+          <p>Affichez les matchs en cours, les r\u00e9sultats et le classement en direct sur un grand \u00e9cran ou une TV. Lisible, moderne, confortable pour tous.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-palette"></i></div>
+          <h3>Personnalisation club</h3>
+          <p>Importez le logo de votre club. Il appara\u00eet sur le Mode TV et dans tous les exports PDF pour un rendu professionnel.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-file-pdf"></i></div>
+          <h3>Exports PDF pro</h3>
+          <p>Feuilles de matchs, classements, tableaux de poules : g\u00e9n\u00e9rez des PDF imprimables avec le logo de votre club int\u00e9gr\u00e9.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-language"></i></div>
+          <h3>Interface multilingue</h3>
+          <p>Disponible en fran\u00e7ais, anglais et n\u00e9erlandais. Id\u00e9al pour les clubs multilingues et les r\u00e9gions frontali\u00e8res belges.</p>
+        </div>
+        <div class="feature-card">
           <div class="feature-icon"><i class="fas fa-magic"></i></div>
           <h3>G\u00e9n\u00e9ration automatique</h3>
           <p>Matchs et tours g\u00e9n\u00e9r\u00e9s automatiquement selon la logique du tournoi. Fini les tableaux papier.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+          <h3>Classement live</h3>
+          <p>Victoires, points marqu\u00e9s/encaiss\u00e9s, diff\u00e9rentiel : mise \u00e0 jour instantan\u00e9e apr\u00e8s chaque match.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon"><i class="fas fa-map-marked-alt"></i></div>
@@ -136,15 +162,42 @@ app.get('/', (c) => {
           <h3>BYE automatique</h3>
           <p>Si nombre impair d\u2019\u00e9quipes, le BYE est g\u00e9r\u00e9 automatiquement. Z\u00e9ro bricolage.</p>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
-          <h3>Classement live</h3>
-          <p>Victoires, points marqu\u00e9s/encaiss\u00e9s, diff\u00e9rentiel : mise \u00e0 jour instantan\u00e9e apr\u00e8s chaque match.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== HIGHLIGHT: PERSONNALISATION CLUB ========== -->
+  <section class="section section-highlight" id="personnalisation">
+    <div class="container">
+      <div class="highlight-grid">
+        <div class="highlight-content">
+          <span class="highlight-badge"><i class="fas fa-star"></i> Nouveau</span>
+          <h2 class="highlight-title">Personnalisez votre tournoi avec le logo de votre club</h2>
+          <p class="highlight-text">Visible \u00e0 la fois sur le <strong>Mode TV</strong> et sur les <strong>exports PDF</strong>. Donnez une image professionnelle \u00e0 chaque tournoi que vous organisez.</p>
+          <ul class="highlight-features">
+            <li><i class="fas fa-upload"></i> Importez votre logo en un clic dans les param\u00e8tres</li>
+            <li><i class="fas fa-tv"></i> Affichage du logo sur l\u2019\u00e9cran Mode TV</li>
+            <li><i class="fas fa-file-pdf"></i> Logo int\u00e9gr\u00e9 dans tous les documents PDF</li>
+            <li><i class="fas fa-paint-brush"></i> Rendu professionnel aux couleurs de votre club</li>
+          </ul>
+          <a href="#telecharger" class="btn btn-gold"><i class="fas fa-download"></i> Essayer gratuitement</a>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon"><i class="fas fa-users"></i></div>
-          <h3>\u00c9quipes &amp; joueurs</h3>
-          <p>Gestion simple, rapide. Pr\u00eat pour impression ou partage en quelques clics.</p>
+        <div class="highlight-visual">
+          <div class="highlight-card">
+            <div class="highlight-card-icon"><i class="fas fa-tv"></i></div>
+            <h4>Mode TV</h4>
+            <p>Matchs, scores et classements affich\u00e9s en temps r\u00e9el sur grand \u00e9cran. Confort maximal pour les joueurs, les spectateurs et les organisateurs.</p>
+          </div>
+          <div class="highlight-card">
+            <div class="highlight-card-icon"><i class="fas fa-file-pdf"></i></div>
+            <h4>PDF personnalis\u00e9s</h4>
+            <p>Feuilles de matchs, classements, poules : chaque document porte le logo de votre club pour un rendu professionnel.</p>
+          </div>
+          <div class="highlight-card">
+            <div class="highlight-card-icon"><i class="fas fa-language"></i></div>
+            <h4>Multilingue</h4>
+            <p>Fran\u00e7ais, anglais, n\u00e9erlandais. Changez la langue en un clic dans les param\u00e8tres. Id\u00e9al pour les clubs internationaux.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -154,7 +207,7 @@ app.get('/', (c) => {
   <section class="section section-alt" id="apercu">
     <div class="container">
       <h2 class="section-title">Aper\u00e7u de l\u2019application</h2>
-      <p class="section-subtitle">D\u00e9couvrez l\u2019interface pens\u00e9e pour la simplicit\u00e9 et l\u2019efficacit\u00e9.</p>
+      <p class="section-subtitle">D\u00e9couvrez l\u2019interface pens\u00e9e pour la simplicit\u00e9, l\u2019efficacit\u00e9 et un rendu professionnel.</p>
       <div class="screenshots-grid">
         <div class="screenshot-card">
           <div class="screenshot-img-wrap zoomable" data-lightbox-src="/static/images/screenshot-equipes.png" data-lightbox-alt="\u00c9quipes &amp; joueurs">
@@ -167,22 +220,22 @@ app.get('/', (c) => {
           <div class="screenshot-img-wrap zoomable" data-lightbox-src="/static/images/screenshot-matchs.png" data-lightbox-alt="Matchs">
             <img src="/static/images/screenshot-matchs.png" alt="Gestion des matchs" class="screenshot-img">
           </div>
-          <h3>Matchs</h3>
-          <p>G\u00e9n\u00e9rez automatiquement les tours et les terrains, puis saisissez les scores en un clic. Moins d\u2019erreurs, et les r\u00e9sultats se mettent \u00e0 jour au fur et \u00e0 mesure.</p>
+          <h3>Matchs &amp; scores</h3>
+          <p>G\u00e9n\u00e9rez automatiquement les tours et les terrains, puis saisissez les scores en un clic. Les r\u00e9sultats se mettent \u00e0 jour en temps r\u00e9el.</p>
         </div>
         <div class="screenshot-card">
           <div class="screenshot-img-wrap zoomable" data-lightbox-src="/static/images/screenshot-classement.png" data-lightbox-alt="Classement">
             <img src="/static/images/screenshot-classement.png" alt="Classement en direct" class="screenshot-img">
           </div>
-          <h3>Classement</h3>
-          <p>Classement en direct apr\u00e8s chaque partie&nbsp;: victoires, points, diff\u00e9rentiel et d\u00e9partage clair. Visualisez instantan\u00e9ment qui est devant.</p>
+          <h3>Classement live</h3>
+          <p>Classement en direct apr\u00e8s chaque partie : victoires, points, diff\u00e9rentiel et d\u00e9partage clair. \u00c9galement affichable en Mode TV.</p>
         </div>
         <div class="screenshot-card">
           <div class="screenshot-img-wrap zoomable" data-lightbox-src="/static/images/screenshot-poules.png" data-lightbox-alt="Tournois en poules">
             <img src="/static/images/screenshot-poules.png" alt="Tournois en poules" class="screenshot-img">
           </div>
           <h3>Tournois en poules</h3>
-          <p>Organisez vos tournois en poules : \u00e0 chaque tour, P\u00e9tanque Manager effectue automatiquement le tirage al\u00e9atoire des matchs et affiche les rencontres. Moins d\u2019attente, moins d\u2019erreurs, plus de fluidit\u00e9 pour les joueurs et l\u2019organisation.</p>
+          <p>Organisez vos tournois en poules : \u00e0 chaque tour, P\u00e9tanque Manager effectue automatiquement le tirage al\u00e9atoire des matchs et affiche les rencontres.</p>
         </div>
       </div>
     </div>
@@ -340,7 +393,7 @@ app.get('/', (c) => {
           <p>Choisissez votre plan et continuez sans interruption.</p>
         </div>
       </div>
-      <p class="download-compat">Compatible Windows 10/11 &bull; Fonctionne hors ligne &bull; Id\u00e9al pour clubs</p>
+      <p class="download-compat">Compatible Windows 10/11 &bull; Fonctionne hors ligne &bull; FR / EN / NL &bull; Id\u00e9al pour clubs</p>
       <div class="download-cta">
         <a href="#" class="btn btn-gold btn-lg"><i class="fas fa-download"></i> T\u00e9l\u00e9charger pour PC</a>
       </div>
@@ -369,6 +422,15 @@ app.get('/', (c) => {
           </button>
           <div class="faq-answer">
             <p>T\u00e9l\u00e9chargez et installez le logiciel. Toutes les fonctionnalit\u00e9s sont accessibles pendant 14 jours, sans carte bancaire. \u00c0 la fin de l\u2019essai, choisissez le plan qui vous convient.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>Comment fonctionne le Mode TV ?</span>
+            <i class="fas fa-chevron-down faq-chevron"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Branchez un \u00e9cran ou une TV sur votre PC, activez le Mode TV dans l\u2019application. Les matchs en cours, les r\u00e9sultats et le classement s\u2019affichent en grand, lisibles de loin. Le logo de votre club appara\u00eet \u00e9galement \u00e0 l\u2019\u00e9cran.</p>
           </div>
         </div>
         <div class="faq-item">
@@ -453,6 +515,7 @@ app.get('/', (c) => {
         <h4>Liens rapides</h4>
         <ul>
           <li><a href="#fonctionnalites">Fonctionnalit\u00e9s</a></li>
+          <li><a href="#personnalisation">Mode TV &amp; personnalisation</a></li>
           <li><a href="#tarifs">Tarifs</a></li>
           <li><a href="#telecharger">T\u00e9l\u00e9charger</a></li>
           <li><a href="#telecharger"><i class="fas fa-download"></i> T\u00e9l\u00e9chargement .exe</a></li>
