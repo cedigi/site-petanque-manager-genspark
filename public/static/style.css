@@ -250,6 +250,94 @@ img {
   padding: 8px;
 }
 
+/* ---- NAV AUTH INDICATOR ---- */
+.nav-auth {
+  display: flex;
+  align-items: center;
+  margin-left: 12px;
+  flex-shrink: 0;
+}
+
+.nav-auth-login {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--bg-deep);
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  padding: 8px 18px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  transition: var(--transition);
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.nav-auth-login:hover {
+  color: var(--bg-deep);
+  background: linear-gradient(135deg, var(--gold-light), var(--gold));
+  transform: translateY(-1px);
+  box-shadow: 0 0 18px rgba(212, 168, 67, 0.3);
+}
+
+.nav-auth-login i {
+  font-size: 0.85rem;
+}
+
+.nav-auth-user {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(45, 212, 191, 0.1);
+  border: 1px solid rgba(45, 212, 191, 0.2);
+  padding: 6px 16px 6px 8px;
+  border-radius: 24px;
+  color: var(--text-light);
+  font-size: 0.82rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.nav-auth-user:hover {
+  background: rgba(45, 212, 191, 0.18);
+  border-color: var(--teal);
+  color: var(--text-white);
+}
+
+.nav-auth-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--teal), var(--teal-light));
+  color: var(--bg-deep);
+  font-size: 0.72rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  text-transform: uppercase;
+}
+
+.nav-auth-email {
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nav-auth-arrow {
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  transition: var(--transition);
+}
+
+.nav-auth-user:hover .nav-auth-arrow {
+  color: var(--teal);
+  transform: translateX(2px);
+}
+
 /* ==========================================================================
    HERO
    ========================================================================== */
@@ -2349,6 +2437,40 @@ img {
 
   .nav-link {
     padding: 12px 16px;
+  }
+
+  .nav-auth {
+    margin-left: 8px;
+  }
+
+  .nav-auth-login span {
+    display: none;
+  }
+
+  .nav-auth-login {
+    padding: 8px 12px;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    justify-content: center;
+  }
+
+  .nav-auth-login i {
+    margin: 0;
+  }
+
+  .nav-auth-email {
+    display: none;
+  }
+
+  .nav-auth-arrow {
+    display: none;
+  }
+
+  .nav-auth-user {
+    padding: 4px;
+    border-radius: 50%;
+    gap: 0;
   }
 
   .hero {

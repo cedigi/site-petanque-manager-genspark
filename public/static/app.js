@@ -3,6 +3,40 @@
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
+  // ---- AUTH STATUS INDICATOR (top-right navbar) ----
+  const navAuthLogin = document.getElementById('navAuthLogin');
+  const navAuthUser = document.getElementById('navAuthUser');
+  const navAuthAvatar = document.getElementById('navAuthAvatar');
+  const navAuthEmail = document.getElementById('navAuthEmail');
+
+  function updateAuthIndicator() {
+    const token = localStorage.getItem('pm_access_token');
+    const email = localStorage.getItem('pm_user_email');
+
+    if (token && navAuthLogin && navAuthUser) {
+      // User is logged in — show avatar pill, hide login button
+      navAuthLogin.style.display = 'none';
+      navAuthUser.style.display = 'inline-flex';
+
+      if (email && navAuthEmail) {
+        navAuthEmail.textContent = email;
+      }
+      if (email && navAuthAvatar) {
+        // First letter of email as avatar initials
+        navAuthAvatar.textContent = email.charAt(0).toUpperCase();
+      }
+    } else if (navAuthLogin && navAuthUser) {
+      // Not logged in — show login button, hide avatar
+      navAuthLogin.style.display = 'inline-flex';
+      navAuthUser.style.display = 'none';
+    }
+  }
+
+  updateAuthIndicator();
+
+  // Re-check auth state when tab regains focus (e.g. after login in another tab)
+  window.addEventListener('focus', updateAuthIndicator);
+
   // ---- NAVBAR SCROLL EFFECT ----
   const navbar = document.getElementById('navbar');
   const navLinks = document.querySelectorAll('.nav-link');

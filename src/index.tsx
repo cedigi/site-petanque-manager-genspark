@@ -82,10 +82,20 @@ app.get('/', (c) => {
         <li><a href="#fonctionnalites" class="nav-link">Fonctionnalit\u00e9s</a></li>
         <li><a href="#tarifs" class="nav-link">Tarifs</a></li>
         <li><a href="#telecharger" class="nav-link">T\u00e9l\u00e9charger</a></li>
-        <li><a href="/espace-client/login" class="nav-link">Espace client</a></li>
         <li><a href="#faq" class="nav-link">FAQ</a></li>
         <li><a href="#contact" class="nav-link">Contact</a></li>
       </ul>
+      <!-- Auth indicator: login button or user avatar -->
+      <div class="nav-auth" id="navAuth">
+        <a href="/espace-client/login" class="nav-auth-login" id="navAuthLogin" title="Se connecter">
+          <i class="fas fa-sign-in-alt"></i> <span>Connexion</span>
+        </a>
+        <a href="/espace-client" class="nav-auth-user" id="navAuthUser" style="display:none;" title="Mon espace client">
+          <span class="nav-auth-avatar" id="navAuthAvatar"></span>
+          <span class="nav-auth-email" id="navAuthEmail"></span>
+          <i class="fas fa-chevron-right nav-auth-arrow"></i>
+        </a>
+      </div>
     </div>
   </nav>
 
