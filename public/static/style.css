@@ -86,6 +86,25 @@ body {
   pointer-events: none;
 }
 
+/* ---- Offline icon (wifi barré) ---- */
+.icon-offline {
+  position: relative;
+  display: inline-block;
+}
+
+.icon-offline::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: -15%;
+  width: 130%;
+  height: 2px;
+  background: currentColor;
+  transform: rotate(-45deg);
+  transform-origin: center;
+  border-radius: 1px;
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;

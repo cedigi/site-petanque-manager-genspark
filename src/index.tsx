@@ -106,7 +106,7 @@ app.get('/', (c) => {
       <div class="hero-content">
         <h1 class="hero-title">Organisez vos tournois de p\u00e9tanque plus vite, plus proprement, plus professionnellement.</h1>
         <p class="hero-subtitle">P\u00e9tanque Manager vous permet de g\u00e9rer vos \u00e9quipes, g\u00e9n\u00e9rer les matchs, suivre le classement, imprimer vos feuilles, afficher un Mode TV en direct, et produire des PDF personnalis\u00e9s avec le logo de votre club.</p>
-        <p class="hero-highlights"><span><i class="fas fa-tv"></i> Mode TV en direct</span> <span><i class="fas fa-language"></i> Interface en 3 langues</span> <span><i class="fas fa-file-pdf"></i> PDF avec logo du club</span> <span><i class="fas fa-wifi-slash"></i> Fonctionne m\u00eame sans internet</span></p>
+        <p class="hero-highlights"><span><i class="fas fa-tv"></i> Mode TV en direct</span> <span><i class="fas fa-language"></i> Interface en 3 langues</span> <span><i class="fas fa-file-pdf"></i> PDF avec logo du club</span> <span><i class="fas fa-wifi icon-offline"></i> Fonctionne m\u00eame sans internet</span></p>
         <div class="hero-cta">
           <a href="#telecharger" class="btn btn-gold"><i class="fas fa-download"></i> T\u00e9l\u00e9charger pour PC</a>
           <a href="#fonctionnalites" class="btn btn-outline"><i class="fas fa-eye"></i> D\u00e9couvrir les fonctionnalit\u00e9s</a>
@@ -141,7 +141,7 @@ app.get('/', (c) => {
           <p>Votre logo sur les PDF et dans le Mode TV.</p>
         </div>
         <div class="strength-item">
-          <div class="strength-icon"><i class="fas fa-wifi-slash"></i></div>
+          <div class="strength-icon"><i class="fas fa-wifi icon-offline"></i></div>
           <h3>Utilisable hors ligne</h3>
           <p>Fonctionne sans connexion, idéal pour les concours sur site.</p>
         </div>
@@ -222,7 +222,7 @@ app.get('/', (c) => {
           <p>Basculez l’interface en français, anglais ou néerlandais directement depuis les paramètres.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon"><i class="fas fa-wifi-slash"></i></div>
+          <div class="feature-icon"><i class="fas fa-wifi icon-offline"></i></div>
           <h3>Utilisation hors ligne</h3>
           <p>Le tournoi peut être géré sans dépendre d’une connexion internet. Idéal pour les concours en extérieur.</p>
         </div>
