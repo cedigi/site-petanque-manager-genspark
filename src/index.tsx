@@ -93,7 +93,7 @@ app.get('/', (c) => {
         <p class="hero-subtitle">P\u00e9tanque Manager vous permet de g\u00e9rer vos \u00e9quipes, g\u00e9n\u00e9rer les matchs, suivre le classement, imprimer vos feuilles, afficher un Mode TV en direct, et produire des PDF personnalis\u00e9s avec le logo de votre club.</p>
         <p class="hero-highlights"><span><i class="fas fa-tv"></i> Mode TV en direct</span> <span><i class="fas fa-language"></i> Interface en 3 langues</span> <span><i class="fas fa-file-pdf"></i> PDF avec logo du club</span> <span><i class="fas fa-wifi-slash"></i> Fonctionne m\u00eame sans internet</span></p>
         <div class="hero-cta">
-          <a href="#contact" class="btn btn-gold"><i class="fas fa-envelope"></i> Demander une d\u00e9mo</a>
+          <a href="#telecharger" class="btn btn-gold"><i class="fas fa-download"></i> T\u00e9l\u00e9charger pour PC</a>
           <a href="#fonctionnalites" class="btn btn-outline"><i class="fas fa-eye"></i> D\u00e9couvrir les fonctionnalit\u00e9s</a>
         </div>
         <p class="hero-micro">Windows 10/11 \u2022 Essai gratuit 14 jours \u2022 FR / EN / NL</p>
@@ -314,7 +314,7 @@ app.get('/', (c) => {
       <p class="cta-final-text">Essayez Pétanque Manager et équipez votre club d’un outil conçu pour organiser, afficher et imprimer vos tournois proprement.</p>
       <p class="cta-final-summary">Pétanque Manager : gestion des équipes, matchs, scores, classement automatique, Mode TV, exports PDF personnalisés avec logo du club, interface multilingue FR/EN/NL.</p>
       <div class="cta-final-buttons">
-        <a href="#contact" class="btn btn-gold btn-lg"><i class="fas fa-envelope"></i> Demander une démonstration</a>
+        <a href="#telecharger" class="btn btn-gold btn-lg"><i class="fas fa-download"></i> T\u00e9l\u00e9charger pour PC</a>
         <a href="#contact" class="btn btn-outline btn-lg"><i class="fas fa-comments"></i> Nous contacter</a>
       </div>
     </div>
@@ -442,7 +442,7 @@ app.get('/', (c) => {
 
       <p class="pricing-note">Essai gratuit 14 jours. Licence activable sur X PC selon l\u2019offre.</p>
       <div class="pricing-cta">
-        <a href="#telecharger" class="btn btn-gold"><i class="fas fa-download"></i> T\u00e9l\u00e9charger l\u2019essai</a>
+        <a href="#telecharger" class="btn btn-gold"><i class="fas fa-download"></i> T\u00e9l\u00e9charger pour PC</a>
       </div>
     </div>
   </section>
