@@ -93,7 +93,7 @@ app.get('/', (c) => {
         <p class="hero-subtitle">Gestion rapide, Mode TV pour l\u2019affichage public, PDFs personnalis\u00e9s avec le logo de votre club, et interface multilingue. Tout ce dont votre club a besoin, dans un seul logiciel.</p>
         <ul class="hero-bullets">
           <li><i class="fas fa-check-circle"></i> Lancez un tournoi en 2 minutes, matchs &amp; classement automatis\u00e9s.</li>
-          <li><i class="fas fa-check-circle"></i> <strong>Mode TV</strong>&nbsp;: affichez les matchs et classements sur grand \u00e9cran.</li>
+          <li><i class="fas fa-check-circle"></i> <strong>Mode TV</strong>&nbsp;: affichez les matchs et scores sur grand \u00e9cran.</li>
           <li><i class="fas fa-check-circle"></i> Logo de votre club sur le Mode TV et les exports PDF.</li>
           <li><i class="fas fa-check-circle"></i> Disponible en fran\u00e7ais, anglais et n\u00e9erlandais.</li>
         </ul>
@@ -125,7 +125,7 @@ app.get('/', (c) => {
         <div class="feature-card">
           <div class="feature-icon"><i class="fas fa-tv"></i></div>
           <h3>Mode TV</h3>
-          <p>Affichez les matchs en cours, les r\u00e9sultats et le classement en direct sur un grand \u00e9cran ou une TV. Lisible, moderne, confortable pour tous.</p>
+          <p>Affichez les matchs en cours et les r\u00e9sultats en direct sur un grand \u00e9cran ou une TV. Lisible, moderne, confortable pour tous.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon"><i class="fas fa-palette"></i></div>
@@ -186,7 +186,7 @@ app.get('/', (c) => {
           <div class="highlight-card">
             <div class="highlight-card-icon"><i class="fas fa-tv"></i></div>
             <h4>Mode TV</h4>
-            <p>Matchs, scores et classements affich\u00e9s en temps r\u00e9el sur grand \u00e9cran. Confort maximal pour les joueurs, les spectateurs et les organisateurs.</p>
+            <p>Matchs, scores et terrains affich\u00e9s en temps r\u00e9el sur grand \u00e9cran. Confort maximal pour les joueurs, les spectateurs et les organisateurs.</p>
           </div>
           <div class="highlight-card">
             <div class="highlight-card-icon"><i class="fas fa-file-pdf"></i></div>
@@ -451,7 +451,7 @@ app.get('/', (c) => {
             <i class="fas fa-chevron-down faq-chevron"></i>
           </button>
           <div class="faq-answer">
-            <p>Branchez un \u00e9cran ou une TV sur votre PC, activez le Mode TV dans l\u2019application. Les matchs en cours, les r\u00e9sultats et le classement s\u2019affichent en grand, lisibles de loin. Le logo de votre club appara\u00eet \u00e9galement \u00e0 l\u2019\u00e9cran.</p>
+            <p>Branchez un \u00e9cran ou une TV sur votre PC, activez le Mode TV dans l\u2019application. Les matchs en cours et les r\u00e9sultats s\u2019affichent en grand, lisibles de loin. Le logo de votre club appara\u00eet \u00e9galement \u00e0 l\u2019\u00e9cran.</p>
           </div>
         </div>
         <div class="faq-item">
