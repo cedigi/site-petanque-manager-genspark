@@ -1270,108 +1270,225 @@ app.get('/espace-client', (c) => {
         <div class="portal-summary-card">
           <div class="portal-summary-icon"><i class="fas fa-credit-card"></i></div>
           <div class="portal-summary-data">
-            <span class="portal-summary-value" id="sumActiveSubs">—</span>
+            <span class="portal-summary-value" id="sumActiveSubs">\u2014</span>
             <span class="portal-summary-label">Abonnement(s) actif(s)</span>
           </div>
         </div>
         <div class="portal-summary-card">
           <div class="portal-summary-icon"><i class="fas fa-key"></i></div>
           <div class="portal-summary-data">
-            <span class="portal-summary-value" id="sumActiveLicenses">—</span>
+            <span class="portal-summary-value" id="sumActiveLicenses">\u2014</span>
             <span class="portal-summary-label">Licence(s) active(s)</span>
           </div>
         </div>
         <div class="portal-summary-card">
           <div class="portal-summary-icon"><i class="fas fa-desktop"></i></div>
           <div class="portal-summary-data">
-            <span class="portal-summary-value" id="sumUsedSlots">—</span>
-            <span class="portal-summary-label">PC utilisé(s)</span>
+            <span class="portal-summary-value" id="sumUsedSlots">\u2014</span>
+            <span class="portal-summary-label">PC utilis\u00e9(s)</span>
           </div>
         </div>
         <div class="portal-summary-card">
           <div class="portal-summary-icon"><i class="fas fa-plus-circle"></i></div>
           <div class="portal-summary-data">
-            <span class="portal-summary-value" id="sumFreeSlots">—</span>
+            <span class="portal-summary-value" id="sumFreeSlots">\u2014</span>
             <span class="portal-summary-label">Emplacement(s) libre(s)</span>
           </div>
         </div>
       </div>
 
-      <!-- Subscriptions -->
+      <!-- ============ SUBSCRIPTIONS ============ -->
       <section class="portal-section">
         <div class="portal-section-header">
           <h2><i class="fas fa-credit-card"></i> Mes abonnements</h2>
         </div>
-        <div class="portal-table-wrap" id="subsTableWrap">
-          <p class="portal-empty" id="subsEmpty" style="display:none;"><i class="fas fa-inbox"></i>Aucun abonnement actif.</p>
-          <table class="portal-table" id="subsTable" style="display:none;">
+        <!-- Empty: no subscription -->
+        <div id="subsEmptyState" class="portal-empty-state" style="display:none;">
+          <div class="portal-empty-icon"><i class="fas fa-inbox"></i></div>
+          <h3>Aucun abonnement</h3>
+          <p>Vous n\u2019avez pas encore d\u2019abonnement actif. Choisissez une offre pour commencer \u00e0 utiliser P\u00e9tanque Manager.</p>
+          <a href="/#tarifs" class="btn btn-gold btn-sm"><i class="fas fa-tag"></i> Voir les tarifs</a>
+        </div>
+        <!-- Table -->
+        <div class="portal-table-wrap" id="subsTableWrap" style="display:none;">
+          <table class="portal-table" id="subsTable">
             <thead>
               <tr>
                 <th>Formule</th>
-                <th>Période</th>
+                <th>P\u00e9riode</th>
                 <th>Statut</th>
-                <th>Début</th>
-                <th>Renouvellement</th>
-                <th>PC autorisés</th>
+                <th>D\u00e9but</th>
+                <th>Prochaine \u00e9ch\u00e9ance</th>
+                <th>PC autoris\u00e9s</th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody id="subsBody"></tbody>
           </table>
         </div>
+        <!-- Sub actions -->
+        <div id="subsActions" class="portal-sub-actions" style="display:none;">
+          <div class="portal-sub-action-grid">
+            <button class="portal-action-card" id="btnBillingPortal">
+              <i class="fas fa-external-link-alt"></i>
+              <span>G\u00e9rer mon abonnement</span>
+            </button>
+            <button class="portal-action-card" id="btnViewInvoices">
+              <i class="fas fa-file-invoice"></i>
+              <span>Voir mes factures</span>
+            </button>
+            <button class="portal-action-card" id="btnUpdatePayment">
+              <i class="fas fa-credit-card"></i>
+              <span>Mettre \u00e0 jour le paiement</span>
+            </button>
+            <a href="/#tarifs" class="portal-action-card">
+              <i class="fas fa-exchange-alt"></i>
+              <span>Changer de formule</span>
+            </a>
+            <button class="portal-action-card portal-action-card-danger" id="btnCancelSub">
+              <i class="fas fa-times-circle"></i>
+              <span>R\u00e9silier</span>
+            </button>
+          </div>
+        </div>
       </section>
 
-      <!-- Licenses -->
+      <!-- ============ LICENSES ============ -->
       <section class="portal-section">
         <div class="portal-section-header">
           <h2><i class="fas fa-key"></i> Mes licences</h2>
         </div>
-        <div class="portal-table-wrap" id="licTableWrap">
-          <p class="portal-empty" id="licEmpty" style="display:none;"><i class="fas fa-key"></i>Aucune licence trouvée.</p>
-          <table class="portal-table" id="licTable" style="display:none;">
+        <div id="licEmptyState" class="portal-empty-state" style="display:none;">
+          <div class="portal-empty-icon"><i class="fas fa-key"></i></div>
+          <h3>Aucune licence</h3>
+          <p>Souscrivez un abonnement pour obtenir votre cl\u00e9 de licence.</p>
+          <a href="/#tarifs" class="btn btn-gold btn-sm"><i class="fas fa-tag"></i> Voir les tarifs</a>
+        </div>
+        <div class="portal-table-wrap" id="licTableWrap" style="display:none;">
+          <table class="portal-table" id="licTable">
             <thead>
               <tr>
-                <th>Clé de licence</th>
-                <th>Plan associé</th>
+                <th>Cl\u00e9 de licence</th>
+                <th>Plan associ\u00e9</th>
                 <th>Statut</th>
                 <th>Appareils</th>
-                <th>Créée le</th>
+                <th>Cr\u00e9\u00e9e le</th>
                 <th>Expire le</th>
               </tr>
             </thead>
             <tbody id="licBody"></tbody>
           </table>
         </div>
+        <!-- Licence expired alert -->
+        <div id="licExpiredAlert" class="portal-alert-banner portal-alert-banner-warning" style="display:none;">
+          <i class="fas fa-exclamation-triangle"></i>
+          <div>
+            <strong>Licence expir\u00e9e</strong>
+            <p>Une ou plusieurs licences ont expir\u00e9. Renouvelez votre abonnement pour continuer \u00e0 utiliser le logiciel.</p>
+          </div>
+          <a href="/#tarifs" class="btn btn-gold btn-sm">Renouveler</a>
+        </div>
+        <!-- Quota reached alert -->
+        <div id="licQuotaAlert" class="portal-alert-banner portal-alert-banner-info" style="display:none;">
+          <i class="fas fa-info-circle"></i>
+          <div>
+            <strong>Tous les emplacements sont utilis\u00e9s</strong>
+            <p>Pour activer un nouveau PC, lib\u00e9rez d\u2019abord un appareil existant ou passez \u00e0 une formule sup\u00e9rieure.</p>
+          </div>
+        </div>
         <div class="portal-info-box">
           <i class="fas fa-shield-alt"></i>
-          <span>La clé de licence ne change <strong>jamais</strong>, même lors d'un transfert de PC. Seul l'appareil associé est remplacé.</span>
+          <span>La cl\u00e9 de licence ne change <strong>jamais</strong>, m\u00eame lors d\u2019un transfert de PC. Seul l\u2019appareil associ\u00e9 est remplac\u00e9.</span>
         </div>
       </section>
 
-      <!-- Devices -->
+      <!-- ============ DEVICES — TABS ============ -->
       <section class="portal-section">
         <div class="portal-section-header">
           <h2><i class="fas fa-desktop"></i> Mes appareils</h2>
         </div>
-        <div class="portal-table-wrap" id="devTableWrap">
-          <p class="portal-empty" id="devEmpty" style="display:none;"><i class="fas fa-laptop"></i>Aucun appareil enregistré.</p>
-          <table class="portal-table" id="devTable" style="display:none;">
-            <thead>
-              <tr>
-                <th>Nom du PC</th>
-                <th>Empreinte</th>
-                <th>Licence</th>
-                <th>Activé le</th>
-                <th>Dernier check-in</th>
-                <th>Statut</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody id="devBody"></tbody>
-          </table>
+        <!-- Tab navigation -->
+        <div class="portal-tabs">
+          <button class="portal-tab active" data-tab="active-devices"><i class="fas fa-check-circle"></i> Appareils actifs <span class="portal-tab-count" id="activeDevCount">0</span></button>
+          <button class="portal-tab" data-tab="released-devices"><i class="fas fa-history"></i> Historique <span class="portal-tab-count" id="releasedDevCount">0</span></button>
         </div>
-        <div class="portal-info-box">
+
+        <!-- Active devices tab -->
+        <div class="portal-tab-content active" id="tab-active-devices">
+          <div id="devActiveEmpty" class="portal-empty-state portal-empty-state-sm" style="display:none;">
+            <div class="portal-empty-icon"><i class="fas fa-laptop"></i></div>
+            <h3>Aucun appareil actif</h3>
+            <p>Activez votre licence dans Pétanque Manager : <strong>Param\u00e8tres \u2192 Licence</strong>.</p>
+          </div>
+          <div class="portal-table-wrap" id="devActiveTableWrap" style="display:none;">
+            <table class="portal-table" id="devActiveTable">
+              <thead>
+                <tr>
+                  <th>Nom du PC</th>
+                  <th>Empreinte</th>
+                  <th>Licence</th>
+                  <th>Activ\u00e9 le</th>
+                  <th>Dernier check-in</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="devActiveBody"></tbody>
+            </table>
+          </div>
+          <!-- CTA: Free slots available -->
+          <div id="freeSlotCta" class="portal-cta-banner" style="display:none;">
+            <div class="portal-cta-banner-icon"><i class="fas fa-plus-circle"></i></div>
+            <div class="portal-cta-banner-content">
+              <strong id="freeSlotCtaTitle">Emplacement(s) disponible(s)</strong>
+              <p>Vous avez des emplacements libres sur votre licence. Activez le logiciel sur un nouveau PC en collant votre cl\u00e9 dans <strong>Param\u00e8tres \u2192 Licence</strong>.</p>
+              <div id="freeSlotCtaKeys"></div>
+              <div class="portal-cta-banner-actions">
+                <a href="/#telecharger" class="portal-cta-btn portal-cta-btn-primary"><i class="fas fa-laptop"></i> Activer sur un nouveau PC</a>
+                <button class="portal-cta-btn portal-cta-btn-secondary" onclick="navigator.clipboard.writeText(document.querySelector('.portal-cta-key')?.textContent||'').then(function(){var b=document.querySelector('.portal-cta-btn-secondary');b.innerHTML='<i class=\\'fas fa-check\\'></i> Cl\u00e9 copi\u00e9e !';setTimeout(function(){b.innerHTML='<i class=\\'fas fa-copy\\'></i> Copier la cl\u00e9';},2000);})"><i class="fas fa-copy"></i> Copier la cl\u00e9</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Released devices tab (history) -->
+        <div class="portal-tab-content" id="tab-released-devices" style="display:none;">
+          <div id="devReleasedEmpty" class="portal-empty-state portal-empty-state-sm" style="display:none;">
+            <div class="portal-empty-icon"><i class="fas fa-history"></i></div>
+            <h3>Aucun historique</h3>
+            <p>Les appareils lib\u00e9r\u00e9s appara\u00eetront ici.</p>
+          </div>
+          <div class="portal-table-wrap" id="devReleasedTableWrap" style="display:none;">
+            <table class="portal-table" id="devReleasedTable">
+              <thead>
+                <tr>
+                  <th>Nom du PC</th>
+                  <th>Empreinte</th>
+                  <th>Licence</th>
+                  <th>Activ\u00e9 le</th>
+                  <th>Lib\u00e9r\u00e9 le</th>
+                  <th>Statut</th>
+                </tr>
+              </thead>
+              <tbody id="devReleasedBody"></tbody>
+            </table>
+          </div>
+          <!-- Post-release cohérence métier -->
+          <div class="portal-info-box" id="releasedInfoBox" style="display:none;">
+            <i class="fas fa-info-circle"></i>
+            <div>
+              <strong style="color:rgba(255,255,255,0.8);display:block;margin-bottom:4px;">Que se passe-t-il apr\u00e8s la lib\u00e9ration ?</strong>
+              <span>
+                \u2022 Votre <strong>cl\u00e9 de licence reste identique</strong> et peut \u00eatre r\u00e9utilis\u00e9e.<br>
+                \u2022 Le PC lib\u00e9r\u00e9 <strong>n\u2019est plus autoris\u00e9</strong> \u00e0 utiliser P\u00e9tanque Manager.<br>
+                \u2022 Pour r\u00e9utiliser cette licence : <strong>installez le logiciel sur un nouveau PC</strong>, allez dans <strong>Param\u00e8tres \u2192 Licence</strong>, et collez la m\u00eame cl\u00e9.
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="portal-info-box" style="margin-top:16px;">
           <i class="fas fa-lightbulb"></i>
-          <span>Libérez un appareil pour réutiliser la même licence sur un autre PC. La clé ne change pas.</span>
+          <span>Lib\u00e9rez un appareil pour r\u00e9utiliser la m\u00eame licence sur un autre PC. La cl\u00e9 ne change pas.</span>
         </div>
       </section>
 
@@ -1381,48 +1498,76 @@ app.get('/espace-client', (c) => {
         <div class="portal-transfer-steps">
           <div class="portal-transfer-step">
             <div class="portal-transfer-num">1</div>
-            <p>Connectez-vous à votre espace client</p>
+            <p>Connectez-vous \u00e0 votre espace client</p>
           </div>
           <div class="portal-transfer-arrow"><i class="fas fa-chevron-right"></i></div>
           <div class="portal-transfer-step">
             <div class="portal-transfer-num">2</div>
-            <p>Repérez le PC à libérer dans la liste</p>
+            <p>Rep\u00e9rez le PC \u00e0 lib\u00e9rer dans la liste</p>
           </div>
           <div class="portal-transfer-arrow"><i class="fas fa-chevron-right"></i></div>
           <div class="portal-transfer-step">
             <div class="portal-transfer-num">3</div>
-            <p>Cliquez « Libérer ce PC »</p>
+            <p>Cliquez \u00ab Lib\u00e9rer ce PC \u00bb</p>
           </div>
           <div class="portal-transfer-arrow"><i class="fas fa-chevron-right"></i></div>
           <div class="portal-transfer-step">
             <div class="portal-transfer-num">4</div>
-            <p>Activez la même clé sur le nouveau PC</p>
+            <p>Activez la m\u00eame cl\u00e9 sur le nouveau PC</p>
           </div>
+        </div>
+      </section>
+
+      <!-- Security section -->
+      <section class="portal-section">
+        <div class="portal-section-header">
+          <h2><i class="fas fa-shield-alt"></i> S\u00e9curit\u00e9</h2>
+        </div>
+        <div class="portal-sub-action-grid">
+          <button class="portal-action-card" id="btnChangePassword">
+            <i class="fas fa-lock"></i>
+            <span>Changer de mot de passe</span>
+          </button>
+          <button class="portal-action-card portal-action-card-danger" id="btnLogoutAll">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>D\u00e9connexion de tous les appareils</span>
+          </button>
         </div>
       </section>
 
     </div>
   </main>
 
-  <!-- Release confirmation modal -->
+  <!-- ============ RELEASE MODAL (double confirmation) ============ -->
   <div class="portal-modal-overlay" id="releaseModal" style="display:none;">
     <div class="portal-modal">
       <div class="portal-modal-header">
-        <h3><i class="fas fa-unlock"></i> Libérer cet appareil ?</h3>
+        <h3><i class="fas fa-unlock"></i> Lib\u00e9rer cet appareil ?</h3>
         <button class="portal-modal-close" id="releaseModalClose"><i class="fas fa-times"></i></button>
       </div>
       <div class="portal-modal-body">
-        <p>Vous êtes sur le point de libérer l'appareil :</p>
+        <p>Vous \u00eates sur le point de lib\u00e9rer l\u2019appareil :</p>
         <p style="font-size:1.05rem;"><strong id="releaseDeviceName"></strong></p>
+        <div class="portal-modal-warning">
+          <i class="fas fa-exclamation-triangle"></i>
+          <span>Ce PC ne pourra plus utiliser P\u00e9tanque Manager tant que la licence n\u2019est pas r\u00e9activ\u00e9e dessus.</span>
+        </div>
         <ul class="portal-modal-info">
-          <li><i class="fas fa-check"></i> L'emplacement sera immédiatement disponible</li>
-          <li><i class="fas fa-key"></i> Votre clé de licence reste <strong>identique</strong></li>
+          <li><i class="fas fa-check"></i> L\u2019emplacement sera imm\u00e9diatement disponible</li>
+          <li><i class="fas fa-key"></i> Votre cl\u00e9 de licence reste <strong>identique</strong></li>
           <li><i class="fas fa-laptop"></i> Vous pourrez activer cette licence sur un autre PC</li>
+          <li><i class="fas fa-ban"></i> Le logiciel sera <strong>d\u00e9sactiv\u00e9</strong> sur ce poste</li>
         </ul>
+        <div class="portal-confirm-check">
+          <label>
+            <input type="checkbox" id="releaseConfirmCheck">
+            <span>Je comprends que ce PC sera d\u00e9sactiv\u00e9 et que je devrai refaire l\u2019activation sur un nouveau poste.</span>
+          </label>
+        </div>
       </div>
       <div class="portal-modal-footer">
         <button class="btn btn-outline" id="releaseCancelBtn">Annuler</button>
-        <button class="btn btn-gold" id="releaseConfirmBtn"><i class="fas fa-unlock"></i> Confirmer la libération</button>
+        <button class="btn btn-gold" id="releaseConfirmBtn" disabled><i class="fas fa-unlock"></i> Confirmer la lib\u00e9ration</button>
       </div>
     </div>
   </div>
@@ -1433,42 +1578,31 @@ app.get('/espace-client', (c) => {
     const token = localStorage.getItem('pm_access_token');
     const refreshToken = localStorage.getItem('pm_refresh_token');
 
-    if (!token) {
-      window.location.href = '/espace-client/login';
-      return;
-    }
+    if (!token) { window.location.href = '/espace-client/login'; return; }
 
     const loading = document.getElementById('portalLoading');
     const main = document.getElementById('portalMain');
     const navEmail = document.getElementById('navEmail');
     const welcomeEmail = document.getElementById('welcomeEmail');
 
-    // Set email from localStorage quickly
     const storedEmail = localStorage.getItem('pm_user_email');
-    if (storedEmail) {
-      navEmail.textContent = storedEmail;
-      welcomeEmail.textContent = storedEmail;
-    }
+    if (storedEmail) { navEmail.textContent = storedEmail; welcomeEmail.textContent = storedEmail; }
 
-    // Toast notification system
+    // ---- Toast ----
     function showToast(message, type) {
-      const existing = document.querySelector('.portal-toast');
+      var existing = document.querySelector('.portal-toast');
       if (existing) existing.remove();
-      const toast = document.createElement('div');
-      toast.className = 'portal-toast portal-toast-' + type;
-      toast.innerHTML = '<i class="fas fa-' + (type === 'success' ? 'check-circle' : 'exclamation-circle') + '" style="margin-right:8px;"></i>' + message;
-      document.body.appendChild(toast);
-      setTimeout(() => { toast.style.opacity = '0'; toast.style.transform = 'translateY(-10px)'; setTimeout(() => toast.remove(), 300); }, 4000);
+      var t = document.createElement('div');
+      t.className = 'portal-toast portal-toast-' + type;
+      var icon = type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle';
+      t.innerHTML = '<i class="fas fa-' + icon + '" style="margin-right:8px;"></i>' + message;
+      document.body.appendChild(t);
+      setTimeout(function() { t.style.opacity = '0'; t.style.transform = 'translateY(-10px)'; setTimeout(function() { t.remove(); }, 300); }, 4500);
     }
 
-    // Logout
-    document.getElementById('logoutBtn').addEventListener('click', async () => {
-      try {
-        await fetch('/api/auth/logout', {
-          method: 'POST',
-          headers: { 'Authorization': 'Bearer ' + token },
-        });
-      } catch {}
+    // ---- Logout ----
+    document.getElementById('logoutBtn').addEventListener('click', async function() {
+      try { await fetch('/api/auth/logout', { method: 'POST', headers: { 'Authorization': 'Bearer ' + token } }); } catch {}
       localStorage.removeItem('pm_access_token');
       localStorage.removeItem('pm_refresh_token');
       localStorage.removeItem('pm_user_email');
@@ -1476,246 +1610,367 @@ app.get('/espace-client', (c) => {
       window.location.href = '/espace-client/login';
     });
 
-    // Fetch dashboard data
-    loadDashboard();
+    // ---- Tabs ----
+    document.querySelectorAll('.portal-tab').forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        document.querySelectorAll('.portal-tab').forEach(function(t) { t.classList.remove('active'); });
+        document.querySelectorAll('.portal-tab-content').forEach(function(c) { c.style.display = 'none'; c.classList.remove('active'); });
+        tab.classList.add('active');
+        var target = document.getElementById('tab-' + tab.dataset.tab);
+        if (target) { target.style.display = 'block'; target.classList.add('active'); }
+      });
+    });
 
+    // ---- Security actions ----
+    document.getElementById('btnChangePassword').addEventListener('click', async function() {
+      var email = localStorage.getItem('pm_user_email');
+      if (!email) { showToast('Email non trouv\\u00e9. Reconnectez-vous.', 'error'); return; }
+      try {
+        var res = await fetch('/api/auth/reset-password', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: email }) });
+        if (res.ok) showToast('Un lien de r\\u00e9initialisation a \\u00e9t\\u00e9 envoy\\u00e9 \\u00e0 ' + email, 'success');
+        else showToast('Erreur. R\\u00e9essayez.', 'error');
+      } catch { showToast('Erreur r\\u00e9seau.', 'error'); }
+    });
+
+    document.getElementById('btnLogoutAll').addEventListener('click', async function() {
+      if (!confirm('\\u00cates-vous s\\u00fbr de vouloir vous d\\u00e9connecter de tous les appareils ? Vous devrez vous reconnecter partout.')) return;
+      try {
+        await fetch('/api/auth/logout', { method: 'POST', headers: { 'Authorization': 'Bearer ' + token } });
+      } catch {}
+      localStorage.removeItem('pm_access_token');
+      localStorage.removeItem('pm_refresh_token');
+      localStorage.removeItem('pm_user_email');
+      localStorage.removeItem('pm_user_id');
+      showToast('D\\u00e9connect\\u00e9 de tous les appareils.', 'success');
+      setTimeout(function() { window.location.href = '/espace-client/login'; }, 1500);
+    });
+
+    // ---- Stripe Billing Portal actions ----
+    async function openBillingPortal() {
+      showToast('Redirection vers le portail de facturation...', 'info');
+      try {
+        var res = await apiCall('/api/account/billing-portal', { method: 'POST' });
+        if (!res) throw new Error('No response');
+        var data = await res.json();
+        if (res.ok && data.url) {
+          window.location.href = data.url;
+        } else {
+          showToast(data.error || 'Impossible d\\u2019ouvrir le portail.', 'error');
+        }
+      } catch (err) {
+        showToast('Erreur r\\u00e9seau. Le portail Stripe n\\u2019est pas disponible.', 'error');
+      }
+    }
+
+    var btnBillingPortal = document.getElementById('btnBillingPortal');
+    var btnViewInvoices = document.getElementById('btnViewInvoices');
+    var btnUpdatePayment = document.getElementById('btnUpdatePayment');
+    var btnCancelSub = document.getElementById('btnCancelSub');
+
+    if (btnBillingPortal) btnBillingPortal.addEventListener('click', openBillingPortal);
+    if (btnViewInvoices) btnViewInvoices.addEventListener('click', openBillingPortal);
+    if (btnUpdatePayment) btnUpdatePayment.addEventListener('click', openBillingPortal);
+    if (btnCancelSub) btnCancelSub.addEventListener('click', function() {
+      if (!confirm('Souhaitez-vous vraiment r\\u00e9silier votre abonnement ?\\n\\nVotre licence restera active jusqu\\u2019\\u00e0 la fin de la p\\u00e9riode pay\\u00e9e.')) return;
+      openBillingPortal();
+    });
+
+    // ---- API Call with auto-refresh ----
     async function apiCall(url, options) {
       options = options || {};
-      let currentToken = localStorage.getItem('pm_access_token');
-      const res = await fetch(url, {
+      var currentToken = localStorage.getItem('pm_access_token');
+      var res = await fetch(url, {
         method: options.method || 'GET',
-        headers: {
-          'Authorization': 'Bearer ' + currentToken,
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Authorization': 'Bearer ' + currentToken, 'Content-Type': 'application/json' },
         body: options.body || undefined,
       });
-
-      // If 401, try refresh
       if (res.status === 401 && refreshToken) {
-        const refreshRes = await fetch('/api/auth/refresh', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ refresh_token: refreshToken }),
-        });
-
-        if (refreshRes.ok) {
-          const rd = await refreshRes.json();
+        var rr = await fetch('/api/auth/refresh', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ refresh_token: refreshToken }) });
+        if (rr.ok) {
+          var rd = await rr.json();
           localStorage.setItem('pm_access_token', rd.access_token);
           localStorage.setItem('pm_refresh_token', rd.refresh_token);
-          return fetch(url, {
-            method: options.method || 'GET',
-            headers: {
-              'Authorization': 'Bearer ' + rd.access_token,
-              'Content-Type': 'application/json',
-            },
-            body: options.body || undefined,
-          });
-        } else {
-          localStorage.clear();
-          window.location.href = '/espace-client/login';
-          return null;
-        }
+          return fetch(url, { method: options.method || 'GET', headers: { 'Authorization': 'Bearer ' + rd.access_token, 'Content-Type': 'application/json' }, body: options.body || undefined });
+        } else { localStorage.clear(); window.location.href = '/espace-client/login'; return null; }
       }
-
       return res;
     }
 
+    // ---- Load Dashboard ----
+    loadDashboard();
+
     async function loadDashboard() {
       try {
-        const res = await apiCall('/api/account/dashboard');
+        var res = await apiCall('/api/account/dashboard');
         if (!res || !res.ok) {
-          if (res && res.status === 401) {
-            localStorage.clear();
-            window.location.href = '/espace-client/login';
-            return;
-          }
+          if (res && res.status === 401) { localStorage.clear(); window.location.href = '/espace-client/login'; return; }
           throw new Error('Failed to load');
         }
+        var data = await res.json();
 
-        const data = await res.json();
-
-        // Update email
         if (data.user) {
           navEmail.textContent = data.user.email;
           welcomeEmail.textContent = data.user.email;
           localStorage.setItem('pm_user_email', data.user.email);
         }
 
-        // Summary cards
+        // Summary
         document.getElementById('sumActiveSubs').textContent = data.summary.active_subscriptions;
         document.getElementById('sumActiveLicenses').textContent = data.summary.active_licenses;
         document.getElementById('sumUsedSlots').textContent = data.summary.used_slots + ' / ' + data.summary.total_slots;
         document.getElementById('sumFreeSlots').textContent = data.summary.free_slots;
 
-        // Tables
         renderSubscriptions(data.subscriptions);
-        renderLicenses(data.licenses);
-        renderDevices(data.devices);
+        renderLicenses(data.licenses, data.summary);
+        renderDevices(data.devices, data.summary, data.licenses);
 
-        // Show main, hide loading
         loading.style.display = 'none';
         main.style.display = 'block';
       } catch (err) {
-        console.error('Dashboard load error:', err);
-        loading.innerHTML = '<div class="portal-loading-spinner"><i class="fas fa-exclamation-triangle" style="color:#e74c3c;font-size:2.5rem;display:block;margin-bottom:16px;"></i><p>Erreur de chargement.<br><a href="/espace-client/login" style="color:var(--gold);text-decoration:underline;">Reconnectez-vous</a></p></div>';
+        console.error('Dashboard error:', err);
+        loading.innerHTML = '<div class="portal-loading-spinner"><i class="fas fa-exclamation-triangle" style="color:#e74c3c;font-size:2.5rem;display:block;margin-bottom:16px;"></i><p>Erreur de chargement du tableau de bord.<br>Le serveur est peut-\\u00eatre temporairement indisponible.<br><br><a href="/espace-client" style="color:var(--gold);text-decoration:underline;">R\\u00e9essayer</a> \\u00b7 <a href="/espace-client/login" style="color:var(--teal);text-decoration:underline;">Se reconnecter</a></p></div>';
       }
     }
 
+    // ---- Render: Subscriptions ----
     function renderSubscriptions(subs) {
-      const table = document.getElementById('subsTable');
-      const empty = document.getElementById('subsEmpty');
-      const body = document.getElementById('subsBody');
+      var emptyState = document.getElementById('subsEmptyState');
+      var tableWrap = document.getElementById('subsTableWrap');
+      var actions = document.getElementById('subsActions');
+      var body = document.getElementById('subsBody');
 
       if (!subs || !subs.length) {
-        empty.style.display = 'block';
-        table.style.display = 'none';
+        emptyState.style.display = 'block';
+        tableWrap.style.display = 'none';
+        actions.style.display = 'none';
         return;
       }
 
-      empty.style.display = 'none';
-      table.style.display = 'table';
+      emptyState.style.display = 'none';
+      tableWrap.style.display = 'block';
+      actions.style.display = 'block';
+
       body.innerHTML = subs.map(function(s) {
+        var daysLeft = '';
+        if (s.current_period_end) {
+          var diff = Math.ceil((new Date(s.current_period_end) - new Date()) / (1000*60*60*24));
+          if (diff > 0 && diff <= 30) daysLeft = '<span class="portal-days-left portal-days-warn">' + diff + 'j restant' + (diff > 1 ? 's' : '') + '</span>';
+          else if (diff > 30) daysLeft = '<span class="portal-days-left">' + diff + 'j</span>';
+          else if (diff <= 0) daysLeft = '<span class="portal-days-left portal-days-expired">Expir\\u00e9</span>';
+        }
         return '<tr>' +
           '<td data-label="Formule" class="portal-cell-bold">' + esc(s.plan_name) + '</td>' +
-          '<td data-label="Période">' + esc(s.billing_period_label) + '</td>' +
+          '<td data-label="P\\u00e9riode">' + esc(s.billing_period_label) + '</td>' +
           '<td data-label="Statut"><span class="portal-status portal-status-' + s.status_type + '">' + esc(s.status_label) + '</span></td>' +
-          '<td data-label="Début">' + fmtDate(s.started_at) + '</td>' +
-          '<td data-label="Renouvellement">' + fmtDate(s.current_period_end) + '</td>' +
-          '<td data-label="PC autorisés">' + s.included_seats + ' PC</td>' +
+          '<td data-label="D\\u00e9but">' + fmtDate(s.started_at) + '</td>' +
+          '<td data-label="\\u00c9ch\\u00e9ance">' + fmtDate(s.current_period_end) + ' ' + daysLeft + '</td>' +
+          '<td data-label="PC autoris\\u00e9s">' + s.included_seats + ' PC</td>' +
+          '<td data-label="Actions"><a href="/#tarifs" class="portal-inline-link"><i class="fas fa-exchange-alt"></i> Changer</a></td>' +
           '</tr>';
       }).join('');
     }
 
-    function renderLicenses(lics) {
-      const table = document.getElementById('licTable');
-      const empty = document.getElementById('licEmpty');
-      const body = document.getElementById('licBody');
+    // ---- Render: Licenses ----
+    function renderLicenses(lics, summary) {
+      var emptyState = document.getElementById('licEmptyState');
+      var tableWrap = document.getElementById('licTableWrap');
+      var body = document.getElementById('licBody');
+      var expiredAlert = document.getElementById('licExpiredAlert');
+      var quotaAlert = document.getElementById('licQuotaAlert');
 
       if (!lics || !lics.length) {
-        empty.style.display = 'block';
-        table.style.display = 'none';
+        emptyState.style.display = 'block';
+        tableWrap.style.display = 'none';
+        expiredAlert.style.display = 'none';
+        quotaAlert.style.display = 'none';
         return;
       }
 
-      empty.style.display = 'none';
-      table.style.display = 'table';
+      emptyState.style.display = 'none';
+      tableWrap.style.display = 'block';
+
+      // Check for expired licenses
+      var hasExpired = lics.some(function(l) { return l.status === 'expired'; });
+      expiredAlert.style.display = hasExpired ? 'flex' : 'none';
+
+      // Check for quota reached (all slots used, free = 0)
+      quotaAlert.style.display = (summary.free_slots === 0 && summary.total_slots > 0) ? 'flex' : 'none';
+
       body.innerHTML = lics.map(function(l) {
-        // Slot dots visual
         var dots = '';
         for (var i = 0; i < l.max_devices; i++) {
           dots += '<span class="portal-slot-dot ' + (i < l.active_devices ? 'portal-slot-dot-used' : 'portal-slot-dot-free') + '"></span>';
         }
-        return '<tr>' +
-          '<td data-label="Clé" class="portal-cell-mono">' + esc(l.license_key_masked) + '</td>' +
+        var isExpired = l.status === 'expired';
+        return '<tr class="' + (isExpired ? 'portal-row-warn' : '') + '">' +
+          '<td data-label="Cl\\u00e9" class="portal-cell-mono">' + esc(l.license_key_masked) + '</td>' +
           '<td data-label="Plan">' + esc(l.plan_name) + '</td>' +
           '<td data-label="Statut"><span class="portal-status portal-status-' + l.status_type + '">' + esc(l.status_label) + '</span></td>' +
           '<td data-label="Appareils"><div class="portal-slot-bar">' + dots + '</div><span style="font-size:0.78rem;color:rgba(255,255,255,0.5);margin-left:6px;">' + l.active_devices + '/' + l.max_devices + '</span></td>' +
-          '<td data-label="Créée le">' + fmtDate(l.created_at) + '</td>' +
+          '<td data-label="Cr\\u00e9\\u00e9e le">' + fmtDate(l.created_at) + '</td>' +
           '<td data-label="Expire le">' + fmtDate(l.expires_at) + '</td>' +
           '</tr>';
       }).join('');
     }
 
-    function renderDevices(devs) {
-      const table = document.getElementById('devTable');
-      const empty = document.getElementById('devEmpty');
-      const body = document.getElementById('devBody');
+    // ---- Render: Devices (with tabs) ----
+    var dashboardLicenses = []; // Store for CTA usage
+    function renderDevices(devs, summary, lics) {
+      dashboardLicenses = lics || [];
+      var activeDevs = (devs || []).filter(function(d) { return d.status === 'active'; });
+      var releasedDevs = (devs || []).filter(function(d) { return d.status !== 'active'; });
 
-      if (!devs || !devs.length) {
-        empty.style.display = 'block';
-        table.style.display = 'none';
-        return;
+      document.getElementById('activeDevCount').textContent = activeDevs.length;
+      document.getElementById('releasedDevCount').textContent = releasedDevs.length;
+
+      // --- Active tab ---
+      var activeEmpty = document.getElementById('devActiveEmpty');
+      var activeTableWrap = document.getElementById('devActiveTableWrap');
+      var activeBody = document.getElementById('devActiveBody');
+      var freeSlotCta = document.getElementById('freeSlotCta');
+
+      if (!activeDevs.length) {
+        activeEmpty.style.display = 'block';
+        activeTableWrap.style.display = 'none';
+      } else {
+        activeEmpty.style.display = 'none';
+        activeTableWrap.style.display = 'block';
+        activeBody.innerHTML = activeDevs.map(function(d) {
+          var fp = d.device_hash ? d.device_hash.substring(0, 4) + '\\u2026' + d.device_hash.slice(-4) : '\\u2014';
+          return '<tr>' +
+            '<td data-label="Nom du PC" class="portal-cell-bold"><i class="fab fa-' + (d.os_name === 'Windows' ? 'windows' : 'apple') + '" style="color:var(--teal);margin-right:6px;font-size:0.9rem;"></i>' + esc(d.device_name) + '</td>' +
+            '<td data-label="Empreinte" class="portal-cell-dim" style="font-family:monospace;font-size:0.8rem;letter-spacing:0.5px;">' + fp + '</td>' +
+            '<td data-label="Licence" class="portal-cell-mono" style="font-size:0.75rem;">' + esc(d.license_key_masked) + '</td>' +
+            '<td data-label="Activ\\u00e9 le">' + fmtDate(d.activated_at) + '</td>' +
+            '<td data-label="Dernier check-in">' + fmtDate(d.last_seen_at) + '</td>' +
+            '<td data-label="Action"><button class="portal-btn-release" data-activation-id="' + d.activation_id + '" data-device-name="' + esc(d.device_name) + '"><i class="fas fa-unlock"></i> Lib\\u00e9rer ce PC</button></td>' +
+            '</tr>';
+        }).join('');
+
+        // Attach release handlers
+        document.querySelectorAll('.portal-btn-release').forEach(function(btn) {
+          btn.addEventListener('click', function() { openReleaseModal(btn.dataset.activationId, btn.dataset.deviceName); });
+        });
       }
 
-      empty.style.display = 'none';
-      table.style.display = 'table';
-      body.innerHTML = devs.map(function(d) {
-        var isActive = d.status === 'active';
-        var fingerprint = d.device_hash ? d.device_hash.substring(0, 4) + '\\u2026' + d.device_hash.slice(-4) : '\\u2014';
-        var releaseBtn = isActive
-          ? '<button class="portal-btn-release" data-activation-id="' + d.activation_id + '" data-device-name="' + esc(d.device_name) + '"><i class="fas fa-unlock"></i> Libérer ce PC</button>'
-          : '<span class="portal-text-dim">' + esc(d.status_label) + '</span>';
-        return '<tr class="' + (isActive ? '' : 'portal-row-dim') + '">' +
-          '<td data-label="Nom du PC" class="portal-cell-bold"><i class="fas fa-' + (d.os_name === 'Windows' ? 'windows' : 'desktop') + '" style="color:var(--teal);margin-right:6px;font-size:0.9rem;"></i>' + esc(d.device_name) + '</td>' +
-          '<td data-label="Empreinte" class="portal-cell-dim" style="font-family:monospace;font-size:0.8rem;letter-spacing:0.5px;">' + fingerprint + '</td>' +
-          '<td data-label="Licence" class="portal-cell-mono" style="font-size:0.75rem;">' + esc(d.license_key_masked) + '</td>' +
-          '<td data-label="Activé le">' + fmtDate(d.activated_at) + '</td>' +
-          '<td data-label="Dernier check-in">' + fmtDate(d.last_seen_at) + '</td>' +
-          '<td data-label="Statut"><span class="portal-status portal-status-' + d.status_type + '">' + esc(d.status_label) + '</span></td>' +
-          '<td data-label="Action">' + releaseBtn + '</td>' +
-          '</tr>';
-      }).join('');
+      // Free slot CTA
+      if (summary.free_slots > 0) {
+        freeSlotCta.style.display = 'flex';
+        document.getElementById('freeSlotCtaTitle').textContent = summary.free_slots + ' emplacement' + (summary.free_slots > 1 ? 's' : '') + ' disponible' + (summary.free_slots > 1 ? 's' : '') + ' \u2014 Activez sur un nouveau PC';
+        // Show masked license keys
+        var keysContainer = document.getElementById('freeSlotCtaKeys');
+        if (keysContainer && dashboardLicenses.length) {
+          var activeLics = dashboardLicenses.filter(function(l) { return l.status === 'active' && l.active_devices < l.max_devices; });
+          if (activeLics.length) {
+            keysContainer.innerHTML = activeLics.map(function(l) {
+              return '<span class="portal-cta-key" title="Cl\\u00e9 \\u00e0 coller dans Param\\u00e8tres \\u2192 Licence"><i class="fas fa-key" style="margin-right:5px;font-size:0.7rem;"></i>' + esc(l.license_key_masked) + ' (' + (l.max_devices - l.active_devices) + ' place' + ((l.max_devices - l.active_devices) > 1 ? 's' : '') + ')</span>';
+            }).join(' ');
+          }
+        }
+      } else {
+        freeSlotCta.style.display = 'none';
+      }
 
-      // Attach release handlers
-      document.querySelectorAll('.portal-btn-release').forEach(function(btn) {
-        btn.addEventListener('click', function() { openReleaseModal(btn.dataset.activationId, btn.dataset.deviceName); });
-      });
+      // --- Released/History tab ---
+      var releasedEmpty = document.getElementById('devReleasedEmpty');
+      var releasedTableWrap = document.getElementById('devReleasedTableWrap');
+      var releasedBody = document.getElementById('devReleasedBody');
+      var releasedInfoBox = document.getElementById('releasedInfoBox');
+
+      if (!releasedDevs.length) {
+        releasedEmpty.style.display = 'block';
+        releasedTableWrap.style.display = 'none';
+        releasedInfoBox.style.display = 'none';
+      } else {
+        releasedEmpty.style.display = 'none';
+        releasedTableWrap.style.display = 'block';
+        releasedInfoBox.style.display = 'flex';
+        releasedBody.innerHTML = releasedDevs.map(function(d) {
+          var fp = d.device_hash ? d.device_hash.substring(0, 4) + '\\u2026' + d.device_hash.slice(-4) : '\\u2014';
+          return '<tr class="portal-row-dim">' +
+            '<td data-label="Nom du PC"><i class="fab fa-' + (d.os_name === 'Windows' ? 'windows' : 'apple') + '" style="color:rgba(255,255,255,0.3);margin-right:6px;font-size:0.9rem;"></i>' + esc(d.device_name) + '</td>' +
+            '<td data-label="Empreinte" class="portal-cell-dim" style="font-family:monospace;font-size:0.8rem;">' + fp + '</td>' +
+            '<td data-label="Licence" class="portal-cell-mono" style="font-size:0.75rem;opacity:0.6;">' + esc(d.license_key_masked) + '</td>' +
+            '<td data-label="Activ\\u00e9 le">' + fmtDate(d.activated_at) + '</td>' +
+            '<td data-label="Lib\\u00e9r\\u00e9 le">' + fmtDate(d.revoked_at) + '</td>' +
+            '<td data-label="Statut"><span class="portal-status portal-status-released">' + esc(d.status_label) + '</span></td>' +
+            '</tr>';
+        }).join('');
+      }
     }
 
-    // Release modal
+    // ---- Release Modal (double confirmation) ----
     var modal = document.getElementById('releaseModal');
     var modalClose = document.getElementById('releaseModalClose');
     var cancelBtn = document.getElementById('releaseCancelBtn');
     var confirmBtn = document.getElementById('releaseConfirmBtn');
+    var confirmCheck = document.getElementById('releaseConfirmCheck');
     var pendingActivationId = null;
+
+    confirmCheck.addEventListener('change', function() {
+      confirmBtn.disabled = !confirmCheck.checked;
+    });
 
     function openReleaseModal(activationId, deviceName) {
       pendingActivationId = activationId;
       document.getElementById('releaseDeviceName').textContent = deviceName;
+      confirmCheck.checked = false;
+      confirmBtn.disabled = true;
       modal.style.display = 'flex';
     }
 
-    function closeReleaseModal() {
-      modal.style.display = 'none';
-      pendingActivationId = null;
-    }
+    function closeReleaseModal() { modal.style.display = 'none'; pendingActivationId = null; }
 
     modalClose.addEventListener('click', closeReleaseModal);
     cancelBtn.addEventListener('click', closeReleaseModal);
     modal.addEventListener('click', function(e) { if (e.target === modal) closeReleaseModal(); });
-
-    // ESC key closes modal
     document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && modal.style.display === 'flex') closeReleaseModal(); });
 
     confirmBtn.addEventListener('click', async function() {
-      if (!pendingActivationId) return;
-
+      if (!pendingActivationId || !confirmCheck.checked) return;
       confirmBtn.disabled = true;
-      confirmBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Libération en cours...';
+      confirmBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Lib\\u00e9ration en cours...';
 
       try {
-        var res = await apiCall('/api/account/devices/' + pendingActivationId + '/release', {
-          method: 'POST',
-        });
-
+        var res = await apiCall('/api/account/devices/' + pendingActivationId + '/release', { method: 'POST' });
+        if (!res) throw new Error('No response');
         var data = await res.json();
 
         if (res.ok && data.success) {
           closeReleaseModal();
-          showToast(data.message || 'Appareil libéré avec succès !', 'success');
-          // Reload dashboard
+          showToast(data.message || 'Appareil lib\\u00e9r\\u00e9 ! Votre cl\\u00e9 reste identique \\u2014 r\\u00e9activez-la sur un autre PC.', 'success');
           loading.style.display = 'flex';
           main.style.display = 'none';
           await loadDashboard();
+          // Auto-switch to history tab to show the released device
+          var histTab = document.querySelector('[data-tab="released-devices"]');
+          if (histTab) histTab.click();
         } else {
-          showToast(data.error || 'Erreur lors de la libération.', 'error');
+          var errMsg = data.error || 'Erreur lors de la lib\\u00e9ration.';
+          // Handle: already released
+          if (res.status === 400 && errMsg.includes('d\\u00e9j\\u00e0')) {
+            closeReleaseModal();
+            showToast('Cet appareil a d\\u00e9j\\u00e0 \\u00e9t\\u00e9 lib\\u00e9r\\u00e9.', 'error');
+            loading.style.display = 'flex';
+            main.style.display = 'none';
+            await loadDashboard();
+          } else {
+            showToast(errMsg, 'error');
+          }
         }
       } catch (err) {
-        showToast('Erreur réseau. Veuillez réessayer.', 'error');
+        showToast('Erreur r\\u00e9seau. Veuillez r\\u00e9essayer.', 'error');
       }
 
       confirmBtn.disabled = false;
-      confirmBtn.innerHTML = '<i class="fas fa-unlock"></i> Confirmer la libération';
+      confirmBtn.innerHTML = '<i class="fas fa-unlock"></i> Confirmer la lib\\u00e9ration';
     });
 
-    // Helpers
+    // ---- Helpers ----
     function fmtDate(dateStr) {
       if (!dateStr) return '\\u2014';
-      try {
-        var d = new Date(dateStr);
-        return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' });
-      } catch (e) { return dateStr; }
+      try { return new Date(dateStr).toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' }); }
+      catch (e) { return dateStr; }
     }
 
     function esc(str) {

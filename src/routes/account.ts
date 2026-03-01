@@ -463,6 +463,62 @@ account.post('/api/account/devices/:activationId/release', async (c) => {
 })
 
 // ============================================================
+// STRIPE BILLING PORTAL: redirect to Stripe Customer Portal
+// Allows: change plan, update payment, view invoices, cancel
+// ============================================================
+account.post('/api/account/billing-portal', async (c) => {
+  const user = await verifyToken(c)
+  if (!user) return c.json({ error: 'Non authentifié.' }, 401)
+
+  const url = baseUrl(c)
+  const h = svcHeaders(c)
+
+  try {
+    // Get user's Stripe customer ID from subscriptions
+    const subsRes = await fetch(
+      `${url}/pm_subscriptions?user_id=eq.${user.id}&select=stripe_customer_id&order=started_at.desc&limit=1`,
+      { headers: h }
+    )
+    const subs = subsRes.ok ? await subsRes.json() as any[] : []
+
+    if (!subs.length || !subs[0].stripe_customer_id) {
+      return c.json({ error: 'Aucun abonnement Stripe trouvé. Souscrivez d\'abord un plan.' }, 404)
+    }
+
+    const stripeCustomerId = subs[0].stripe_customer_id
+
+    // Determine return URL
+    const origin = c.req.header('origin') || c.req.header('referer')?.replace(/\/[^/]*$/, '') || ''
+    const returnUrl = `${origin}/espace-client`
+
+    // Create Stripe billing portal session
+    const stripeRes = await fetch('https://api.stripe.com/v1/billing_portal/sessions', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${(c.env as any).STRIPE_SECRET_KEY}`,
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: new URLSearchParams({
+        customer: stripeCustomerId,
+        return_url: returnUrl,
+      }).toString(),
+    })
+
+    if (!stripeRes.ok) {
+      const errData = await stripeRes.json() as any
+      console.error('[STRIPE PORTAL ERROR]', errData)
+      return c.json({ error: 'Impossible de créer le portail de facturation.' }, 500)
+    }
+
+    const session = await stripeRes.json() as any
+    return c.json({ url: session.url })
+  } catch (err: any) {
+    console.error('[BILLING PORTAL ERROR]', err.message)
+    return c.json({ error: 'Erreur lors de la création du portail.' }, 500)
+  }
+})
+
+// ============================================================
 // TRANSFER HISTORY: recent release/activation events
 // ============================================================
 account.get('/api/account/transfers', async (c) => {
