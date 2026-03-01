@@ -78,6 +78,7 @@ app.get('/', (c) => {
         <li><a href="#fonctionnalites" class="nav-link">Fonctionnalit\u00e9s</a></li>
         <li><a href="#tarifs" class="nav-link">Tarifs</a></li>
         <li><a href="#telecharger" class="nav-link">T\u00e9l\u00e9charger</a></li>
+        <li><a href="#espace-client" class="nav-link">Espace client</a></li>
         <li><a href="#faq" class="nav-link">FAQ</a></li>
         <li><a href="#contact" class="nav-link">Contact</a></li>
       </ul>
@@ -129,6 +130,11 @@ app.get('/', (c) => {
           <div class="strength-icon"><i class="fas fa-wifi-slash"></i></div>
           <h3>Utilisable hors ligne</h3>
           <p>Fonctionne sans connexion, idéal pour les concours sur site.</p>
+        </div>
+        <div class="strength-item">
+          <div class="strength-icon"><i class="fas fa-user-shield"></i></div>
+          <h3>Espace client</h3>
+          <p>Gérez vos licences et appareils en toute autonomie.</p>
         </div>
       </div>
     </div>
@@ -205,6 +211,11 @@ app.get('/', (c) => {
           <div class="feature-icon"><i class="fas fa-wifi-slash"></i></div>
           <h3>Utilisation hors ligne</h3>
           <p>Le tournoi peut être géré sans dépendre d’une connexion internet. Idéal pour les concours en extérieur.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-user-shield"></i></div>
+          <h3>Espace client en ligne</h3>
+          <p>Gérez vos abonnements, licences et appareils depuis votre espace personnel. Transférez une licence d’un PC à l’autre en toute autonomie.</p>
         </div>
       </div>
     </div>
@@ -479,6 +490,171 @@ app.get('/', (c) => {
     </div>
   </section>
 
+
+  <!-- ========== ESPACE CLIENT ========== -->
+  <section class="section" id="espace-client">
+    <div class="container">
+      <div class="ec-header">
+        <span class="ec-badge"><i class="fas fa-shield-alt"></i> Espace client</span>
+        <h2 class="section-title">Votre espace client, simple et autonome</h2>
+        <p class="section-subtitle">Consultez vos abonnements, gérez vos licences et transférez librement votre logiciel d’un PC à l’autre — sans contacter le support.</p>
+      </div>
+
+      <!-- Mockup UI -->
+      <div class="ec-mockup-container">
+        <div class="ec-mockup">
+          <div class="ec-mockup-titlebar">
+            <div class="ec-mockup-dots"><span></span><span></span><span></span></div>
+            <span class="ec-mockup-url"><i class="fas fa-lock"></i> petanque-manager.eu/mon-compte</span>
+          </div>
+          <div class="ec-mockup-body">
+
+            <!-- Bloc A : Connexion -->
+            <div class="ec-panel ec-panel-login">
+              <div class="ec-panel-icon"><i class="fas fa-sign-in-alt"></i></div>
+              <h4>Connexion</h4>
+              <div class="ec-form-demo">
+                <div class="ec-input-demo"><i class="fas fa-envelope"></i><span>votre@email.com</span></div>
+                <div class="ec-input-demo"><i class="fas fa-lock"></i><span>••••••••</span></div>
+                <div class="ec-btn-demo">Se connecter</div>
+                <span class="ec-link-demo">Mot de passe oublié ?</span>
+              </div>
+            </div>
+
+            <!-- Bloc B : Mes abonnements -->
+            <div class="ec-panel">
+              <div class="ec-panel-header">
+                <div class="ec-panel-icon"><i class="fas fa-credit-card"></i></div>
+                <h4>Mes abonnements</h4>
+              </div>
+              <div class="ec-table">
+                <div class="ec-table-row ec-table-head">
+                  <span>Formule</span><span>Statut</span><span>Renouvellement</span><span>PC autorisés</span><span>PC utilisés</span>
+                </div>
+                <div class="ec-table-row">
+                  <span class="ec-cell-bold">Duo</span>
+                  <span><span class="ec-status ec-status-active">Actif</span></span>
+                  <span>15 avril 2026</span>
+                  <span>2</span>
+                  <span>1 / 2</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bloc C : Mes licences -->
+            <div class="ec-panel">
+              <div class="ec-panel-header">
+                <div class="ec-panel-icon"><i class="fas fa-key"></i></div>
+                <h4>Mes licences</h4>
+              </div>
+              <div class="ec-table">
+                <div class="ec-table-row ec-table-head">
+                  <span>Clé de licence</span><span>Plan</span><span>Statut</span><span>Activée le</span>
+                </div>
+                <div class="ec-table-row">
+                  <span class="ec-cell-mono">PM-DUO-XXXX-XXXX-7F3A</span>
+                  <span>Duo</span>
+                  <span><span class="ec-status ec-status-active">Active</span></span>
+                  <span>15 mars 2026</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Bloc D : Mes appareils -->
+            <div class="ec-panel">
+              <div class="ec-panel-header">
+                <div class="ec-panel-icon"><i class="fas fa-desktop"></i></div>
+                <h4>Mes appareils</h4>
+              </div>
+              <div class="ec-table">
+                <div class="ec-table-row ec-table-head">
+                  <span>Nom du PC</span><span>Empreinte</span><span>Activé le</span><span>Dernier check-in</span><span>Statut</span><span></span>
+                </div>
+                <div class="ec-table-row">
+                  <span class="ec-cell-bold">PC-BUVETTE</span>
+                  <span class="ec-cell-mono ec-cell-dim">a7f3…c91d</span>
+                  <span>15 mars 2026</span>
+                  <span>28 février 2026</span>
+                  <span><span class="ec-status ec-status-active">Actif</span></span>
+                  <span><button class="ec-btn-release"><i class="fas fa-unlock"></i> Libérer</button></span>
+                </div>
+                <div class="ec-table-row ec-row-free">
+                  <span class="ec-cell-dim">Emplacement libre</span>
+                  <span>—</span>
+                  <span>—</span>
+                  <span>—</span>
+                  <span><span class="ec-status ec-status-free">Disponible</span></span>
+                  <span></span>
+                </div>
+              </div>
+              <p class="ec-panel-hint"><i class="fas fa-info-circle"></i> Libérez un appareil pour réutiliser cette même licence sur un autre PC.</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Transfert de PC en 4 etapes -->
+      <div class="ec-transfer">
+        <h3 class="ec-transfer-title"><i class="fas fa-exchange-alt"></i> Comment changer de PC ?</h3>
+        <p class="ec-transfer-intro">Votre licence reste identique. Seul l’appareil lié change.</p>
+        <div class="ec-steps">
+          <div class="ec-step">
+            <div class="ec-step-num">1</div>
+            <div class="ec-step-icon"><i class="fas fa-sign-in-alt"></i></div>
+            <p>Connectez-vous à votre espace client</p>
+          </div>
+          <div class="ec-step-arrow"><i class="fas fa-chevron-right"></i></div>
+          <div class="ec-step">
+            <div class="ec-step-num">2</div>
+            <div class="ec-step-icon"><i class="fas fa-list"></i></div>
+            <p>Ouvrez la liste de vos appareils</p>
+          </div>
+          <div class="ec-step-arrow"><i class="fas fa-chevron-right"></i></div>
+          <div class="ec-step">
+            <div class="ec-step-num">3</div>
+            <div class="ec-step-icon"><i class="fas fa-unlock"></i></div>
+            <p>Cliquez sur « Libérer cet appareil »</p>
+          </div>
+          <div class="ec-step-arrow"><i class="fas fa-chevron-right"></i></div>
+          <div class="ec-step">
+            <div class="ec-step-num">4</div>
+            <div class="ec-step-icon"><i class="fas fa-laptop"></i></div>
+            <p>Activez la même licence sur le nouveau PC</p>
+          </div>
+        </div>
+        <div class="ec-transfer-note">
+          <i class="fas fa-lightbulb"></i> La clé de licence ne change jamais. Vous libérez simplement un emplacement pour le réattribuer.
+        </div>
+      </div>
+
+      <!-- Avantages commerciaux -->
+      <div class="ec-advantages">
+        <div class="ec-adv-card">
+          <div class="ec-adv-icon"><i class="fas fa-hand-pointer"></i></div>
+          <h4>Autonomie totale</h4>
+          <p>Gérez tout vous-même, 24h/24, sans contacter le support.</p>
+        </div>
+        <div class="ec-adv-card">
+          <div class="ec-adv-icon"><i class="fas fa-sync-alt"></i></div>
+          <h4>Changement de PC facile</h4>
+          <p>Remplacez un ordinateur en 30 secondes. Idéal pour buvettes, secrétariats, PC partagés.</p>
+        </div>
+        <div class="ec-adv-card">
+          <div class="ec-adv-icon"><i class="fas fa-users-cog"></i></div>
+          <h4>Multi-postes maîtrisés</h4>
+          <p>Voyez en un coup d’œil quels PC utilisent votre licence et combien de places restent.</p>
+        </div>
+        <div class="ec-adv-card">
+          <div class="ec-adv-icon"><i class="fas fa-building"></i></div>
+          <h4>Pensé pour les clubs</h4>
+          <p>Gérez les postes du club de manière professionnelle, comme une vraie structure organisée.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <!-- ========== FAQ ========== -->
   <section class="section" id="faq">
     <div class="container">
@@ -541,6 +717,24 @@ app.get('/', (c) => {
         </div>
         <div class="faq-item">
           <button class="faq-question" aria-expanded="false">
+            <span>Comment transférer ma licence sur un autre PC ?</span>
+            <i class="fas fa-chevron-down faq-chevron"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Connectez-vous à votre espace client, accédez à la liste de vos appareils, libérez l’ancien PC, puis activez la même clé de licence sur le nouveau. La clé ne change pas : seul l’appareil associé est remplacé.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
+            <span>L’espace client est-il obligatoire pour utiliser le logiciel ?</span>
+            <i class="fas fa-chevron-down faq-chevron"></i>
+          </button>
+          <div class="faq-answer">
+            <p>Non. Le logiciel fonctionne en totale autonomie une fois la licence activée. L’espace client sert uniquement à consulter vos abonnements et à gérer vos appareils (transfert de PC, libération d’un poste, etc.).</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false">
             <span>Puis-je annuler ?</span>
             <i class="fas fa-chevron-down faq-chevron"></i>
           </button>
@@ -598,6 +792,7 @@ app.get('/', (c) => {
           <li><a href="#tarifs">Tarifs</a></li>
           <li><a href="#telecharger">T\u00e9l\u00e9charger</a></li>
           <li><a href="#telecharger"><i class="fas fa-download"></i> T\u00e9l\u00e9chargement .exe</a></li>
+          <li><a href="#espace-client">Espace client</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>

@@ -255,7 +255,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // ---- SCROLL REVEAL ANIMATIONS ----
   const animateElements = () => {
     const elements = document.querySelectorAll(
-      '.feature-card, .screenshot-card, .pricing-card, .addon-card, .download-step, .faq-item, .strength-item, .why-content, .why-visual, .target-item, .benefit-card, .cta-final-content'
+      '.feature-card, .screenshot-card, .pricing-card, .addon-card, .download-step, .faq-item, .strength-item, .why-content, .why-visual, .target-item, .benefit-card, .cta-final-content, .ec-panel, .ec-transfer, .ec-adv-card, .ec-step'
     );
 
     elements.forEach(el => {
