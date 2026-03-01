@@ -89,23 +89,72 @@ app.get('/', (c) => {
     <div class="hero-bg-bokeh"></div>
     <div class="container hero-grid">
       <div class="hero-content">
-        <h1 class="hero-title">Organisez vos tournois de p\u00e9tanque comme un pro</h1>
-        <p class="hero-subtitle">Gestion rapide, Mode TV pour l\u2019affichage public, PDFs personnalis\u00e9s avec le logo de votre club, et interface multilingue. Tout ce dont votre club a besoin, dans un seul logiciel.</p>
-        <ul class="hero-bullets">
-          <li><i class="fas fa-check-circle"></i> Lancez un tournoi en 2 minutes, matchs &amp; classement automatis\u00e9s.</li>
-          <li><i class="fas fa-check-circle"></i> <strong>Mode TV</strong>&nbsp;: affichez les matchs et scores sur grand \u00e9cran.</li>
-          <li><i class="fas fa-check-circle"></i> Logo de votre club sur le Mode TV et les exports PDF.</li>
-          <li><i class="fas fa-check-circle"></i> Disponible en fran\u00e7ais, anglais et n\u00e9erlandais.</li>
-        </ul>
+        <h1 class="hero-title">Organisez vos tournois de p\u00e9tanque plus vite, plus proprement, plus professionnellement.</h1>
+        <p class="hero-subtitle">P\u00e9tanque Manager vous permet de g\u00e9rer vos \u00e9quipes, g\u00e9n\u00e9rer les matchs, suivre le classement, imprimer vos feuilles, afficher un Mode TV en direct, et produire des PDF personnalis\u00e9s avec le logo de votre club.</p>
+        <p class="hero-highlights"><span><i class="fas fa-tv"></i> Mode TV en direct</span> <span><i class="fas fa-language"></i> Interface en 3 langues</span> <span><i class="fas fa-file-pdf"></i> PDF avec logo du club</span> <span><i class="fas fa-wifi-slash"></i> Fonctionne m\u00eame sans internet</span></p>
         <div class="hero-cta">
-          <a href="#telecharger" class="btn btn-gold"><i class="fas fa-download"></i> T\u00e9l\u00e9chargez pour PC</a>
-          <a href="#fonctionnalites" class="btn btn-outline"><i class="fas fa-eye"></i> Voir les fonctionnalit\u00e9s</a>
+          <a href="#contact" class="btn btn-gold"><i class="fas fa-envelope"></i> Demander une d\u00e9mo</a>
+          <a href="#fonctionnalites" class="btn btn-outline"><i class="fas fa-eye"></i> D\u00e9couvrir les fonctionnalit\u00e9s</a>
         </div>
-        <p class="hero-micro">Windows 10/11 &bull; Essai gratuit 14 jours &bull; Fonctionne hors ligne &bull; FR / EN / NL</p>
+        <p class="hero-micro">Windows 10/11 \u2022 Essai gratuit 14 jours \u2022 FR / EN / NL</p>
       </div>
       <div class="hero-visual">
-        <div class="hero-mockup zoomable" data-lightbox-src="/static/images/screenshot-nouveau.png" data-lightbox-alt="Cr\u00e9ation de tournoi">
-          <img src="/static/images/screenshot-nouveau.png" alt="Capture P\u00e9tanque Manager - Cr\u00e9ation de tournoi" class="hero-screenshot">
+        <div class="hero-mockup zoomable" data-lightbox-src="/static/images/screenshot-mode-tv.png" data-lightbox-alt="Mode TV \u2014 Affichage grand \u00e9cran">
+          <img src="/static/images/screenshot-mode-tv.png" alt="P\u00e9tanque Manager \u2014 Mode TV" class="hero-screenshot">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== BANDEAU POINTS FORTS ========== -->
+  <section class="section-strengths">
+    <div class="container">
+      <div class="strengths-grid">
+        <div class="strength-item">
+          <div class="strength-icon"><i class="fas fa-tv"></i></div>
+          <h3>Mode TV intégré</h3>
+          <p>Affichage lisible et moderne des matchs et scores sur grand écran.</p>
+        </div>
+        <div class="strength-item">
+          <div class="strength-icon"><i class="fas fa-language"></i></div>
+          <h3>3 langues incluses</h3>
+          <p>Interface en français, anglais et néerlandais.</p>
+        </div>
+        <div class="strength-item">
+          <div class="strength-icon"><i class="fas fa-palette"></i></div>
+          <h3>Logo du club personnalisé</h3>
+          <p>Votre logo sur les PDF et dans le Mode TV.</p>
+        </div>
+        <div class="strength-item">
+          <div class="strength-icon"><i class="fas fa-wifi-slash"></i></div>
+          <h3>Utilisable hors ligne</h3>
+          <p>Fonctionne sans connexion, idéal pour les concours sur site.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== POURQUOI PETANQUE MANAGER ========== -->
+  <section class="section section-alt" id="pourquoi">
+    <div class="container">
+      <div class="why-grid">
+        <div class="why-content">
+          <h2 class="section-title section-title-left">Un logiciel pensé pour les clubs, pas pour compliquer l’organisation</h2>
+          <p class="why-text">Fini les feuilles improvisées, les classements recalculés à la main et les erreurs de dernière minute. Pétanque Manager centralise toute l’organisation du tournoi dans une interface simple, rapide et visuelle.</p>
+          <p class="why-label">Vous gérez :</p>
+          <ul class="why-list">
+            <li><i class="fas fa-check"></i> Les équipes et les joueurs</li>
+            <li><i class="fas fa-check"></i> Les matchs et les terrains</li>
+            <li><i class="fas fa-check"></i> Les scores en temps réel</li>
+            <li><i class="fas fa-check"></i> Le classement automatique</li>
+            <li><i class="fas fa-check"></i> Les impressions et exports PDF</li>
+            <li><i class="fas fa-check"></i> L’affichage public via le Mode TV</li>
+          </ul>
+        </div>
+        <div class="why-visual">
+          <div class="why-mockup zoomable" data-lightbox-src="/static/images/screenshot-classement.png" data-lightbox-alt="Classement automatique">
+            <img src="/static/images/screenshot-classement.png" alt="Classement automatique" class="why-screenshot">
+          </div>
         </div>
       </div>
     </div>
@@ -114,150 +163,159 @@ app.get('/', (c) => {
   <!-- ========== FONCTIONNALITES ========== -->
   <section class="section" id="fonctionnalites">
     <div class="container">
-      <h2 class="section-title">Fonctionnalit\u00e9s cl\u00e9s</h2>
-      <p class="section-subtitle">Tout ce qu\u2019il faut pour g\u00e9rer un tournoi de A \u00e0 Z, avec une exp\u00e9rience moderne pour les joueurs et le public.</p>
+      <h2 class="section-title">Les fonctionnalités qui font gagner du temps</h2>
+      <p class="section-subtitle">Tout ce dont vous avez besoin pour organiser un tournoi du début à la fin.</p>
       <div class="features-grid">
         <div class="feature-card">
           <div class="feature-icon"><i class="fas fa-trophy"></i></div>
-          <h3>Formats de tournoi</h3>
-          <p>T\u00eate-\u00e0-t\u00eate, doublette, triplette, m\u00eal\u00e9e, poules\u2026 tous les formats classiques de la p\u00e9tanque sont pris en charge.</p>
+          <h3>Gestion complète du tournoi</h3>
+          <p>Créez votre tournoi en quelques clics, ajoutez vos équipes, définissez le nombre de terrains et lancez automatiquement les tours.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-magic"></i></div>
+          <h3>Génération automatique des matchs</h3>
+          <p>Le logiciel génère les rencontres en tenant compte de la logique du tournoi, du classement et de la gestion des terrains.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+          <h3>Classement mis à jour automatiquement</h3>
+          <p>Victoires, points marqués, encaissés et différentiels recalculés instantanément après chaque résultat.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon"><i class="fas fa-tv"></i></div>
-          <h3>Mode TV</h3>
-          <p>Affichez les matchs en cours et les r\u00e9sultats en direct sur un grand \u00e9cran ou une TV. Lisible, moderne, confortable pour tous.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon"><i class="fas fa-palette"></i></div>
-          <h3>Personnalisation club</h3>
-          <p>Importez le logo de votre club. Il appara\u00eet sur le Mode TV et dans tous les exports PDF pour un rendu professionnel.</p>
+          <h3>Mode TV pour affichage en direct</h3>
+          <p>Diffusez les matchs, scores et terrains sur un écran dédié avec une présentation claire, moderne et valorisante pour le public.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon"><i class="fas fa-file-pdf"></i></div>
-          <h3>Exports PDF pro</h3>
-          <p>Feuilles de matchs, classements, tableaux de poules : g\u00e9n\u00e9rez des PDF imprimables avec le logo de votre club int\u00e9gr\u00e9.</p>
+          <h3>Exports PDF professionnels</h3>
+          <p>Imprimez ou exportez la liste des équipes, les tours et le classement final dans des documents propres et lisibles.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fas fa-palette"></i></div>
+          <h3>Logo du club intégré</h3>
+          <p>Personnalisez vos documents et votre affichage avec le logo de votre club, visible sur les PDF et dans le Mode TV.</p>
         </div>
         <div class="feature-card">
           <div class="feature-icon"><i class="fas fa-language"></i></div>
           <h3>Interface multilingue</h3>
-          <p>Disponible en fran\u00e7ais, anglais et n\u00e9erlandais. Id\u00e9al pour les clubs multilingues et les r\u00e9gions frontali\u00e8res belges.</p>
+          <p>Basculez l’interface en français, anglais ou néerlandais directement depuis les paramètres.</p>
         </div>
         <div class="feature-card">
-          <div class="feature-icon"><i class="fas fa-magic"></i></div>
-          <h3>G\u00e9n\u00e9ration automatique</h3>
-          <p>Matchs et tours g\u00e9n\u00e9r\u00e9s automatiquement selon la logique du tournoi. Fini les tableaux papier.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
-          <h3>Classement live</h3>
-          <p>Victoires, points marqu\u00e9s/encaiss\u00e9s, diff\u00e9rentiel : mise \u00e0 jour instantan\u00e9e apr\u00e8s chaque match.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon"><i class="fas fa-map-marked-alt"></i></div>
-          <h3>Gestion des terrains</h3>
-          <p>R\u00e9partition claire des terrains, modifiable si besoin. Tout est visible d\u2019un coup d\u2019\u0153il.</p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-icon"><i class="fas fa-user-clock"></i></div>
-          <h3>BYE automatique</h3>
-          <p>Si nombre impair d\u2019\u00e9quipes, le BYE est g\u00e9r\u00e9 automatiquement. Z\u00e9ro bricolage.</p>
+          <div class="feature-icon"><i class="fas fa-wifi-slash"></i></div>
+          <h3>Utilisation hors ligne</h3>
+          <p>Le tournoi peut être géré sans dépendre d’une connexion internet. Idéal pour les concours en extérieur.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ========== HIGHLIGHT: PERSONNALISATION CLUB ========== -->
-  <section class="section section-highlight" id="personnalisation">
-    <div class="container">
-      <div class="highlight-grid">
-        <div class="highlight-content">
-          <span class="highlight-badge"><i class="fas fa-star"></i> Nouveau</span>
-          <h2 class="highlight-title">Personnalisez votre tournoi avec le logo de votre club</h2>
-          <p class="highlight-text">Visible \u00e0 la fois sur le <strong>Mode TV</strong> et sur les <strong>exports PDF</strong>. Donnez une image professionnelle \u00e0 chaque tournoi que vous organisez.</p>
-          <ul class="highlight-features">
-            <li><i class="fas fa-upload"></i> Importez votre logo en un clic dans les param\u00e8tres</li>
-            <li><i class="fas fa-tv"></i> Affichage du logo sur l\u2019\u00e9cran Mode TV</li>
-            <li><i class="fas fa-file-pdf"></i> Logo int\u00e9gr\u00e9 dans tous les documents PDF</li>
-            <li><i class="fas fa-paint-brush"></i> Rendu professionnel aux couleurs de votre club</li>
-          </ul>
-          <a href="#telecharger" class="btn btn-gold"><i class="fas fa-download"></i> Essayer gratuitement</a>
-        </div>
-        <div class="highlight-visual">
-          <div class="highlight-card">
-            <div class="highlight-card-icon"><i class="fas fa-tv"></i></div>
-            <h4>Mode TV</h4>
-            <p>Matchs, scores et terrains affich\u00e9s en temps r\u00e9el sur grand \u00e9cran. Confort maximal pour les joueurs, les spectateurs et les organisateurs.</p>
-          </div>
-          <div class="highlight-card">
-            <div class="highlight-card-icon"><i class="fas fa-file-pdf"></i></div>
-            <h4>PDF personnalis\u00e9s</h4>
-            <p>Feuilles de matchs, classements, poules : chaque document porte le logo de votre club pour un rendu professionnel.</p>
-          </div>
-          <div class="highlight-card">
-            <div class="highlight-card-icon"><i class="fas fa-language"></i></div>
-            <h4>Multilingue</h4>
-            <p>Fran\u00e7ais, anglais, n\u00e9erlandais. Changez la langue en un clic dans les param\u00e8tres. Id\u00e9al pour les clubs internationaux.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ========== APERCU APPLICATION ========== -->
+  <!-- ========== CAPTURES D'ECRAN ========== -->
   <section class="section section-alt" id="apercu">
     <div class="container">
-      <h2 class="section-title">Aper\u00e7u de l\u2019application</h2>
-      <p class="section-subtitle">D\u00e9couvrez l\u2019interface pens\u00e9e pour la simplicit\u00e9, l\u2019efficacit\u00e9 et un rendu professionnel.</p>
+      <h2 class="section-title">Un rendu moderne, clair et immédiatement exploitable</h2>
+      <p class="section-subtitle">Conçu pour être agréable à utiliser en situation réelle : à la table de marque, pendant les inscriptions, pendant les tours, et lors de l’affichage des résultats.</p>
       <div class="screenshots-grid">
         <div class="screenshot-card">
-          <div class="screenshot-img-wrap zoomable" data-lightbox-src="/static/images/screenshot-nouveau.png" data-lightbox-alt="Cr\u00e9ation de tournoi">
-            <img src="/static/images/screenshot-nouveau.png" alt="Cr\u00e9ation de tournoi" class="screenshot-img">
+          <div class="screenshot-img-wrap zoomable" data-lightbox-src="/static/images/screenshot-equipes.png" data-lightbox-alt="Gestion rapide des équipes">
+            <img src="/static/images/screenshot-equipes.png" alt="Gestion rapide des équipes" class="screenshot-img">
           </div>
-          <h3>Cr\u00e9ation de tournoi</h3>
-          <p>Choisissez votre format (t\u00eate-\u00e0-t\u00eate, doublette, triplette, poules\u2026), le nombre de terrains, et c\u2019est parti.</p>
+          <h3>Équipes</h3>
+          <p>Ajout et gestion rapide des équipes avec une interface claire et lisible.</p>
         </div>
         <div class="screenshot-card">
-          <div class="screenshot-img-wrap zoomable" data-lightbox-src="/static/images/screenshot-equipes.png" data-lightbox-alt="\u00c9quipes &amp; joueurs">
-            <img src="/static/images/screenshot-equipes.png" alt="Gestion des \u00e9quipes" class="screenshot-img">
+          <div class="screenshot-img-wrap zoomable" data-lightbox-src="/static/images/screenshot-matchs.png" data-lightbox-alt="Suivi des tours et saisie des scores">
+            <img src="/static/images/screenshot-matchs.png" alt="Suivi des tours et saisie des scores" class="screenshot-img">
           </div>
-          <h3>\u00c9quipes &amp; joueurs</h3>
-          <p>Cr\u00e9ez vos \u00e9quipes en quelques secondes. Ajoutez, \u00e9ditez, supprimez les joueurs facilement.</p>
+          <h3>Matchs</h3>
+          <p>Suivi des tours, scores et terrains en un seul écran.</p>
         </div>
         <div class="screenshot-card">
-          <div class="screenshot-img-wrap zoomable" data-lightbox-src="/static/images/screenshot-matchs.png" data-lightbox-alt="Matchs &amp; scores">
-            <img src="/static/images/screenshot-matchs.png" alt="Gestion des matchs" class="screenshot-img">
+          <div class="screenshot-img-wrap zoomable" data-lightbox-src="/static/images/screenshot-classement.png" data-lightbox-alt="Classement automatique en temps réel">
+            <img src="/static/images/screenshot-classement.png" alt="Classement automatique en temps réel" class="screenshot-img">
           </div>
-          <h3>Matchs &amp; scores</h3>
-          <p>G\u00e9n\u00e9rez automatiquement les tours et les terrains, puis saisissez les scores en un clic.</p>
-        </div>
-        <div class="screenshot-card">
-          <div class="screenshot-img-wrap zoomable" data-lightbox-src="/static/images/screenshot-classement.png" data-lightbox-alt="Classement live">
-            <img src="/static/images/screenshot-classement.png" alt="Classement en direct" class="screenshot-img">
-          </div>
-          <h3>Classement live</h3>
-          <p>Victoires, points marqu\u00e9s/encaiss\u00e9s, diff\u00e9rentiel : mise \u00e0 jour instantan\u00e9e apr\u00e8s chaque match.</p>
+          <h3>Classement</h3>
+          <p>Mise à jour automatique en temps réel après chaque résultat.</p>
         </div>
         <div class="screenshot-card screenshot-card-featured">
-          <div class="screenshot-img-wrap zoomable" data-lightbox-src="/static/images/screenshot-mode-tv.png" data-lightbox-alt="Mode TV">
-            <img src="/static/images/screenshot-mode-tv.png" alt="Mode TV - Affichage grand \u00e9cran" class="screenshot-img">
+          <div class="screenshot-img-wrap zoomable" data-lightbox-src="/static/images/screenshot-mode-tv.png" data-lightbox-alt="Mode TV — Affichage public moderne">
+            <img src="/static/images/screenshot-mode-tv.png" alt="Mode TV — Affichage public moderne" class="screenshot-img">
           </div>
           <h3><i class="fas fa-tv" style="color:var(--teal);margin-right:8px;"></i>Mode TV</h3>
-          <p>Affichez les matchs, scores et terrains sur grand \u00e9cran. Lisible de loin, avec le logo de votre club.</p>
+          <p>Affichage public moderne des matchs et scores sur grand écran.</p>
         </div>
         <div class="screenshot-card screenshot-card-featured">
-          <div class="screenshot-img-wrap zoomable" data-lightbox-src="/static/images/screenshot-export-pdf.png" data-lightbox-alt="Export PDF avec logo">
-            <img src="/static/images/screenshot-export-pdf.png" alt="Export PDF avec logo du club" class="screenshot-img">
+          <div class="screenshot-img-wrap zoomable" data-lightbox-src="/static/images/screenshot-export-pdf.png" data-lightbox-alt="Exports PDF imprimables">
+            <img src="/static/images/screenshot-export-pdf.png" alt="Exports PDF imprimables" class="screenshot-img">
           </div>
-          <h3><i class="fas fa-file-pdf" style="color:var(--teal);margin-right:8px;"></i>Export PDF personnalis\u00e9</h3>
-          <p>Rapport complet du tournoi avec le logo de votre club int\u00e9gr\u00e9. Imprimez ou partagez facilement.</p>
+          <h3><i class="fas fa-file-pdf" style="color:var(--teal);margin-right:8px;"></i>PDF</h3>
+          <p>Exports imprimables avec logo du club et mise en page professionnelle.</p>
         </div>
         <div class="screenshot-card screenshot-card-featured screenshot-card-wide">
-          <div class="screenshot-img-wrap zoomable" data-lightbox-src="/static/images/screenshot-parametres.png" data-lightbox-alt="Param\u00e8tres : langue, licence, logo">
-            <img src="/static/images/screenshot-parametres.png" alt="Param\u00e8tres - Langue, Licence, Logo du club" class="screenshot-img">
+          <div class="screenshot-img-wrap zoomable" data-lightbox-src="/static/images/screenshot-parametres.png" data-lightbox-alt="Paramètres — Langues, Licence, Logo">
+            <img src="/static/images/screenshot-parametres.png" alt="Paramètres — Langue, Licence, Logo" class="screenshot-img">
           </div>
-          <h3><i class="fas fa-cog" style="color:var(--teal);margin-right:8px;"></i>Param\u00e8tres</h3>
-          <p>Changez la langue (FR / EN / NL), g\u00e9rez votre licence, et importez le logo de votre club en un clic.</p>
+          <h3><i class="fas fa-cog" style="color:var(--teal);margin-right:8px;"></i>Paramètres / Langues / Licence</h3>
+          <p>Choix de la langue (FR/EN/NL), gestion de licence et personnalisation avec le logo du club.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== POUR QUI ========== -->
+  <section class="section" id="pourqui">
+    <div class="container">
+      <h2 class="section-title">Pensé pour les clubs qui veulent gagner en sérieux</h2>
+      <p class="section-subtitle">Que vous soyez un club établi ou un bénévole qui organise son premier concours, Pétanque Manager s’adapte.</p>
+      <div class="target-grid">
+        <div class="target-item"><div class="target-icon"><i class="fas fa-users"></i></div><span>Clubs de pétanque</span></div>
+        <div class="target-item"><div class="target-icon"><i class="fas fa-trophy"></i></div><span>Organisateurs de concours</span></div>
+        <div class="target-item"><div class="target-icon"><i class="fas fa-hand-holding-heart"></i></div><span>Associations sportives</span></div>
+        <div class="target-item"><div class="target-icon"><i class="fas fa-heart"></i></div><span>Bénévoles qui veulent une solution simple et fiable</span></div>
+        <div class="target-item"><div class="target-icon"><i class="fas fa-star"></i></div><span>Structures qui veulent un rendu plus moderne et professionnel</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== BENEFICES CONCRETS ========== -->
+  <section class="section section-alt" id="benefices">
+    <div class="container">
+      <h2 class="section-title">Ce que votre club y gagne</h2>
+      <p class="section-subtitle">Des bénéfices concrets, visibles dès le premier tournoi.</p>
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon"><i class="fas fa-clock"></i></div>
+          <h3>Moins de temps perdu</h3>
+          <p>La préparation et la gestion du tournoi deviennent plus rapides grâce à l’automatisation.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon"><i class="fas fa-check-double"></i></div>
+          <h3>Moins d’erreurs</h3>
+          <p>Le classement, les tours et les documents sont générés automatiquement. Plus de recalculs manuels.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon"><i class="fas fa-award"></i></div>
+          <h3>Meilleure image du club</h3>
+          <p>Avec le logo du club, le Mode TV et des documents propres, votre organisation paraît plus sérieuse et plus moderne.</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon"><i class="fas fa-smile"></i></div>
+          <h3>Plus de confort le jour J</h3>
+          <p>Tout est centralisé dans un seul outil, exploitable même sans internet.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CTA FINAL ========== -->
+  <section class="section section-cta-final" id="cta-final">
+    <div class="container cta-final-content">
+      <h2 class="cta-final-title">Passez à une organisation de tournoi plus moderne</h2>
+      <p class="cta-final-text">Essayez Pétanque Manager et équipez votre club d’un outil conçu pour organiser, afficher et imprimer vos tournois proprement.</p>
+      <p class="cta-final-summary">Pétanque Manager : gestion des équipes, matchs, scores, classement automatique, Mode TV, exports PDF personnalisés avec logo du club, interface multilingue FR/EN/NL.</p>
+      <div class="cta-final-buttons">
+        <a href="#contact" class="btn btn-gold btn-lg"><i class="fas fa-envelope"></i> Demander une démonstration</a>
+        <a href="#contact" class="btn btn-outline btn-lg"><i class="fas fa-comments"></i> Nous contacter</a>
       </div>
     </div>
   </section>
@@ -536,7 +594,7 @@ app.get('/', (c) => {
         <h4>Liens rapides</h4>
         <ul>
           <li><a href="#fonctionnalites">Fonctionnalit\u00e9s</a></li>
-          <li><a href="#personnalisation">Mode TV &amp; personnalisation</a></li>
+          <li><a href="#pourquoi">Pourquoi P\u00e9tanque Manager</a></li>
           <li><a href="#tarifs">Tarifs</a></li>
           <li><a href="#telecharger">T\u00e9l\u00e9charger</a></li>
           <li><a href="#telecharger"><i class="fas fa-download"></i> T\u00e9l\u00e9chargement .exe</a></li>

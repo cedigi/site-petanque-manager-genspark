@@ -329,6 +329,31 @@ img {
   flex-wrap: wrap;
 }
 
+.hero-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  margin-bottom: 28px;
+}
+
+.hero-highlights span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-light);
+  font-size: 0.92rem;
+  font-weight: 500;
+  background: rgba(45, 212, 191, 0.08);
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(45, 212, 191, 0.12);
+}
+
+.hero-highlights span i {
+  color: var(--teal);
+  font-size: 0.85rem;
+}
+
 .hero-micro {
   font-size: 0.82rem;
   color: var(--text-dim);
@@ -453,136 +478,282 @@ img {
 }
 
 /* ==========================================================================
-   HIGHLIGHT — PERSONNALISATION CLUB
+   BANDEAU POINTS FORTS
    ========================================================================== */
-.section-highlight {
-  background: linear-gradient(135deg, rgba(15, 54, 64, 0.5) 0%, rgba(11, 32, 39, 0.9) 100%);
+.section-strengths {
+  padding: 48px 0;
   position: relative;
-  overflow: hidden;
+  z-index: 1;
+  background: rgba(15, 54, 64, 0.4);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
 }
 
-.section-highlight::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 500px 400px at 20% 30%, rgba(212, 168, 67, 0.06) 0%, transparent 70%),
-    radial-gradient(ellipse 600px 400px at 80% 60%, rgba(45, 212, 191, 0.05) 0%, transparent 70%);
-  pointer-events: none;
-}
-
-.highlight-grid {
+.strengths-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+
+.strength-item {
+  text-align: center;
+}
+
+.strength-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--teal-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 14px;
+  font-size: 1.3rem;
+  color: var(--teal);
+  box-shadow: var(--shadow-glow-teal);
+}
+
+.strength-item h3 {
+  color: var(--text-white);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.strength-item p {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   POURQUOI PETANQUE MANAGER
+   ========================================================================== */
+.section-title-left {
+  text-align: left;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
   gap: 60px;
   align-items: center;
   position: relative;
   z-index: 1;
 }
 
-.highlight-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: linear-gradient(135deg, var(--gold), var(--gold-light));
-  color: #1a1a1a;
-  font-size: 0.78rem;
-  font-weight: 700;
-  padding: 5px 16px;
-  border-radius: 20px;
-  margin-bottom: 20px;
-}
-
-.highlight-title {
-  font-size: 2.2rem;
-  font-weight: 800;
-  color: var(--text-white);
-  line-height: 1.2;
-  margin-bottom: 16px;
-  letter-spacing: -0.01em;
-}
-
-.highlight-text {
+.why-text {
   color: var(--text-muted);
   font-size: 1.05rem;
   line-height: 1.7;
-  margin-bottom: 28px;
+  margin-bottom: 24px;
 }
 
-.highlight-text strong {
-  color: var(--teal-light);
+.why-label {
+  color: var(--text-light);
+  font-weight: 600;
+  margin-bottom: 12px;
 }
 
-.highlight-features {
+.why-list {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  margin-bottom: 32px;
+  gap: 10px;
 }
 
-.highlight-features li {
-  display: flex;
-  align-items: center;
-  gap: 14px;
+.why-list li {
   color: var(--text-light);
   font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-.highlight-features li i {
+.why-list li i {
   color: var(--teal);
-  font-size: 1rem;
-  width: 20px;
-  text-align: center;
+  font-size: 0.85rem;
   flex-shrink: 0;
 }
 
-.highlight-visual {
+.why-visual {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
+  justify-content: center;
 }
 
-.highlight-card {
+.why-mockup {
   background: var(--bg-card);
+  border-radius: var(--radius-xl);
+  padding: 8px;
+  box-shadow: var(--shadow-card), 0 0 40px rgba(45, 212, 191, 0.06);
   border: 1px solid var(--border-card);
-  border-radius: var(--radius-lg);
-  padding: 24px 28px;
+  max-width: 480px;
   transition: var(--transition);
 }
 
-.highlight-card:hover {
+.why-mockup:hover {
+  box-shadow: var(--shadow-card-hover), 0 0 60px rgba(45, 212, 191, 0.1);
+  transform: translateY(-4px);
+}
+
+.why-screenshot {
+  border-radius: var(--radius-lg);
+  display: block;
+  width: 100%;
+}
+
+/* ==========================================================================
+   POUR QUI
+   ========================================================================== */
+.target-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 24px;
+}
+
+.target-item {
+  text-align: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  padding: 28px 20px;
+  transition: var(--transition);
+}
+
+.target-item:hover {
   background: var(--bg-card-hover);
-  transform: translateY(-3px);
+  transform: translateY(-4px);
   box-shadow: var(--shadow-card-hover);
   border-color: var(--border-subtle);
 }
 
-.highlight-card-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: var(--radius-md);
+.target-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
   background: var(--teal-dim);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 14px;
-  font-size: 1.1rem;
+  margin: 0 auto 14px;
+  font-size: 1.2rem;
   color: var(--teal);
   box-shadow: var(--shadow-glow-teal);
 }
 
-.highlight-card h4 {
+.target-item span {
+  color: var(--text-light);
+  font-size: 0.92rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* ==========================================================================
+   BENEFICES CONCRETS
+   ========================================================================== */
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.benefit-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: var(--radius-lg);
+  padding: 32px 24px;
+  text-align: center;
+  transition: var(--transition);
+}
+
+.benefit-card:hover {
+  background: var(--bg-card-hover);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card-hover);
+  border-color: var(--border-subtle);
+}
+
+.benefit-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--teal-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 18px;
+  font-size: 1.3rem;
+  color: var(--teal);
+  box-shadow: var(--shadow-glow-teal);
+}
+
+.benefit-card h3 {
   color: var(--text-white);
   font-size: 1.05rem;
   font-weight: 700;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
-.highlight-card p {
+.benefit-card p {
   color: var(--text-muted);
   font-size: 0.9rem;
   line-height: 1.6;
+}
+
+/* ==========================================================================
+   CTA FINAL
+   ========================================================================== */
+.section-cta-final {
+  background: linear-gradient(135deg, rgba(15, 54, 64, 0.6) 0%, rgba(11, 32, 39, 0.95) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.section-cta-final::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 500px 400px at 50% 50%, rgba(212, 168, 67, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.cta-final-content {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.cta-final-title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--text-white);
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+}
+
+.cta-final-text {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+
+.cta-final-summary {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 32px;
+  font-style: italic;
+}
+
+.cta-final-buttons {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 /* ==========================================================================
@@ -1565,7 +1736,8 @@ img {
 }
 
 .screenshot-img-wrap.zoomable::after,
-.hero-mockup.zoomable::after {
+.hero-mockup.zoomable::after,
+.why-mockup.zoomable::after {
   content: '\f00e'; /* fa-search-plus */
   font-family: 'Font Awesome 6 Free';
   font-weight: 900;
@@ -1595,8 +1767,13 @@ img {
   position: relative;
 }
 
+.why-mockup.zoomable {
+  position: relative;
+}
+
 .screenshot-img-wrap.zoomable:hover::after,
-.hero-mockup.zoomable:hover::after {
+.hero-mockup.zoomable:hover::after,
+.why-mockup.zoomable:hover::after {
   opacity: 1;
 }
 
@@ -1654,12 +1831,26 @@ img {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .highlight-grid {
+  .strengths-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .why-grid {
+    grid-template-columns: 1fr;
     gap: 40px;
   }
 
-  .highlight-title {
-    font-size: 1.8rem;
+  .target-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .benefits-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .cta-final-title {
+    font-size: 2rem;
   }
 
   .screenshots-grid {
@@ -1768,22 +1959,45 @@ img {
     grid-template-columns: 1fr;
   }
 
-  .highlight-grid {
+  .strengths-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .why-grid {
     grid-template-columns: 1fr;
     gap: 32px;
-  }
-
-  .highlight-title {
-    font-size: 1.5rem;
-  }
-
-  .highlight-content {
     text-align: center;
   }
 
-  .highlight-features {
-    text-align: left;
+  .section-title-left {
+    text-align: center;
+  }
+
+  .why-list {
     display: inline-flex;
+    text-align: left;
+  }
+
+  .target-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .benefits-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-final-title {
+    font-size: 1.6rem;
+  }
+
+  .cta-final-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-highlights {
+    justify-content: center;
   }
 
   .screenshots-grid {
@@ -1907,6 +2121,20 @@ img {
 
   .hero-title {
     font-size: 1.6rem;
+  }
+
+  .strengths-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .target-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-highlights {
+    flex-direction: column;
+    align-items: center;
   }
 
   .pricing-toggle-wrap {
