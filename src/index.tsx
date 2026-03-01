@@ -2,6 +2,7 @@ import { Hono } from 'hono'
 import { cors } from 'hono/cors'
 import checkout from './routes/checkout'
 import webhook from './routes/webhook'
+import account from './routes/account'
 
 type Bindings = {
   STRIPE_SECRET_KEY: string
@@ -19,6 +20,9 @@ app.use('/api/*', cors())
 // Mount Stripe routes
 app.route('/', checkout)
 app.route('/', webhook)
+
+// Mount client portal API routes
+app.route('/', account)
 
 // API: return Supabase config for frontend auth
 app.get('/api/config', (c) => {
@@ -78,7 +82,7 @@ app.get('/', (c) => {
         <li><a href="#fonctionnalites" class="nav-link">Fonctionnalit\u00e9s</a></li>
         <li><a href="#tarifs" class="nav-link">Tarifs</a></li>
         <li><a href="#telecharger" class="nav-link">T\u00e9l\u00e9charger</a></li>
-        <li><a href="#espace-client" class="nav-link">Espace client</a></li>
+        <li><a href="/espace-client/login" class="nav-link">Espace client</a></li>
         <li><a href="#faq" class="nav-link">FAQ</a></li>
         <li><a href="#contact" class="nav-link">Contact</a></li>
       </ul>
@@ -792,7 +796,7 @@ app.get('/', (c) => {
           <li><a href="#tarifs">Tarifs</a></li>
           <li><a href="#telecharger">T\u00e9l\u00e9charger</a></li>
           <li><a href="#telecharger"><i class="fas fa-download"></i> T\u00e9l\u00e9chargement .exe</a></li>
-          <li><a href="#espace-client">Espace client</a></li>
+          <li><a href="/espace-client/login">Espace client</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
@@ -1006,6 +1010,697 @@ app.get('/api/stripe/session/:id', async (c) => {
   } catch (err: any) {
     return c.json({ error: err.message }, 500)
   }
+})
+
+// ========== ESPACE CLIENT — LOGIN PAGE ==========
+app.get('/espace-client/login', (c) => {
+  return c.html(`<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connexion — Espace client — Pétanque Manager</title>
+  <link rel="icon" type="image/png" href="/static/images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="/static/style.css" rel="stylesheet">
+  <link href="/static/portal.css" rel="stylesheet">
+</head>
+<body class="portal-body">
+  <canvas id="bgCanvas"></canvas>
+
+  <div class="portal-login-page">
+    <div class="portal-login-card">
+      <a href="/" class="portal-logo-link">
+        <img src="/static/images/logo.png" alt="Pétanque Manager" class="portal-logo">
+      </a>
+      <h1 class="portal-login-title">Espace client</h1>
+      <p class="portal-login-subtitle">Connectez-vous pour gérer vos abonnements, licences et appareils.</p>
+
+      <form id="loginForm" class="portal-form">
+        <div class="portal-form-group">
+          <label for="loginEmail"><i class="fas fa-envelope"></i> Email</label>
+          <input type="email" id="loginEmail" placeholder="votre@email.com" required autocomplete="email">
+        </div>
+        <div class="portal-form-group">
+          <label for="loginPassword"><i class="fas fa-lock"></i> Mot de passe</label>
+          <input type="password" id="loginPassword" placeholder="Votre mot de passe" required autocomplete="current-password">
+        </div>
+        <div id="loginError" class="portal-alert portal-alert-error" style="display:none;"></div>
+        <button type="submit" class="btn btn-gold btn-block portal-btn-submit" id="loginBtn">
+          <i class="fas fa-sign-in-alt"></i> Se connecter
+        </button>
+      </form>
+
+      <div class="portal-login-links">
+        <a href="#" id="forgotPasswordLink" class="portal-link">Mot de passe oublié ?</a>
+      </div>
+
+      <!-- Forgot password form (hidden by default) -->
+      <div id="forgotSection" class="portal-forgot-section" style="display:none;">
+        <h3>Réinitialisation du mot de passe</h3>
+        <p>Entrez votre adresse email pour recevoir un lien de réinitialisation.</p>
+        <form id="forgotForm" class="portal-form">
+          <div class="portal-form-group">
+            <label for="forgotEmail"><i class="fas fa-envelope"></i> Email</label>
+            <input type="email" id="forgotEmail" placeholder="votre@email.com" required>
+          </div>
+          <div id="forgotStatus" class="portal-alert" style="display:none;"></div>
+          <button type="submit" class="btn btn-outline btn-block" id="forgotBtn">
+            <i class="fas fa-paper-plane"></i> Envoyer le lien
+          </button>
+        </form>
+        <a href="#" id="backToLogin" class="portal-link"><i class="fas fa-arrow-left"></i> Retour à la connexion</a>
+      </div>
+
+      <div class="portal-login-footer">
+        <a href="/" class="portal-link"><i class="fas fa-arrow-left"></i> Retour au site</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/bg3d.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Check if already logged in
+    const token = localStorage.getItem('pm_access_token');
+    if (token) {
+      window.location.href = '/espace-client';
+      return;
+    }
+
+    const loginForm = document.getElementById('loginForm');
+    const loginError = document.getElementById('loginError');
+    const loginBtn = document.getElementById('loginBtn');
+    const forgotSection = document.getElementById('forgotSection');
+    const forgotLink = document.getElementById('forgotPasswordLink');
+    const backToLogin = document.getElementById('backToLogin');
+    const forgotForm = document.getElementById('forgotForm');
+    const forgotStatus = document.getElementById('forgotStatus');
+
+    // Toggle forgot password
+    forgotLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      loginForm.style.display = 'none';
+      document.querySelector('.portal-login-links').style.display = 'none';
+      forgotSection.style.display = 'block';
+    });
+
+    backToLogin.addEventListener('click', (e) => {
+      e.preventDefault();
+      loginForm.style.display = 'block';
+      document.querySelector('.portal-login-links').style.display = 'flex';
+      forgotSection.style.display = 'none';
+    });
+
+    // Login handler
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      loginError.style.display = 'none';
+      
+      const email = document.getElementById('loginEmail').value.trim();
+      const password = document.getElementById('loginPassword').value;
+      
+      if (!email || !password) {
+        loginError.textContent = 'Veuillez remplir tous les champs.';
+        loginError.style.display = 'block';
+        return;
+      }
+
+      loginBtn.disabled = true;
+      loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Connexion...';
+
+      try {
+        const res = await fetch('/api/auth/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password }),
+        });
+
+        const data = await res.json();
+
+        if (res.ok && data.access_token) {
+          localStorage.setItem('pm_access_token', data.access_token);
+          localStorage.setItem('pm_refresh_token', data.refresh_token);
+          localStorage.setItem('pm_user_email', data.user.email);
+          localStorage.setItem('pm_user_id', data.user.id);
+          window.location.href = '/espace-client';
+        } else {
+          loginError.textContent = data.error || 'Identifiants invalides.';
+          loginError.style.display = 'block';
+        }
+      } catch (err) {
+        loginError.textContent = 'Erreur réseau. Veuillez réessayer.';
+        loginError.style.display = 'block';
+      }
+
+      loginBtn.disabled = false;
+      loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Se connecter';
+    });
+
+    // Forgot password handler
+    forgotForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('forgotEmail').value.trim();
+      if (!email) return;
+
+      const btn = document.getElementById('forgotBtn');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi...';
+
+      try {
+        const res = await fetch('/api/auth/reset-password', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email }),
+        });
+
+        const data = await res.json();
+        forgotStatus.textContent = data.message || 'Email envoyé si le compte existe.';
+        forgotStatus.className = 'portal-alert portal-alert-success';
+        forgotStatus.style.display = 'block';
+      } catch (err) {
+        forgotStatus.textContent = 'Erreur réseau.';
+        forgotStatus.className = 'portal-alert portal-alert-error';
+        forgotStatus.style.display = 'block';
+      }
+
+      btn.disabled = false;
+      btn.innerHTML = '<i class="fas fa-paper-plane"></i> Envoyer le lien';
+    });
+  });
+  </script>
+</body>
+</html>`)
+})
+
+// ========== ESPACE CLIENT — DASHBOARD PAGE ==========
+app.get('/espace-client', (c) => {
+  return c.html(`<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mon compte — Espace client — Pétanque Manager</title>
+  <link rel="icon" type="image/png" href="/static/images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.0/css/all.min.css" rel="stylesheet">
+  <link href="/static/style.css" rel="stylesheet">
+  <link href="/static/portal.css" rel="stylesheet">
+</head>
+<body class="portal-body">
+  <canvas id="bgCanvas"></canvas>
+
+  <!-- Portal Navbar -->
+  <nav class="portal-navbar">
+    <div class="portal-nav-container">
+      <a href="/" class="portal-nav-logo">
+        <img src="/static/images/logo.png" alt="Pétanque Manager" class="portal-nav-logo-img">
+        <span class="portal-nav-logo-text">Pétanque Manager</span>
+        <span class="portal-nav-badge">Espace client</span>
+      </a>
+      <div class="portal-nav-right">
+        <span class="portal-nav-email" id="navEmail"></span>
+        <button class="portal-btn-logout" id="logoutBtn" title="Déconnexion">
+          <i class="fas fa-sign-out-alt"></i> Déconnexion
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Loading state -->
+  <div class="portal-loading" id="portalLoading">
+    <div class="portal-loading-spinner">
+      <i class="fas fa-spinner fa-spin"></i>
+      <p>Chargement de votre espace client...</p>
+    </div>
+  </div>
+
+  <!-- Dashboard content (hidden until loaded) -->
+  <main class="portal-main" id="portalMain" style="display:none;">
+    <div class="portal-container">
+
+      <!-- Welcome banner -->
+      <div class="portal-welcome">
+        <div class="portal-welcome-left">
+          <h1><i class="fas fa-user-circle"></i> Bienvenue</h1>
+          <p id="welcomeEmail"></p>
+        </div>
+        <div class="portal-welcome-right">
+          <a href="/" class="btn btn-outline btn-sm"><i class="fas fa-arrow-left"></i> Retour au site</a>
+        </div>
+      </div>
+
+      <!-- Summary cards -->
+      <div class="portal-summary-grid" id="summaryGrid">
+        <div class="portal-summary-card">
+          <div class="portal-summary-icon"><i class="fas fa-credit-card"></i></div>
+          <div class="portal-summary-data">
+            <span class="portal-summary-value" id="sumActiveSubs">—</span>
+            <span class="portal-summary-label">Abonnement(s) actif(s)</span>
+          </div>
+        </div>
+        <div class="portal-summary-card">
+          <div class="portal-summary-icon"><i class="fas fa-key"></i></div>
+          <div class="portal-summary-data">
+            <span class="portal-summary-value" id="sumActiveLicenses">—</span>
+            <span class="portal-summary-label">Licence(s) active(s)</span>
+          </div>
+        </div>
+        <div class="portal-summary-card portal-summary-highlight">
+          <div class="portal-summary-icon"><i class="fas fa-desktop"></i></div>
+          <div class="portal-summary-data">
+            <span class="portal-summary-value" id="sumUsedSlots">—</span>
+            <span class="portal-summary-label">PC utilisé(s)</span>
+          </div>
+        </div>
+        <div class="portal-summary-card portal-summary-success">
+          <div class="portal-summary-icon"><i class="fas fa-plus-circle"></i></div>
+          <div class="portal-summary-data">
+            <span class="portal-summary-value" id="sumFreeSlots">—</span>
+            <span class="portal-summary-label">Emplacement(s) libre(s)</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Subscriptions -->
+      <section class="portal-section">
+        <div class="portal-section-header">
+          <h2><i class="fas fa-credit-card"></i> Mes abonnements</h2>
+        </div>
+        <div class="portal-table-wrap" id="subsTableWrap">
+          <p class="portal-empty" id="subsEmpty" style="display:none;">Aucun abonnement trouvé.</p>
+          <table class="portal-table" id="subsTable" style="display:none;">
+            <thead>
+              <tr>
+                <th>Formule</th>
+                <th>Statut</th>
+                <th>Début</th>
+                <th>Renouvellement / Expiration</th>
+                <th>PC autorisés</th>
+              </tr>
+            </thead>
+            <tbody id="subsBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Licenses -->
+      <section class="portal-section">
+        <div class="portal-section-header">
+          <h2><i class="fas fa-key"></i> Mes licences</h2>
+        </div>
+        <div class="portal-table-wrap" id="licTableWrap">
+          <p class="portal-empty" id="licEmpty" style="display:none;">Aucune licence trouvée.</p>
+          <table class="portal-table" id="licTable" style="display:none;">
+            <thead>
+              <tr>
+                <th>Clé de licence</th>
+                <th>Statut</th>
+                <th>Appareils</th>
+                <th>Activée le</th>
+                <th>Expire le</th>
+              </tr>
+            </thead>
+            <tbody id="licBody"></tbody>
+          </table>
+        </div>
+        <div class="portal-info-box">
+          <i class="fas fa-info-circle"></i>
+          <span>La clé de licence ne change jamais, même lors d'un transfert de PC. Seul l'appareil associé est remplacé.</span>
+        </div>
+      </section>
+
+      <!-- Devices -->
+      <section class="portal-section">
+        <div class="portal-section-header">
+          <h2><i class="fas fa-desktop"></i> Mes appareils</h2>
+        </div>
+        <div class="portal-table-wrap" id="devTableWrap">
+          <p class="portal-empty" id="devEmpty" style="display:none;">Aucun appareil enregistré.</p>
+          <table class="portal-table" id="devTable" style="display:none;">
+            <thead>
+              <tr>
+                <th>Nom du PC</th>
+                <th>Empreinte</th>
+                <th>Activé le</th>
+                <th>Dernier check-in</th>
+                <th>Statut</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="devBody"></tbody>
+          </table>
+        </div>
+        <div class="portal-info-box">
+          <i class="fas fa-lightbulb"></i>
+          <span>Libérez un appareil pour réutiliser la même licence sur un autre PC. La clé ne change pas.</span>
+        </div>
+      </section>
+
+      <!-- Transfer steps -->
+      <section class="portal-section portal-transfer-section">
+        <h3><i class="fas fa-exchange-alt"></i> Comment changer de PC ?</h3>
+        <div class="portal-transfer-steps">
+          <div class="portal-transfer-step">
+            <div class="portal-transfer-num">1</div>
+            <p>Connectez-vous ici</p>
+          </div>
+          <div class="portal-transfer-arrow"><i class="fas fa-chevron-right"></i></div>
+          <div class="portal-transfer-step">
+            <div class="portal-transfer-num">2</div>
+            <p>Repérez le PC à libérer</p>
+          </div>
+          <div class="portal-transfer-arrow"><i class="fas fa-chevron-right"></i></div>
+          <div class="portal-transfer-step">
+            <div class="portal-transfer-num">3</div>
+            <p>Cliquez « Libérer »</p>
+          </div>
+          <div class="portal-transfer-arrow"><i class="fas fa-chevron-right"></i></div>
+          <div class="portal-transfer-step">
+            <div class="portal-transfer-num">4</div>
+            <p>Activez la même clé sur le nouveau PC</p>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Release confirmation modal -->
+  <div class="portal-modal-overlay" id="releaseModal" style="display:none;">
+    <div class="portal-modal">
+      <div class="portal-modal-header">
+        <h3><i class="fas fa-unlock"></i> Libérer cet appareil ?</h3>
+        <button class="portal-modal-close" id="releaseModalClose"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="portal-modal-body">
+        <p>Vous êtes sur le point de libérer l'appareil <strong id="releaseDeviceName"></strong>.</p>
+        <ul class="portal-modal-info">
+          <li><i class="fas fa-check"></i> L'emplacement sera immédiatement disponible</li>
+          <li><i class="fas fa-check"></i> Votre clé de licence reste identique</li>
+          <li><i class="fas fa-check"></i> Vous pourrez activer la licence sur un autre PC</li>
+        </ul>
+      </div>
+      <div class="portal-modal-footer">
+        <button class="btn btn-outline" id="releaseCancelBtn">Annuler</button>
+        <button class="btn btn-gold" id="releaseConfirmBtn"><i class="fas fa-unlock"></i> Libérer</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/bg3d.js"></script>
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const token = localStorage.getItem('pm_access_token');
+    const refreshToken = localStorage.getItem('pm_refresh_token');
+
+    if (!token) {
+      window.location.href = '/espace-client/login';
+      return;
+    }
+
+    const loading = document.getElementById('portalLoading');
+    const main = document.getElementById('portalMain');
+    const navEmail = document.getElementById('navEmail');
+    const welcomeEmail = document.getElementById('welcomeEmail');
+
+    // Set email from localStorage quickly
+    const storedEmail = localStorage.getItem('pm_user_email');
+    if (storedEmail) {
+      navEmail.textContent = storedEmail;
+      welcomeEmail.textContent = storedEmail;
+    }
+
+    // Logout
+    document.getElementById('logoutBtn').addEventListener('click', async () => {
+      try {
+        await fetch('/api/auth/logout', {
+          method: 'POST',
+          headers: { 'Authorization': 'Bearer ' + token },
+        });
+      } catch {}
+      localStorage.removeItem('pm_access_token');
+      localStorage.removeItem('pm_refresh_token');
+      localStorage.removeItem('pm_user_email');
+      localStorage.removeItem('pm_user_id');
+      window.location.href = '/espace-client/login';
+    });
+
+    // Fetch dashboard data
+    loadDashboard();
+
+    async function apiCall(url, options = {}) {
+      let currentToken = localStorage.getItem('pm_access_token');
+      const res = await fetch(url, {
+        ...options,
+        headers: {
+          ...(options.headers || {}),
+          'Authorization': 'Bearer ' + currentToken,
+          'Content-Type': 'application/json',
+        },
+      });
+
+      // If 401, try refresh
+      if (res.status === 401 && refreshToken) {
+        const refreshRes = await fetch('/api/auth/refresh', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ refresh_token: refreshToken }),
+        });
+
+        if (refreshRes.ok) {
+          const rd = await refreshRes.json();
+          localStorage.setItem('pm_access_token', rd.access_token);
+          localStorage.setItem('pm_refresh_token', rd.refresh_token);
+          // Retry original request
+          return fetch(url, {
+            ...options,
+            headers: {
+              ...(options.headers || {}),
+              'Authorization': 'Bearer ' + rd.access_token,
+              'Content-Type': 'application/json',
+            },
+          });
+        } else {
+          // Refresh failed, redirect to login
+          localStorage.clear();
+          window.location.href = '/espace-client/login';
+          return null;
+        }
+      }
+
+      return res;
+    }
+
+    async function loadDashboard() {
+      try {
+        const res = await apiCall('/api/account/dashboard');
+        if (!res || !res.ok) {
+          if (res && res.status === 401) {
+            localStorage.clear();
+            window.location.href = '/espace-client/login';
+            return;
+          }
+          throw new Error('Failed to load');
+        }
+
+        const data = await res.json();
+
+        // Update email
+        if (data.user) {
+          navEmail.textContent = data.user.email;
+          welcomeEmail.textContent = data.user.email;
+          localStorage.setItem('pm_user_email', data.user.email);
+        }
+
+        // Summary cards
+        document.getElementById('sumActiveSubs').textContent = data.summary.active_subscriptions;
+        document.getElementById('sumActiveLicenses').textContent = data.summary.active_licenses;
+        document.getElementById('sumUsedSlots').textContent = data.summary.used_slots + ' / ' + data.summary.total_slots;
+        document.getElementById('sumFreeSlots').textContent = data.summary.free_slots;
+
+        // Subscriptions table
+        renderSubscriptions(data.subscriptions);
+        renderLicenses(data.licenses);
+        renderDevices(data.devices);
+
+        // Show main, hide loading
+        loading.style.display = 'none';
+        main.style.display = 'block';
+      } catch (err) {
+        console.error('Dashboard load error:', err);
+        loading.innerHTML = '<div class="portal-loading-spinner"><i class="fas fa-exclamation-triangle" style="color:#e74c3c;"></i><p>Erreur de chargement. <a href="/espace-client/login" style="color:var(--gold);">Reconnectez-vous</a></p></div>';
+      }
+    }
+
+    function renderSubscriptions(subs) {
+      const table = document.getElementById('subsTable');
+      const empty = document.getElementById('subsEmpty');
+      const body = document.getElementById('subsBody');
+
+      if (!subs || !subs.length) {
+        empty.style.display = 'block';
+        table.style.display = 'none';
+        return;
+      }
+
+      empty.style.display = 'none';
+      table.style.display = 'table';
+      body.innerHTML = subs.map(s => {
+        const plan = s.pm_plans || {};
+        const statusClass = s.status === 'active' ? 'portal-status-active' : 
+                          s.status === 'trial' ? 'portal-status-trial' : 
+                          s.status === 'suspended' ? 'portal-status-suspended' : 'portal-status-expired';
+        const statusLabel = {active:'Actif', trial:'Essai', expired:'Expiré', suspended:'Suspendu', cancelled:'Annulé'}[s.status] || s.status;
+        return '<tr>' +
+          '<td class="portal-cell-bold">' + (plan.name || '—') + '</td>' +
+          '<td><span class="portal-status ' + statusClass + '">' + statusLabel + '</span></td>' +
+          '<td>' + formatDate(s.started_at) + '</td>' +
+          '<td>' + formatDate(s.current_period_end) + '</td>' +
+          '<td>' + (plan.included_seats || '—') + '</td>' +
+          '</tr>';
+      }).join('');
+    }
+
+    function renderLicenses(lics) {
+      const table = document.getElementById('licTable');
+      const empty = document.getElementById('licEmpty');
+      const body = document.getElementById('licBody');
+
+      if (!lics || !lics.length) {
+        empty.style.display = 'block';
+        table.style.display = 'none';
+        return;
+      }
+
+      empty.style.display = 'none';
+      table.style.display = 'table';
+      body.innerHTML = lics.map(l => {
+        const statusClass = l.status === 'active' ? 'portal-status-active' : 
+                          l.status === 'revoked' ? 'portal-status-expired' : 'portal-status-suspended';
+        const statusLabel = {active:'Active', revoked:'Révoquée', expired:'Expirée', suspended:'Suspendue'}[l.status] || l.status;
+        return '<tr>' +
+          '<td class="portal-cell-mono">' + (l.license_key_masked || l.license_key || '—') + '</td>' +
+          '<td><span class="portal-status ' + statusClass + '">' + statusLabel + '</span></td>' +
+          '<td>' + (l.max_devices || '—') + ' PC max</td>' +
+          '<td>' + formatDate(l.created_at) + '</td>' +
+          '<td>' + formatDate(l.expires_at) + '</td>' +
+          '</tr>';
+      }).join('');
+    }
+
+    function renderDevices(devs) {
+      const table = document.getElementById('devTable');
+      const empty = document.getElementById('devEmpty');
+      const body = document.getElementById('devBody');
+
+      if (!devs || !devs.length) {
+        empty.style.display = 'block';
+        table.style.display = 'none';
+        return;
+      }
+
+      empty.style.display = 'none';
+      table.style.display = 'table';
+      body.innerHTML = devs.map(d => {
+        const isActive = d.status === 'active';
+        const statusClass = isActive ? 'portal-status-active' : 
+                          d.status === 'released' ? 'portal-status-released' : 'portal-status-expired';
+        const statusLabel = {active:'Actif', released:'Libéré', revoked:'Révoqué'}[d.status] || d.status;
+        const fingerprint = d.device_fingerprint ? d.device_fingerprint.substring(0, 4) + '\\u2026' + d.device_fingerprint.slice(-4) : '—';
+        const releaseBtn = isActive 
+          ? '<button class="portal-btn-release" data-device-id="' + d.id + '" data-device-name="' + escapeHtml(d.device_name) + '"><i class="fas fa-unlock"></i> Libérer</button>'
+          : '<span class="portal-text-dim">' + (d.status === 'released' ? 'Libéré' : '—') + '</span>';
+        return '<tr class="' + (isActive ? '' : 'portal-row-dim') + '">' +
+          '<td class="portal-cell-bold">' + escapeHtml(d.device_name) + '</td>' +
+          '<td class="portal-cell-mono portal-cell-dim">' + fingerprint + '</td>' +
+          '<td>' + formatDate(d.activated_at) + '</td>' +
+          '<td>' + formatDate(d.last_check_in) + '</td>' +
+          '<td><span class="portal-status ' + statusClass + '">' + statusLabel + '</span></td>' +
+          '<td>' + releaseBtn + '</td>' +
+          '</tr>';
+      }).join('');
+
+      // Attach release handlers
+      document.querySelectorAll('.portal-btn-release').forEach(btn => {
+        btn.addEventListener('click', () => openReleaseModal(btn.dataset.deviceId, btn.dataset.deviceName));
+      });
+    }
+
+    // Release modal
+    const modal = document.getElementById('releaseModal');
+    const modalClose = document.getElementById('releaseModalClose');
+    const cancelBtn = document.getElementById('releaseCancelBtn');
+    const confirmBtn = document.getElementById('releaseConfirmBtn');
+    let pendingDeviceId = null;
+
+    function openReleaseModal(deviceId, deviceName) {
+      pendingDeviceId = deviceId;
+      document.getElementById('releaseDeviceName').textContent = deviceName;
+      modal.style.display = 'flex';
+    }
+
+    function closeReleaseModal() {
+      modal.style.display = 'none';
+      pendingDeviceId = null;
+    }
+
+    modalClose.addEventListener('click', closeReleaseModal);
+    cancelBtn.addEventListener('click', closeReleaseModal);
+    modal.addEventListener('click', (e) => { if (e.target === modal) closeReleaseModal(); });
+
+    confirmBtn.addEventListener('click', async () => {
+      if (!pendingDeviceId) return;
+
+      confirmBtn.disabled = true;
+      confirmBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Libération...';
+
+      try {
+        const res = await apiCall('/api/account/devices/' + pendingDeviceId + '/release', {
+          method: 'POST',
+        });
+
+        const data = await res.json();
+
+        if (res.ok && data.success) {
+          closeReleaseModal();
+          // Reload dashboard
+          loading.style.display = 'flex';
+          main.style.display = 'none';
+          await loadDashboard();
+        } else {
+          alert(data.error || 'Erreur lors de la libération.');
+        }
+      } catch (err) {
+        alert('Erreur réseau. Veuillez réessayer.');
+      }
+
+      confirmBtn.disabled = false;
+      confirmBtn.innerHTML = '<i class="fas fa-unlock"></i> Libérer';
+    });
+
+    // Helpers
+    function formatDate(dateStr) {
+      if (!dateStr) return '—';
+      try {
+        const d = new Date(dateStr);
+        return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
+      } catch { return dateStr; }
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+  });
+  </script>
+</body>
+</html>`)
 })
 
 export default app
