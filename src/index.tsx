@@ -1271,14 +1271,14 @@ app.get('/espace-client', (c) => {
             <span class="portal-summary-label">Licence(s) active(s)</span>
           </div>
         </div>
-        <div class="portal-summary-card portal-summary-highlight">
+        <div class="portal-summary-card">
           <div class="portal-summary-icon"><i class="fas fa-desktop"></i></div>
           <div class="portal-summary-data">
             <span class="portal-summary-value" id="sumUsedSlots">—</span>
             <span class="portal-summary-label">PC utilisé(s)</span>
           </div>
         </div>
-        <div class="portal-summary-card portal-summary-success">
+        <div class="portal-summary-card">
           <div class="portal-summary-icon"><i class="fas fa-plus-circle"></i></div>
           <div class="portal-summary-data">
             <span class="portal-summary-value" id="sumFreeSlots">—</span>
@@ -1293,14 +1293,15 @@ app.get('/espace-client', (c) => {
           <h2><i class="fas fa-credit-card"></i> Mes abonnements</h2>
         </div>
         <div class="portal-table-wrap" id="subsTableWrap">
-          <p class="portal-empty" id="subsEmpty" style="display:none;">Aucun abonnement trouvé.</p>
+          <p class="portal-empty" id="subsEmpty" style="display:none;"><i class="fas fa-inbox"></i>Aucun abonnement actif.</p>
           <table class="portal-table" id="subsTable" style="display:none;">
             <thead>
               <tr>
                 <th>Formule</th>
+                <th>Période</th>
                 <th>Statut</th>
                 <th>Début</th>
-                <th>Renouvellement / Expiration</th>
+                <th>Renouvellement</th>
                 <th>PC autorisés</th>
               </tr>
             </thead>
@@ -1315,14 +1316,15 @@ app.get('/espace-client', (c) => {
           <h2><i class="fas fa-key"></i> Mes licences</h2>
         </div>
         <div class="portal-table-wrap" id="licTableWrap">
-          <p class="portal-empty" id="licEmpty" style="display:none;">Aucune licence trouvée.</p>
+          <p class="portal-empty" id="licEmpty" style="display:none;"><i class="fas fa-key"></i>Aucune licence trouvée.</p>
           <table class="portal-table" id="licTable" style="display:none;">
             <thead>
               <tr>
                 <th>Clé de licence</th>
+                <th>Plan associé</th>
                 <th>Statut</th>
                 <th>Appareils</th>
-                <th>Activée le</th>
+                <th>Créée le</th>
                 <th>Expire le</th>
               </tr>
             </thead>
@@ -1330,8 +1332,8 @@ app.get('/espace-client', (c) => {
           </table>
         </div>
         <div class="portal-info-box">
-          <i class="fas fa-info-circle"></i>
-          <span>La clé de licence ne change jamais, même lors d'un transfert de PC. Seul l'appareil associé est remplacé.</span>
+          <i class="fas fa-shield-alt"></i>
+          <span>La clé de licence ne change <strong>jamais</strong>, même lors d'un transfert de PC. Seul l'appareil associé est remplacé.</span>
         </div>
       </section>
 
@@ -1341,12 +1343,13 @@ app.get('/espace-client', (c) => {
           <h2><i class="fas fa-desktop"></i> Mes appareils</h2>
         </div>
         <div class="portal-table-wrap" id="devTableWrap">
-          <p class="portal-empty" id="devEmpty" style="display:none;">Aucun appareil enregistré.</p>
+          <p class="portal-empty" id="devEmpty" style="display:none;"><i class="fas fa-laptop"></i>Aucun appareil enregistré.</p>
           <table class="portal-table" id="devTable" style="display:none;">
             <thead>
               <tr>
                 <th>Nom du PC</th>
                 <th>Empreinte</th>
+                <th>Licence</th>
                 <th>Activé le</th>
                 <th>Dernier check-in</th>
                 <th>Statut</th>
@@ -1368,17 +1371,17 @@ app.get('/espace-client', (c) => {
         <div class="portal-transfer-steps">
           <div class="portal-transfer-step">
             <div class="portal-transfer-num">1</div>
-            <p>Connectez-vous ici</p>
+            <p>Connectez-vous à votre espace client</p>
           </div>
           <div class="portal-transfer-arrow"><i class="fas fa-chevron-right"></i></div>
           <div class="portal-transfer-step">
             <div class="portal-transfer-num">2</div>
-            <p>Repérez le PC à libérer</p>
+            <p>Repérez le PC à libérer dans la liste</p>
           </div>
           <div class="portal-transfer-arrow"><i class="fas fa-chevron-right"></i></div>
           <div class="portal-transfer-step">
             <div class="portal-transfer-num">3</div>
-            <p>Cliquez « Libérer »</p>
+            <p>Cliquez « Libérer ce PC »</p>
           </div>
           <div class="portal-transfer-arrow"><i class="fas fa-chevron-right"></i></div>
           <div class="portal-transfer-step">
@@ -1399,16 +1402,17 @@ app.get('/espace-client', (c) => {
         <button class="portal-modal-close" id="releaseModalClose"><i class="fas fa-times"></i></button>
       </div>
       <div class="portal-modal-body">
-        <p>Vous êtes sur le point de libérer l'appareil <strong id="releaseDeviceName"></strong>.</p>
+        <p>Vous êtes sur le point de libérer l'appareil :</p>
+        <p style="font-size:1.05rem;"><strong id="releaseDeviceName"></strong></p>
         <ul class="portal-modal-info">
           <li><i class="fas fa-check"></i> L'emplacement sera immédiatement disponible</li>
-          <li><i class="fas fa-check"></i> Votre clé de licence reste identique</li>
-          <li><i class="fas fa-check"></i> Vous pourrez activer la licence sur un autre PC</li>
+          <li><i class="fas fa-key"></i> Votre clé de licence reste <strong>identique</strong></li>
+          <li><i class="fas fa-laptop"></i> Vous pourrez activer cette licence sur un autre PC</li>
         </ul>
       </div>
       <div class="portal-modal-footer">
         <button class="btn btn-outline" id="releaseCancelBtn">Annuler</button>
-        <button class="btn btn-gold" id="releaseConfirmBtn"><i class="fas fa-unlock"></i> Libérer</button>
+        <button class="btn btn-gold" id="releaseConfirmBtn"><i class="fas fa-unlock"></i> Confirmer la libération</button>
       </div>
     </div>
   </div>
@@ -1436,6 +1440,17 @@ app.get('/espace-client', (c) => {
       welcomeEmail.textContent = storedEmail;
     }
 
+    // Toast notification system
+    function showToast(message, type) {
+      const existing = document.querySelector('.portal-toast');
+      if (existing) existing.remove();
+      const toast = document.createElement('div');
+      toast.className = 'portal-toast portal-toast-' + type;
+      toast.innerHTML = '<i class="fas fa-' + (type === 'success' ? 'check-circle' : 'exclamation-circle') + '" style="margin-right:8px;"></i>' + message;
+      document.body.appendChild(toast);
+      setTimeout(() => { toast.style.opacity = '0'; toast.style.transform = 'translateY(-10px)'; setTimeout(() => toast.remove(), 300); }, 4000);
+    }
+
     // Logout
     document.getElementById('logoutBtn').addEventListener('click', async () => {
       try {
@@ -1454,15 +1469,16 @@ app.get('/espace-client', (c) => {
     // Fetch dashboard data
     loadDashboard();
 
-    async function apiCall(url, options = {}) {
+    async function apiCall(url, options) {
+      options = options || {};
       let currentToken = localStorage.getItem('pm_access_token');
       const res = await fetch(url, {
-        ...options,
+        method: options.method || 'GET',
         headers: {
-          ...(options.headers || {}),
           'Authorization': 'Bearer ' + currentToken,
           'Content-Type': 'application/json',
         },
+        body: options.body || undefined,
       });
 
       // If 401, try refresh
@@ -1477,17 +1493,15 @@ app.get('/espace-client', (c) => {
           const rd = await refreshRes.json();
           localStorage.setItem('pm_access_token', rd.access_token);
           localStorage.setItem('pm_refresh_token', rd.refresh_token);
-          // Retry original request
           return fetch(url, {
-            ...options,
+            method: options.method || 'GET',
             headers: {
-              ...(options.headers || {}),
               'Authorization': 'Bearer ' + rd.access_token,
               'Content-Type': 'application/json',
             },
+            body: options.body || undefined,
           });
         } else {
-          // Refresh failed, redirect to login
           localStorage.clear();
           window.location.href = '/espace-client/login';
           return null;
@@ -1524,7 +1538,7 @@ app.get('/espace-client', (c) => {
         document.getElementById('sumUsedSlots').textContent = data.summary.used_slots + ' / ' + data.summary.total_slots;
         document.getElementById('sumFreeSlots').textContent = data.summary.free_slots;
 
-        // Subscriptions table
+        // Tables
         renderSubscriptions(data.subscriptions);
         renderLicenses(data.licenses);
         renderDevices(data.devices);
@@ -1534,7 +1548,7 @@ app.get('/espace-client', (c) => {
         main.style.display = 'block';
       } catch (err) {
         console.error('Dashboard load error:', err);
-        loading.innerHTML = '<div class="portal-loading-spinner"><i class="fas fa-exclamation-triangle" style="color:#e74c3c;"></i><p>Erreur de chargement. <a href="/espace-client/login" style="color:var(--gold);">Reconnectez-vous</a></p></div>';
+        loading.innerHTML = '<div class="portal-loading-spinner"><i class="fas fa-exclamation-triangle" style="color:#e74c3c;font-size:2.5rem;display:block;margin-bottom:16px;"></i><p>Erreur de chargement.<br><a href="/espace-client/login" style="color:var(--gold);text-decoration:underline;">Reconnectez-vous</a></p></div>';
       }
     }
 
@@ -1551,18 +1565,14 @@ app.get('/espace-client', (c) => {
 
       empty.style.display = 'none';
       table.style.display = 'table';
-      body.innerHTML = subs.map(s => {
-        const plan = s.pm_plans || {};
-        const statusClass = s.status === 'active' ? 'portal-status-active' : 
-                          s.status === 'trial' ? 'portal-status-trial' : 
-                          s.status === 'suspended' ? 'portal-status-suspended' : 'portal-status-expired';
-        const statusLabel = {active:'Actif', trial:'Essai', expired:'Expiré', suspended:'Suspendu', cancelled:'Annulé'}[s.status] || s.status;
+      body.innerHTML = subs.map(function(s) {
         return '<tr>' +
-          '<td class="portal-cell-bold">' + (plan.name || '—') + '</td>' +
-          '<td><span class="portal-status ' + statusClass + '">' + statusLabel + '</span></td>' +
-          '<td>' + formatDate(s.started_at) + '</td>' +
-          '<td>' + formatDate(s.current_period_end) + '</td>' +
-          '<td>' + (plan.included_seats || '—') + '</td>' +
+          '<td data-label="Formule" class="portal-cell-bold">' + esc(s.plan_name) + '</td>' +
+          '<td data-label="Période">' + esc(s.billing_period_label) + '</td>' +
+          '<td data-label="Statut"><span class="portal-status portal-status-' + s.status_type + '">' + esc(s.status_label) + '</span></td>' +
+          '<td data-label="Début">' + fmtDate(s.started_at) + '</td>' +
+          '<td data-label="Renouvellement">' + fmtDate(s.current_period_end) + '</td>' +
+          '<td data-label="PC autorisés">' + s.included_seats + ' PC</td>' +
           '</tr>';
       }).join('');
     }
@@ -1580,16 +1590,19 @@ app.get('/espace-client', (c) => {
 
       empty.style.display = 'none';
       table.style.display = 'table';
-      body.innerHTML = lics.map(l => {
-        const statusClass = l.status === 'active' ? 'portal-status-active' : 
-                          l.status === 'revoked' ? 'portal-status-expired' : 'portal-status-suspended';
-        const statusLabel = {active:'Active', revoked:'Révoquée', expired:'Expirée', suspended:'Suspendue'}[l.status] || l.status;
+      body.innerHTML = lics.map(function(l) {
+        // Slot dots visual
+        var dots = '';
+        for (var i = 0; i < l.max_devices; i++) {
+          dots += '<span class="portal-slot-dot ' + (i < l.active_devices ? 'portal-slot-dot-used' : 'portal-slot-dot-free') + '"></span>';
+        }
         return '<tr>' +
-          '<td class="portal-cell-mono">' + (l.license_key_masked || l.license_key || '—') + '</td>' +
-          '<td><span class="portal-status ' + statusClass + '">' + statusLabel + '</span></td>' +
-          '<td>' + (l.max_devices || '—') + ' PC max</td>' +
-          '<td>' + formatDate(l.created_at) + '</td>' +
-          '<td>' + formatDate(l.expires_at) + '</td>' +
+          '<td data-label="Clé" class="portal-cell-mono">' + esc(l.license_key_masked) + '</td>' +
+          '<td data-label="Plan">' + esc(l.plan_name) + '</td>' +
+          '<td data-label="Statut"><span class="portal-status portal-status-' + l.status_type + '">' + esc(l.status_label) + '</span></td>' +
+          '<td data-label="Appareils"><div class="portal-slot-bar">' + dots + '</div><span style="font-size:0.78rem;color:rgba(255,255,255,0.5);margin-left:6px;">' + l.active_devices + '/' + l.max_devices + '</span></td>' +
+          '<td data-label="Créée le">' + fmtDate(l.created_at) + '</td>' +
+          '<td data-label="Expire le">' + fmtDate(l.expires_at) + '</td>' +
           '</tr>';
       }).join('');
     }
@@ -1607,95 +1620,99 @@ app.get('/espace-client', (c) => {
 
       empty.style.display = 'none';
       table.style.display = 'table';
-      body.innerHTML = devs.map(d => {
-        const isActive = d.status === 'active';
-        const statusClass = isActive ? 'portal-status-active' : 
-                          d.status === 'released' ? 'portal-status-released' : 'portal-status-expired';
-        const statusLabel = {active:'Actif', released:'Libéré', revoked:'Révoqué'}[d.status] || d.status;
-        const fingerprint = d.device_fingerprint ? d.device_fingerprint.substring(0, 4) + '\\u2026' + d.device_fingerprint.slice(-4) : '—';
-        const releaseBtn = isActive 
-          ? '<button class="portal-btn-release" data-device-id="' + d.id + '" data-device-name="' + escapeHtml(d.device_name) + '"><i class="fas fa-unlock"></i> Libérer</button>'
-          : '<span class="portal-text-dim">' + (d.status === 'released' ? 'Libéré' : '—') + '</span>';
+      body.innerHTML = devs.map(function(d) {
+        var isActive = d.status === 'active';
+        var fingerprint = d.device_hash ? d.device_hash.substring(0, 4) + '\\u2026' + d.device_hash.slice(-4) : '\\u2014';
+        var releaseBtn = isActive
+          ? '<button class="portal-btn-release" data-activation-id="' + d.activation_id + '" data-device-name="' + esc(d.device_name) + '"><i class="fas fa-unlock"></i> Libérer ce PC</button>'
+          : '<span class="portal-text-dim">' + esc(d.status_label) + '</span>';
         return '<tr class="' + (isActive ? '' : 'portal-row-dim') + '">' +
-          '<td class="portal-cell-bold">' + escapeHtml(d.device_name) + '</td>' +
-          '<td class="portal-cell-mono portal-cell-dim">' + fingerprint + '</td>' +
-          '<td>' + formatDate(d.activated_at) + '</td>' +
-          '<td>' + formatDate(d.last_check_in) + '</td>' +
-          '<td><span class="portal-status ' + statusClass + '">' + statusLabel + '</span></td>' +
-          '<td>' + releaseBtn + '</td>' +
+          '<td data-label="Nom du PC" class="portal-cell-bold"><i class="fas fa-' + (d.os_name === 'Windows' ? 'windows' : 'desktop') + '" style="color:var(--teal);margin-right:6px;font-size:0.9rem;"></i>' + esc(d.device_name) + '</td>' +
+          '<td data-label="Empreinte" class="portal-cell-dim" style="font-family:monospace;font-size:0.8rem;letter-spacing:0.5px;">' + fingerprint + '</td>' +
+          '<td data-label="Licence" class="portal-cell-mono" style="font-size:0.75rem;">' + esc(d.license_key_masked) + '</td>' +
+          '<td data-label="Activé le">' + fmtDate(d.activated_at) + '</td>' +
+          '<td data-label="Dernier check-in">' + fmtDate(d.last_seen_at) + '</td>' +
+          '<td data-label="Statut"><span class="portal-status portal-status-' + d.status_type + '">' + esc(d.status_label) + '</span></td>' +
+          '<td data-label="Action">' + releaseBtn + '</td>' +
           '</tr>';
       }).join('');
 
       // Attach release handlers
-      document.querySelectorAll('.portal-btn-release').forEach(btn => {
-        btn.addEventListener('click', () => openReleaseModal(btn.dataset.deviceId, btn.dataset.deviceName));
+      document.querySelectorAll('.portal-btn-release').forEach(function(btn) {
+        btn.addEventListener('click', function() { openReleaseModal(btn.dataset.activationId, btn.dataset.deviceName); });
       });
     }
 
     // Release modal
-    const modal = document.getElementById('releaseModal');
-    const modalClose = document.getElementById('releaseModalClose');
-    const cancelBtn = document.getElementById('releaseCancelBtn');
-    const confirmBtn = document.getElementById('releaseConfirmBtn');
-    let pendingDeviceId = null;
+    var modal = document.getElementById('releaseModal');
+    var modalClose = document.getElementById('releaseModalClose');
+    var cancelBtn = document.getElementById('releaseCancelBtn');
+    var confirmBtn = document.getElementById('releaseConfirmBtn');
+    var pendingActivationId = null;
 
-    function openReleaseModal(deviceId, deviceName) {
-      pendingDeviceId = deviceId;
+    function openReleaseModal(activationId, deviceName) {
+      pendingActivationId = activationId;
       document.getElementById('releaseDeviceName').textContent = deviceName;
       modal.style.display = 'flex';
     }
 
     function closeReleaseModal() {
       modal.style.display = 'none';
-      pendingDeviceId = null;
+      pendingActivationId = null;
     }
 
     modalClose.addEventListener('click', closeReleaseModal);
     cancelBtn.addEventListener('click', closeReleaseModal);
-    modal.addEventListener('click', (e) => { if (e.target === modal) closeReleaseModal(); });
+    modal.addEventListener('click', function(e) { if (e.target === modal) closeReleaseModal(); });
 
-    confirmBtn.addEventListener('click', async () => {
-      if (!pendingDeviceId) return;
+    // ESC key closes modal
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && modal.style.display === 'flex') closeReleaseModal(); });
+
+    confirmBtn.addEventListener('click', async function() {
+      if (!pendingActivationId) return;
 
       confirmBtn.disabled = true;
-      confirmBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Libération...';
+      confirmBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Libération en cours...';
 
       try {
-        const res = await apiCall('/api/account/devices/' + pendingDeviceId + '/release', {
+        var res = await apiCall('/api/account/devices/' + pendingActivationId + '/release', {
           method: 'POST',
         });
 
-        const data = await res.json();
+        var data = await res.json();
 
         if (res.ok && data.success) {
           closeReleaseModal();
+          showToast(data.message || 'Appareil libéré avec succès !', 'success');
           // Reload dashboard
           loading.style.display = 'flex';
           main.style.display = 'none';
           await loadDashboard();
         } else {
-          alert(data.error || 'Erreur lors de la libération.');
+          showToast(data.error || 'Erreur lors de la libération.', 'error');
         }
       } catch (err) {
-        alert('Erreur réseau. Veuillez réessayer.');
+        showToast('Erreur réseau. Veuillez réessayer.', 'error');
       }
 
       confirmBtn.disabled = false;
-      confirmBtn.innerHTML = '<i class="fas fa-unlock"></i> Libérer';
+      confirmBtn.innerHTML = '<i class="fas fa-unlock"></i> Confirmer la libération';
     });
 
     // Helpers
-    function formatDate(dateStr) {
-      if (!dateStr) return '—';
+    function fmtDate(dateStr) {
+      if (!dateStr) return '\\u2014';
       try {
-        const d = new Date(dateStr);
-        return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'long', year: 'numeric' });
-      } catch { return dateStr; }
+        var d = new Date(dateStr);
+        return d.toLocaleDateString('fr-FR', { day: 'numeric', month: 'short', year: 'numeric' });
+      } catch (e) { return dateStr; }
     }
 
-    function escapeHtml(str) {
+    function esc(str) {
       if (!str) return '';
-      return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      var div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
     }
   });
   </script>
